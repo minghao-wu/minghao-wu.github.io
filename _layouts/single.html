@@ -19,7 +19,7 @@ layout: default
 
   <article class="page" itemscope itemtype="http://schema.org/CreativeWork">
     {% if page.title %}<meta itemprop="headline" content="{{ page.title | markdownify | strip_html | strip_newlines | escape_once }}">{% endif %}
-    <!-- {% if page.excerpt %}<meta itemprop="description" content="{{ page.excerpt | markdownify | strip_html | strip_newlines | escape_once }}">{% endif %} -->
+    {% if page.excerpt %}<meta itemprop="description" content="{{ page.excerpt | markdownify | strip_html | strip_newlines | escape_once }}">{% endif %}
     {% if page.date %}<meta itemprop="datePublished" content="{{ page.date | date: "%B %d, %Y" }}">{% endif %}
     {% if page.modified %}<meta itemprop="dateModified" content="{{ page.modified | date: "%B %d, %Y" }}">{% endif %}
 
@@ -43,23 +43,11 @@ layout: default
         {% endif %}
         
              
-        <!-- {% if page.citation and page.paperurl %}
-          <p>{{ page.citation }} <a href="{{ page.paperurl }}"><u>Link</u></a> <a href="{{ page.download }}"><u>Download</u></a></p>
-        {% elsif page.citation and page.paperurl %}
-          <p>{{ page.citation }} <a href="{{ page.paperurl }}"><u>Link</u></a></p>
+        {% if page.citation and page.paperurl %}
+          <p>Recommended citation: {{ page.citation }} <a href="{{ page.paperurl }}"><u>{{ page.paperurl }}</u></a></p>
         {% elsif page.citation %}
-          <p>{{ page.citation }} </p>
-        {% endif %} -->
-
-        <!-- {% if post.citation and post.paperurl and post.paperurltext %}
-          <p>{{ post.citation }} <a href="{{ post.paperurl }}"><u>{{ post.paperurltext }}</u></a></p>
-        {% elsif post.citation and post.paperurl %}
-          <p>{{ post.citation }} Link to paper <a href=" {{ post.paperurl }} "><u>here</u></a></p>
-        {% elsif post.citation %}
-          <p>{{ post.citation }}</p>
-        {% elsif post.paperurl %}
-          <p>Link to paper <a href=" {{ post.paperurl }} "><u>here</u></a></p>
-        {% endif %} -->
+          <p>Recommended citation: {{ page.citation }} </p>
+        {% endif %}
     
         </header>
       {% endunless %}
