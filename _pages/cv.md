@@ -9,13 +9,15 @@ redirect_from:
 
 {% include base_path %}
 
+CV can be downloaded [here](http://liufly.github.io/files/cv/cv.pdf)
+
 Education
 ======
-* B.S. in Github, Github University, 2012
-* M.S. in Jekyll, Github University, 2014
-* Ph.D in Version Control Theory, Github University, 2018 (expected)
+* Ph.D in Natural Language Processing, The University of Melbourne, 2018 (expected)
+* M.Eng. Software Systems Engineering, The University of Melbourne, 2013
+* B.Eng. Computer Science, Beijing University of Technology, 2008
 
-Work experience
+<!-- Work experience
 ======
 * Summer 2015: Research Assistant
   * Github University
@@ -56,4 +58,4 @@ Teaching
   
 Service and leadership
 ======
-* Currently signed in to 43 different slack teams
+* Currently signed in to 43 different slack teams -->
