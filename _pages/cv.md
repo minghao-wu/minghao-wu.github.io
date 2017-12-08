@@ -9,7 +9,7 @@ redirect_from:
 
 {% include base_path %}
 
-CV can be downloaded [here](http://liufly.github.io/files/cv/cv.pdf)
+* CV can be downloaded [here](https://liufly.github.io/files/cv/cv.pdf)
 
 Education
 ======
