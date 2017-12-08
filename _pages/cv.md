@@ -9,7 +9,8 @@ redirect_from:
 
 {% include base_path %}
 
-* CV can be downloaded [here](https://liufly.github.io/files/cv/cv.pdf)
+* CV can be downloaded [here] (https://liufly.github.io/files/cv/cv.pdf)
+* [Trevor Cohn](http://people.eng.unimelb.edu.au/tcohn/)
 
 Education
 ======
