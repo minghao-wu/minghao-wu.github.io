@@ -11,12 +11,12 @@ citation: 'Fei Liu, Maria Vasardani and Timothy Baldwin (2014) <a href="http://l
 
 ```
 @inproceedings{Liu+:2014,
- author    = {Liu, Fei and Vasardani, Maria and Baldwin, Timothy},
- title     = {Automatic Identification of Locative Expressions from Social Media Text: A Comparative Analysis},
- booktitle = {Proceedings of the 4th International Workshop on Location and the Web (LocWeb 2014)},
- year      = {2014},
- address   = {Shanghai, China},
- pages     = {9--16}
+  author    = {Liu, Fei and Vasardani, Maria and Baldwin, Timothy},
+  title     = {Automatic Identification of Locative Expressions from Social Media Text: A Comparative Analysis},
+  booktitle = {Proceedings of the 4th International Workshop on Location and the Web (LocWeb 2014)},
+  year      = {2014},
+  address   = {Shanghai, China},
+  pages     = {9--16}
 } 
 ```
 
