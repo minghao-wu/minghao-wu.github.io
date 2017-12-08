@@ -6,7 +6,7 @@ date: 2016-06-16
 venue: 'Proceedings of the 10th International Workshop on Semantic Evaluation (SemEval-2016)'
 paperurl: 'https://aclanthology.info/papers/S16-1145/s16-1145'
 paperurltext: 'Link to ACL anthology'
-citation: 'Andrei Shcherbakov, Ekaterina Vylomova, Fei Liu and Timothy Baldwin (2016) <a href="http://liufly.github.io/files/papers/semeval-2016.pdf"><u>VectorWeavers at SemEval-2016 Task 10: From Incremental Meaning to Semantic Unit (phrase by phrase)</u></a>, In <i>Proceedings of the 10th International Workshop on Semantic Evaluation (SemEval-2016)</i>, San Diego, USA, pp. 946-952.'
+citation: 'Andrei Shcherbakov, Ekaterina Vylomova, <b>Fei Liu</b> and Timothy Baldwin (2016) <a href="http://liufly.github.io/files/papers/semeval-2016.pdf"><u>VectorWeavers at SemEval-2016 Task 10: From Incremental Meaning to Semantic Unit (phrase by phrase)</u></a>, In <i>Proceedings of the 10th International Workshop on Semantic Evaluation (SemEval-2016)</i>, San Diego, USA, pp. 946-952.'
 ---
 
 ```

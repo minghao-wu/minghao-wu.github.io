@@ -6,7 +6,7 @@ date: 2014-11-03
 venue: 'Proceedings of The 4th International Workshop on Location and the Web (LocWeb 2014)'
 paperurl: 'https://dl.acm.org/citation.cfm?id=2664426'
 paperurltext: 'Link to ACM DL'
-citation: 'Fei Liu, Maria Vasardani and Timothy Baldwin (2014) <a href="http://liufly.github.io/files/papers/cikm-locweb-2014.pdf"><u>Automatic Identification of Locative Expressions from Social Media Text: A Comparative Analysis</u></a>, In <i>Proceedings of The 4th International Workshop on Location and the Web (LocWeb 2014)</i>, Shanghai, China, pp. 9–16.'
+citation: '<b>Fei Liu</b>, Maria Vasardani and Timothy Baldwin (2014) <a href="http://liufly.github.io/files/papers/cikm-locweb-2014.pdf"><u>Automatic Identification of Locative Expressions from Social Media Text: A Comparative Analysis</u></a>, In <i>Proceedings of The 4th International Workshop on Location and the Web (LocWeb 2014)</i>, Shanghai, China, pp. 9–16.'
 ---
 
 ```
