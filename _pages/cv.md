@@ -17,7 +17,7 @@ Education
 * M.Eng. Software Systems Engineering, The University of Melbourne, 2013
 * B.Eng. Computer Science, Beijing University of Technology, 2008
 
-Work experience
+Work Experience
 ======
 * May, 2017–Aug, 2017: Research Assistant (Casual)
   * The University of Melbourne, Victoria, Australia
@@ -84,6 +84,6 @@ Teaching
     {% include archive-single-cv.html %}
   {% endfor %}</ul> -->
   
-Service and leadership
+Professional Service
 ======
 * Reviewer for: EMNLP 2017
