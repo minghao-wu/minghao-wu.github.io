@@ -1,5 +1,5 @@
 ---
-title: " Recurrent and Compositional Model for Personality Trait Recognition from Short Texts"
+title: "Recurrent and Compositional Model for Personality Trait Recognition from Short Texts"
 collection: publications
 permalink: /publication/coling-peoples-2016
 date: 2016-12-12
