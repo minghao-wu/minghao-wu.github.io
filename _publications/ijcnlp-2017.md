@@ -6,7 +6,7 @@ date: 2017-11-28
 venue: 'Proceedings of the Eighth International Joint Conference on Natural Language Processing (IJCNLP 2017)'
 paperurl: 'http://www.aclweb.org/anthology/I17-1056'
 paperurltext: 'Link to ACL anthology'
-citation: '<b>Fei Liu</b>, Timothy Baldwin and Trevor Cohn (2017) <a href="http://liufly.github.io/files/papers/eacl-2017-gmemn2n.pdf"><u>Gated End-to-End Memory Networks</u></a>, In <i>Proceedings of the Eighth International Joint Conference on Natural Language Processing (IJCNLP 2017)</i>, Taipei, Taiwan, pp. 555-565.'
+citation: '<b>Fei Liu</b>, Timothy Baldwin and Trevor Cohn (2017) <a href="http://liufly.github.io/files/papers/eacl-2017-gmemn2n.pdf"><u>Capturing Long-range Contextual Dependencies with Memory-enhanced Conditional Random Fields</u></a>, In <i>Proceedings of the Eighth International Joint Conference on Natural Language Processing (IJCNLP 2017)</i>, Taipei, Taiwan, pp. 555-565.'
 ---
 
 ```
