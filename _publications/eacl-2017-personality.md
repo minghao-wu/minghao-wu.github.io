@@ -3,10 +3,10 @@ title: "A Language-independent and Compositional Model for Personality Trait Rec
 collection: publications
 permalink: /publication/eacl-2017-personality
 date: 2017-04-05
-venue: 'Proceedings of the 39th International ACM SIGIR Conference on Research and Development in Information Retrieval (SIGIR 2016)'
+venue: 'Proceedings of the 15th Conference of the European Chapter of the Association for Computational Linguistics (EACL 2017)'
 paperurl: 'http://www.aclweb.org/anthology/E17-1071'
 paperurltext: 'Link to ACL anthology'
-citation: '<b>Fei Liu</b>, Alistair Moffat, Timothy Baldwin and Xiuzhen Zhang (2016) <a href="http://liufly.github.io/files/papers/sigir-2016.pdf"><u>Quit while ahead: Evaluating truncated rankings</u></a>, In <i>Proceedings of the 39th International ACM SIGIR Conference on Research and Development in Information Retrieval (SIGIR 2016)</i>, Pisa, Italy, pp. 953-956.'
+citation: '<b>Fei Liu</b>, Julien Perez and Scott Nowson (2017) <a href="http://liufly.github.io/files/papers/eacl-2017-personality.pdf"><u>A Language-independent and Compositional Model for Personality Trait Recognition from Short Texts</u></a>, In <i>Proceedings of the 15th Conference of the European Chapter of the Association for Computational Linguistics (EACL 2017)</i>, Valencia, Spain, pp. 754-764.'
 ---
 
 ```
