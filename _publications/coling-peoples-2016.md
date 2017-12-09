@@ -6,7 +6,7 @@ date: 2016-12-12
 venue: "Proceedings of the Workshop on Computational Modeling of People's Opinions, Personality, and Emotions in Social Media (PEOPLES 2016)"
 paperurl: 'http://aclweb.org/anthology/W16-4303'
 paperurltext: 'Link to ACL anthology'
-citation: '<b>Fei Liu</b>, Julien Perez and Scott Nowson (2016) <a href="http://liufly.github.io/files/papers/coling-peoples-2016.pdf"><u>A Recurrent and Compositional Model for Personality Trait Recognition from Short Texts</u></a>, In <i>Proceedings of the Workshop on Computational Modeling of People's Opinions, Personality, and Emotions in Social Media (PEOPLES 2016)</i>, Osaka, Japan, pp. 20-29.'
+citation: "<b>Fei Liu</b>, Julien Perez and Scott Nowson (2016) <a href="http://liufly.github.io/files/papers/coling-peoples-2016.pdf"><u>A Recurrent and Compositional Model for Personality Trait Recognition from Short Texts</u></a>, In <i>Proceedings of the Workshop on Computational Modeling of People's Opinions, Personality, and Emotions in Social Media (PEOPLES 2016)</i>, Osaka, Japan, pp. 20-29."
 ---
 
 ```
