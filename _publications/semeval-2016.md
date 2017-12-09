@@ -1,5 +1,5 @@
 ---
-title: "A Classification Schema for Fast Disambiguation of Spatial Prepositions"
+title: "VectorWeavers at SemEval-2016 Task 10: From Incremental Meaning to Semantic Unit (phrase by phrase)"
 collection: publications
 permalink: /publication/semeval-2016
 date: 2016-06-16
