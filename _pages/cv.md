@@ -46,6 +46,7 @@ Work Experience
 
 Awards and Additional Certificates
 ======
+* Dec, 2017: ALTA 2017 Best Poster Award
 * Nov, 2017: ALTA 2017 Student Scholarship
 * Oct, 2017: Google PhD Travel Scholarship Award
 * July, 2017: Best Paper Award, 5th Annual Doctoral Colloquium, School of Computing and Information Systems, The University of Melbourne
@@ -66,12 +67,18 @@ Skills
 Linux, Struts, Spring, Hibernate
 * Development tools: VS Code, Eclipse, Git, SVN, Browser Developer Tools
 
+Languages
+======
+* English: Full Professional Proficiency
+* Japanese: Full Professional Proficiency
+* Chinese: Native or Bilingual Proficiency
+
 Publications
 ======
   <ul>{% for post in site.publications %}
     {% include archive-single-cv.html %}
   {% endfor %}</ul>
-  
+
 <!-- Talks
 ======
   <ul>{% for post in site.talks %}
