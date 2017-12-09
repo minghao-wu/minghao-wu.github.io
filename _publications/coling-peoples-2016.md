@@ -6,7 +6,7 @@ date: 2016-12-12
 venue: 'Proceedings of the Workshop on Computational Modeling of People's Opinions, Personality, and Emotions in Social Media (PEOPLES 2016)'
 paperurl: 'http://aclweb.org/anthology/W16-4303'
 paperurltext: 'Link to ACL anthology'
-citation: '<b>Fei Liu</b>, Julien Perez and Scott Nowson (2016) <a href="http://liufly.github.io/files/papers/coling-peoples-2016.pdf"><u>A Recurrent and Compositional Model for Personality Trait Recognition from Short Texts</u></a>, In <i>Proceedings of the Workshop on Computational Modeling of People's Opinions, Personality, and Emotions in Social Media (PEOPLES 2016)</i>, Osaka, Japan, pp. 20-29.'
+citation: '<b>Fei Liu</b> and Julien Perez (2017) <a href="http://liufly.github.io/files/papers/eacl-2017-gmemn2n.pdf"><u>Gated End-to-End Memory Networks</u></a>, In <i>Proceedings of the 15th Conference of the European Chapter of the Association for Computational Linguistics (EACL 2017)</i>, Valencia, Spain, pp. 1-10.'
 ---
 
 ```
