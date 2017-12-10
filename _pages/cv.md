@@ -42,7 +42,7 @@ Work Experience
   * Participated (as a core developer) in the development of the GOOD-DESIGN-AWARD-winning and KIDS-DESIGN-AWARD-winning web application named ZoomSight (No.1 in market share)
 
 * Feb, 2008–Aug, 2008: Software Engineer (Intern)
-  * Hitachi Beijing Tech Information Systems Co.,Ltd, Beijing, China
+  * Hitachi Beijing Tech Information Systems Co., Ltd, Beijing, China
 
 Awards and Additional Certificates
 ======
