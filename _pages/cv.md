@@ -54,7 +54,7 @@ Awards and Additional Certificates
 * Mar, 2017: Winning Team of Electronic Trading Challenge Hackathon
 * Sept, 2016: Best Intern Presentation Award, Xerox Research Centre Europe
 * July, 2016: SIGIR Travel Scholarship
-* May, 2016: 3rd Prize, Microsoft Data Science Student Challenge Hackathon
+* May, 2016: 3rd Prize, [Microsoft Data Science Student Challenge Hackathon](https://news.microsoft.com/en-au/2016/05/11/melbourne-university-holds-data-scientist-hackathon/)
 * Feb, 2015 - Present: Australian Postgraduate Awards (APA Scholarship)
 * Mar, 2013: IELTS Overall: 8.5/9.0 (listening: 8.5/9.0, reading: 9.0/9.0, sriting: 8.5/9.0, speaking: 7.0/9.0)
 * Apr, 2011: Oracle Certified Professional, Java SE 6 Programmer
