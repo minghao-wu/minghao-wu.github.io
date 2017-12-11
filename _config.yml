@@ -7,7 +7,7 @@
 
 # Site Settings
 locale                   : "en-AU"
-title                    : "Fei Liu - The Universit of Melbourne"
+title                    : "Fei Liu"
 title_separator          : "-"
 name                     : &name "Fei Liu"
 description              : &description "PhD student in NLP at the University of Melbourne"

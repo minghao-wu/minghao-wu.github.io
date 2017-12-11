@@ -1,7 +1,7 @@
 ---
 permalink: /
-title: "About me"
-excerpt: "About me"
+title: "Fei Liu - The University of Melbourne"
+excerpt: "Fei Liu - The University of Melbourne"
 author_profile: true
 redirect_from: 
   - /about/
