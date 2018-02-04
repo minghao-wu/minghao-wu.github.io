@@ -46,7 +46,7 @@ Work Experience
 
 Awards and Additional Certificates
 ======
-* Dec, 2017: ALTA 2017 Best Poster Award
+* Dec, 2017: <a href="http://alta2017.alta.asn.au/index.html"><u>ALTA 2017 Best Poster Award</u></a>
 * Nov, 2017: ALTA 2017 Student Scholarship
 * Oct, 2017: Google PhD Travel Scholarship Award
 * July, 2017: Best Paper Award, 5th Annual Doctoral Colloquium, School of Computing and Information Systems, The University of Melbourne
