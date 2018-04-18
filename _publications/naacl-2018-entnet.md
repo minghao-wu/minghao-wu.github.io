@@ -6,7 +6,7 @@ date: 2018-06-02
 venue: 'Proceedings of the 2018 Conference of the North American Chapter of the Association for Computational Linguistics – Human Language Technologies (NAACL HLT 2018)'
 paperurl: 'http://www.aclweb.org/anthology/E17-1001'
 paperurltext: 'Link to ACL anthology'
-citation: '<b>Fei Liu</b>, Trevor Cohn and Timothy Baldwin (2018) <a href="http://liufly.github.io/files/papers/naaclhtl-2018.pdf"><u>Recurrent Entity Networks with Delayed Memory Update for Targeted Aspect-based Sentiment Analysis</u></a>, In <i>Proceedings of the 2018 Conference of the North American Chapter of the Association for Computational Linguistics – Human Language Technologies (NAACL HLT 2018)</i>, New Orleans, USA.'
+citation: '<b>Fei Liu</b>, Trevor Cohn and Timothy Baldwin (2018) <a href="http://liufly.github.io/files/papers/naaclhlt-2018.pdf"><u>Recurrent Entity Networks with Delayed Memory Update for Targeted Aspect-based Sentiment Analysis</u></a>, In <i>Proceedings of the 2018 Conference of the North American Chapter of the Association for Computational Linguistics – Human Language Technologies (NAACL HLT 2018)</i>, New Orleans, USA.'
 ---
 
 ```
