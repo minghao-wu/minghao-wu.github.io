@@ -1,7 +1,7 @@
 ---
 title: "Capturing Long-range Contextual Dependencies with Memory-enhanced Conditional Random Fields"
 collection: publications
-permalink: /publication/eacl-2017-gmemn2n
+permalink: /publication/ijcnlp-2017-mecrf
 date: 2017-11-28
 venue: 'Proceedings of the Eighth International Joint Conference on Natural Language Processing (IJCNLP 2017)'
 paperurl: 'http://www.aclweb.org/anthology/I17-1056'
