@@ -4,7 +4,7 @@ collection: publications
 permalink: /publication/acl-2018-narrative
 date: 2018-07-16
 venue: 'Proceedings of the 56th Annual Meeting of the Association for Computational Linguistics (ACL 2018)'
-paperurl: 'http://www.aclweb.org/anthology/E17-1001'
+paperurl: 'http://aclweb.org/anthology/P18-2045'
 paperurltext: 'Link to ACL anthology'
 citation: '<b>Fei Liu</b>, Trevor Cohn and Timothy Baldwin (2018) <a href="http://liufly.github.io/files/papers/acl-2018.pdf"><u>Narrative Modeling with Memory Chains and Semantic Supervision</u></a>, In <i>Proceedings of the 56th Annual Meeting of the Association for Computational Linguistics (ACL 2018)</i>, Melbourne, Australia.'
 ---
