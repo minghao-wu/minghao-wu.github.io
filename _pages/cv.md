@@ -63,9 +63,8 @@ Awards and Additional Certificates
 Skills
 ======
 * Primary language: Python, Java
-* Knowledge of: TensorFlow, Keras, Theano, LATEX, C/C++, JavaScript, jQuery, HTML, CSS,
-Linux, Struts, Spring, Hibernate
-* Development tools: VS Code, Eclipse, Git, SVN, Browser Developer Tools
+* Knowledge of: TensorFlow, Keras, Theano, LATEX, Linux
+* Development tools: VS Code, Eclipse, Git, SVN
 
 Languages
 ======
