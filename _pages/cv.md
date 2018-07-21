@@ -13,7 +13,7 @@ CV can be downloaded <a href="https://liufly.github.io/files/cv/cv.pdf"><u>here<
 
 Education
 ======
-* Ph.D in Computer Science (Natural Language Processing), The University of Melbourne, 2018 or early 2019 (expected)
+* Ph.D in Computer Science (Natural Language Processing), The University of Melbourne, 2019 (expected)
 * M.Eng. Software Systems Engineering, The University of Melbourne, 2013
 * B.Eng. Computer Science, Beijing University of Technology, 2008
 
