@@ -8,4 +8,4 @@ redirect_from:
   - /about.html
 ---
 
-I am a PhD student in natural language processing at The University of Melbourne under the supervision of [Tim Baldwin](https://people.eng.unimelb.edu.au/tbaldwin/) and [Trevor Cohn](http://people.eng.unimelb.edu.au/tcohn/).
+Minghao Wu is currently working as a Research Engineer at JD.com, Inc AI Lab. He received his bachelor degree at The University of Sydney in 2016 and master degree at The University of Melbourne under the supervision of [Trevor Cohn](http://people.eng.unimelb.edu.au/tcohn/) in 2018.
