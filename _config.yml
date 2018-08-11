@@ -6,14 +6,14 @@
 # `jekyll serve`. If you change this file, please restart the server process.
 
 # Site Settings
-locale                   : "en-AU"
-title                    : "Fei Liu"
+locale                   : "en-US"
+title                    : "Minghao Wu"
 title_separator          : "-"
-name                     : &name "Fei Liu"
-description              : &description "PhD student in NLP at The University of Melbourne"
-url                      : https://liufly.github.io # the base hostname & protocol for your site e.g. "https://mmistakes.github.io"
+name                     : &name "Minghao Wu"
+description              : &description "Research Engineer in NLP at JD.com, Inc AI Lab"
+url                      : https://minghao-wu.github.io # the base hostname & protocol for your site e.g. "https://mmistakes.github.io"
 baseurl                  : "" # the subpath of your site, e.g. "/blog"
-repository               : "liufly/liufly.github.io"
+repository               : "minghao-wu/minghao-wu.github.io"
 teaser                   :  # filename of teaser fallback teaser image placed in /images/, .e.g. "500x300.png"
 breadcrumbs              : false # true, false (default)
 words_per_minute         : 160
@@ -78,8 +78,8 @@ analytics:
 
 # Site Author
 author:
-  name             : "Fei Liu"
-  avatar           : "avatar.jpg" #"profile.png"
+  name             : "Minghao Wu"
+  avatar           : "me.jpeg" #"profile.png"
   bio              : "PhD student in NLP at The University of Melbourne"
   location         : "Melbourne, Australia"
   employer         :
@@ -92,7 +92,7 @@ author:
   flickr           :
   facebook         :
   foursquare       :
-  github           : "liufly"
+  github           : "minghao-wu"
   google_plus      :
   keybase          :
   instagram        :
