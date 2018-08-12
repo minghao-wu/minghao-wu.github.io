@@ -13,7 +13,7 @@ CV can be downloaded <a href="https://minghao-wu.github.io/files/cv/minghao-wu-c
 
 Education
 ======
-* M.Eng. Software Systems Engineering, The University of Melbourne, 2018
+* M.Eng. Information Technology, The University of Melbourne, 2018
 * B.Sc. Statistics and Information Systems, Beijing University of Technology, 2016
 
 Work Experience
