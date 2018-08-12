@@ -83,8 +83,8 @@ author:
   bio              : "Research Engineer in NLP at JD.com, Inc AI Lab"
   location         : "Beijing, China"
   employer         :
-  googlescholar    : "https://scholar.google.com/citations?user=rzVW-fEAAAAJ&hl=en&citsig=AMstHGR6aN4QVq4TXUAFS-bznvOmplpzdA"
-  email            : "fliu3@student.unimelb.edu.au"
+  googlescholar    : #"https://scholar.google.com/citations?user=rzVW-fEAAAAJ&hl=en&citsig=AMstHGR6aN4QVq4TXUAFS-bznvOmplpzdA"
+  email            : #"fliu3@student.unimelb.edu.au"
   uri              :
   bitbucket        :
   codepen          :
@@ -97,14 +97,14 @@ author:
   keybase          :
   instagram        :
   lastfm           :
-  linkedin         : "fei-liu-unimelb"
+  linkedin         : "minghao-wu-9087076a"
   orcid            : #"http://orcid.org/yourorcidurl"
   pinterest        :
   soundcloud       :
   stackoverflow    : # http://stackoverflow.com/users/123456/username
   steam            :
   tumblr           :
-  twitter          : #"replacethistwitterhandle"
+  twitter          : "https://twitter.com/WuMinghao" #"replacethistwitterhandle"
   vine             :
   weibo            :
   xing             :
