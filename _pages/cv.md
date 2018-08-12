@@ -16,3 +16,19 @@ Education
 * M.Eng. Software Systems Engineering, The University of Melbourne, 2018
 * B.Sc. Statistics and Information Systems, Beijing University of Technology, 2016
 
+Work Experience
+======
+
+* Aug. 2018 - Current: Research Engineer at JD.com, Inc AI Lab
+
+Languages
+======
+
+* Chinese: Native or Bilingual Proficiency
+* English: Full Professional Proficiency
+
+Publications
+======
+  <ul>{% for post in site.publications reversed %}
+    {% include archive-single-cv.html %}
+  {% endfor %}</ul>
