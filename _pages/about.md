@@ -8,4 +8,4 @@ redirect_from:
   - /about.html
 ---
 
-Minghao Wu is currently working as a Research Engineer in Natural Language Processing at JD.com, Inc AI Lab. He received his bachelor degree at The University of Sydney in 2016 and master degree at The University of Melbourne under the supervision of [Trevor Cohn](http://people.eng.unimelb.edu.au/tcohn/) in 2018.
+Minghao Wu is currently working as a Research Scientist in Natural Language Processing at JD AI Research of JD.com, Inc.. He received his bachelor degree at The University of Sydney in 2016 and master degree at The University of Melbourne under the supervision of [Trevor Cohn](http://people.eng.unimelb.edu.au/tcohn/) in 2018.

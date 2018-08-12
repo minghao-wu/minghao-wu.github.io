@@ -19,7 +19,7 @@ Education
 Work Experience
 ======
 
-* Aug. 2018 - Current: Research Engineer at JD.com, Inc AI Lab
+* Aug. 2018 - Current: Research Engineer at JD AI Research of JD.com, Inc.
 
 Languages
 ======
