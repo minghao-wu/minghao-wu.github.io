@@ -1,5 +1,5 @@
 ---
-title: "Natural Language Processing Not At All from Scratch: the Utility of Hand-crafted Features in Deep Learning"
+title: "Evaluating the Utility of Hand-crafted Features in Sequence Labelling"
 collection: publications
 permalink: /publication/emnlp-2018-utility
 date: 2018-11-02
@@ -12,7 +12,7 @@ citation: '<b>Minghao Wu</b>, Fei Liu and Trevor Cohn (2018) <a href="http://min
 ```
 @InProceedings{Wu+:2018,
   author    = {Wu, Minghao and Liu, Fei  and  Cohn, Trevor},
-  title     = {Natural Language Processing Not At All from Scratch: the Utility of Hand-crafted Features in Deep Learning},
+  title     = {Evaluating the Utility of Hand-crafted Features in Sequence Labelling},
   booktitle = {Proceedings of the 2018 Conference on Empirical Methods in Natural Language Processing (EMNLP 2018)},
   year      = {2018},
   address   = {Brussels, Belgium},
