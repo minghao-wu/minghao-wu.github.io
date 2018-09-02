@@ -83,8 +83,8 @@ author:
   bio              : "Research Engineer in Natural Language Processing at JD AI Research of JD.com, Inc."
   location         : "Beijing, China"
   employer         :
-  googlescholar    : #"https://scholar.google.com/citations?user=rzVW-fEAAAAJ&hl=en&citsig=AMstHGR6aN4QVq4TXUAFS-bznvOmplpzdA"
-  email            : #"fliu3@student.unimelb.edu.au"
+  googlescholar    : "https://scholar.google.com/citations?user=E2zcuy0AAAAJ&hl=en&oi=sra" #"https://scholar.google.com/citations?user=rzVW-fEAAAAJ&hl=en&citsig=AMstHGR6aN4QVq4TXUAFS-bznvOmplpzdA"
+  email            : "wuminghao@jd.com" #"fliu3@student.unimelb.edu.au"
   uri              :
   bitbucket        :
   codepen          :
