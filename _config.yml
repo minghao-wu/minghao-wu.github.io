@@ -10,7 +10,7 @@ locale                   : "en-US"
 title                    : "Minghao Wu"
 title_separator          : "-"
 name                     : &name "Minghao Wu"
-description              : &description "Research Engineer in Natural Language Processing at JD AI Research of JD.com, Inc."
+description              : &description "Prospective Ph.D. student in Natural Language Processing at Monash University under the supervision of Prof. Reza Haffari."
 url                      : https://minghao-wu.github.io # the base hostname & protocol for your site e.g. "https://mmistakes.github.io"
 baseurl                  : "" # the subpath of your site, e.g. "/blog"
 repository               : "minghao-wu.github.io"
@@ -80,11 +80,11 @@ analytics:
 author:
   name             : "Minghao Wu"
   avatar           : "me.jpeg" #"profile.png"
-  bio              : "Research Engineer in Natural Language Processing at JD AI Research of JD.com, Inc."
-  location         : "Beijing, China"
+  bio              : "Ph.D. student in Natural Language Processing at Monash University"
+  location         : "Melbourne, Australia"
   employer         :
   googlescholar    : "https://scholar.google.com/citations?user=E2zcuy0AAAAJ&hl=en&oi=sra" #"https://scholar.google.com/citations?user=rzVW-fEAAAAJ&hl=en&citsig=AMstHGR6aN4QVq4TXUAFS-bznvOmplpzdA"
-  email            : "wuminghao@jd.com" #"fliu3@student.unimelb.edu.au"
+  email            : "minghaowu_2015@163.com" #"fliu3@student.unimelb.edu.au"
   uri              :
   bitbucket        :
   codepen          :
@@ -104,7 +104,7 @@ author:
   stackoverflow    : # http://stackoverflow.com/users/123456/username
   steam            :
   tumblr           :
-  twitter          : "WuMinghao" #"replacethistwitterhandle"
+  twitter          :
   vine             :
   weibo            :
   xing             :
