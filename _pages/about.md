@@ -1,7 +1,7 @@
 ---
 permalink: /
-title: "Minghao Wu - JD AI Research"
-excerpt: "Minghao Wu - JD AI Research"
+title: "Minghao Wu - Monash University"
+excerpt: "Minghao Wu - Monash University"
 author_profile: true
 redirect_from: 
   - /about/
