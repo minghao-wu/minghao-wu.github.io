@@ -13,13 +13,13 @@ CV can be downloaded from <a href="https://minghao-wu.github.io/files/cv/minghao
 
 Education
 ======
-* Ph.D. Neural Machine Translation, Monash University, 2021
+* Ph.D. Neural Machine Translation, Monash University, 2020
 * M.Eng. Information Technology, The University of Melbourne, 2018
 * B.Sc. Statistics and Information Systems, The University of Sydney, 2016
 
 Work Experience
 ======
-
+* Jul. 2020 - Jul. 2021: Research Intern at Huawei Noah's Arc Lab
 * Aug. 2018 - Jul. 2019: Research Engineer at JD AI Research of JD.com, Inc.
 
 Languages
