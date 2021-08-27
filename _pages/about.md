@@ -8,4 +8,4 @@ redirect_from:
   - /about.html
 ---
 
-Minghao Wu is a prospective Ph.D. student in Natural Language Processing at Monash University under the supervision of Prof. Reza Haffari.
+Minghao Wu is a Ph.D. student in Neural Machine Translation at Monash University under the supervision of [Assoc. Prof. Reza Haffari](https://users.monash.edu.au/~gholamrh/), [Dr. George Foster](http://www.iro.umontreal.ca/~foster/) and [Dr. Lizhen Qu](https://research.monash.edu/en/persons/lizhen-qu).
