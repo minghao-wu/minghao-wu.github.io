@@ -1,7 +1,7 @@
 ---
 title: "Uncertainty-Aware Balancing for Multilingual and Multi-Domain Neural Machine Translation Training"
 collection: publications
-permalink: /publication/emnlp-2018-utility
+permalink: /publication/emnlp-2021-multiuat
 date: 2021-11-07
 venue: 'Proceedings of the 2021 Conference on Empirical Methods in Natural Language Processing (EMNLP 2021)'
 paperurl: 'http://aclweb.org/anthology/D18-1310'
