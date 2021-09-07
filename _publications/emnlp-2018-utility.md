@@ -6,7 +6,7 @@ date: 2018-11-02
 venue: 'Proceedings of the 2018 Conference on Empirical Methods in Natural Language Processing (EMNLP 2018)'
 paperurl: 'http://aclweb.org/anthology/D18-1310'
 paperurltext: 'Link to ACL anthology'
-citation: '<b>Minghao Wu</b>, Fei Liu and Trevor Cohn (2018) <a href="http://minghao-wu.github.io/files/papers/EMNLP2018.pdf"><u>Evaluating the Utility of Hand-crafted Features in Sequence Labelling</u></a>, In <i>Proceedings of the 2018 Conference on Empirical Methods in Natural Language Processing (EMNLP 2018)</i>, Brussels, Belgium, pp.2850-2856.'
+citation: '<b>Minghao Wu</b>, Fei Liu and Trevor Cohn (2018) <a href="http://minghao-wu.github.io/files/papers/crfae_EMNLP_2018.pdf"><u>Evaluating the Utility of Hand-crafted Features in Sequence Labelling</u></a>, In <i>Proceedings of the 2018 Conference on Empirical Methods in Natural Language Processing (EMNLP 2018)</i>, Brussels, Belgium, pp.2850-2856.'
 ---
 
 ```
