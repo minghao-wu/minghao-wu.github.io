@@ -6,27 +6,29 @@ date: 2021-11-07
 venue: 'Proceedings of the 2021 Conference on Empirical Methods in Natural Language Processing (EMNLP 2021)'
 paperurl: 'http://aclweb.org/anthology/D18-1310'
 paperurltext: 'Link to ACL anthology'
-citation: '<b>Minghao Wu</b>, Yitong Li, Meng Zhang, Liangyou Li, Gholamreza Haffari and Qun Liu (2021) <a href="http://minghao-wu.github.io/files/papers/EMNLP2018.pdf"><u>Uncertainty-Aware Balancing for Multilingual and Multi-Domain Neural Machine Translation Training</u></a>, In <i>Proceedings of the 2021 Conference on Empirical Methods in Natural Language Processing (EMNLP 2021)</i>, Punta Cana, Dominican Republic, pp.2850-2856.'
+citation: '<b>Minghao Wu</b>, Yitong Li, Meng Zhang, Liangyou Li, Gholamreza Haffari and Qun Liu (2021) <a href="http://minghao-wu.github.io/files/papers/multiuat_EMNLP_2021.pdf"><u>Uncertainty-Aware Balancing for Multilingual and Multi-Domain Neural Machine Translation Training</u></a>, In <i>Proceedings of the 2021 Conference on Empirical Methods in Natural Language Processing (EMNLP 2021)</i>, Punta Cana, Dominican Republic, pp.2850-2856.'
 ---
 
 ```
-@inproceedings{wu-etal-2018-evaluating,
-    title = "Evaluating the Utility of Hand-crafted Features in Sequence Labelling",
+@inproceedings{wu-etal-2021-uncertainty,
+    title = "Uncertainty-Aware Balancing for Multilingual and Multi-Domain Neural Machine Translation Training",
     author = "Wu, Minghao  and
-      Liu, Fei  and
-      Cohn, Trevor",
-    booktitle = "Proceedings of the 2018 Conference on Empirical Methods in Natural Language Processing",
+      Li, Yitong  and
+      Zhang, Meng and
+      Li, Liangyou and
+      Haffari, Gholamreza and
+      Liu, Qun",
+    booktitle = "Proceedings of the 2021 Conference on Empirical Methods in Natural Language Processing (EMNLP 2021)",
     month = oct # "-" # nov,
     year = "2018",
-    address = "Brussels, Belgium",
+    address = "Punta Cana, Dominican Republic",
     publisher = "Association for Computational Linguistics",
     url = "https://aclanthology.org/D18-1310",
     doi = "10.18653/v1/D18-1310",
     pages = "2850--2856",
-    abstract = "Conventional wisdom is that hand-crafted features are redundant for deep learning models, as they already learn adequate representations of text automatically from corpora. In this work, we test this claim by proposing a new method for exploiting handcrafted features as part of a novel hybrid learning approach, incorporating a feature auto-encoder loss component. We evaluate on the task of named entity recognition (NER), where we show that including manual features for part-of-speech, word shapes and gazetteers can improve the performance of a neural CRF model. We obtain a F 1 of 91.89 for the CoNLL-2003 English shared task, which significantly outperforms a collection of highly competitive baseline models. We also present an ablation study showing the importance of auto-encoding, over using features as either inputs or outputs alone, and moreover, show including the autoencoder components reduces training requirements to 60{\%}, while retaining the same predictive accuracy.",
+    abstract = "Learning multilingual and multi-domain translation model is challenging as the heterogeneous and imbalanced data make the model converge inconsistently over different corpora in real world. One common practice is to adjust the share of each corpus in the training, so that the learning process is balanced and low-resource cases can benefit from the high resource ones. However, automatic balancing methods usually depend on the intra- and inter-dataset characteristics, which is usually agnostic or requires human priors. In this work, we propose an approach, MultiUAT, that dynamically adjusts the training data usage based on the model's uncertainty on a small set of trusted clean data for multi-corpus machine translation. We experiments with two classes of uncertainty measures on multilingual (16 languages with 4 settings) and multi-domain settings (4 for in-domain and 2 for out-of-domain on English-German translation) and demonstrate our approach MultiUAT substantially outperforms its baselines, including both static and dynamic strategies. We analyze the cross-domain transfer and show the deficiency of static and similarity based methods.",
 }
 ```
 
 ## Abstract
-Conventional wisdom is that hand-crafted features are redundant for deep learning models,
-as they already learn adequate representations of text automatically from corpora. In this work, we test this claim by proposing a new method for exploiting handcrafted features as part of a novel hybrid learning approach, incorporating a feature auto-encoder loss component. We evaluate on the task of named entity recognition (NER), where we show that including manual features for part-of-speech, word shapes and gazetteers can improve the performance of a neural CRF model. We obtain a F1 of 91.89 for the CoNLL-2003 English shared task, which significantly outperforms a collection of highly competitive baseline models. We also present an ablation study showing the importance of autoencoding, over using features as either inputs or outputs alone, and moreover, show including the autoencoder components reduces training requirements to 60%, while retaining the same predictive accuracy.
+Learning multilingual and multi-domain translation model is challenging as the heterogeneous and imbalanced data make the model converge inconsistently over different corpora in real world. One common practice is to adjust the share of each corpus in the training, so that the learning process is balanced and low-resource cases can benefit from the high resource ones. However, automatic balancing methods usually depend on the intra- and inter-dataset characteristics, which is usually agnostic or requires human priors. In this work, we propose an approach, MultiUAT, that dynamically adjusts the training data usage based on the model's uncertainty on a small set of trusted clean data for multi-corpus machine translation. We experiments with two classes of uncertainty measures on multilingual (16 languages with 4 settings) and multi-domain settings (4 for in-domain and 2 for out-of-domain on English-German translation) and demonstrate our approach MultiUAT substantially outperforms its baselines, including both static and dynamic strategies. We analyze the cross-domain transfer and show the deficiency of static and similarity based methods.
