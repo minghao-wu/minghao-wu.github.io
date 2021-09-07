@@ -19,8 +19,8 @@ citation: '<b>Minghao Wu</b>, Yitong Li, Meng Zhang, Liangyou Li, Gholamreza Haf
       Haffari, Gholamreza and
       Liu, Qun",
     booktitle = "Proceedings of the 2021 Conference on Empirical Methods in Natural Language Processing (EMNLP 2021)",
-    month = oct # "-" # nov,
-    year = "2018",
+    month = nov,
+    year = "2021",
     address = "Punta Cana, Dominican Republic",
     publisher = "Association for Computational Linguistics",
     url = "https://aclanthology.org/D18-1310",
