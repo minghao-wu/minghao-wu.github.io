@@ -19,7 +19,7 @@ Education
 
 Work Experience
 ======
-* Jul. 2020 - Jul. 2021: Research Intern at Huawei Noah's Arc Lab
+* Jul. 2020 - Jul. 2021: Research Intern at Huawei Noah's Ark Lab
 * Aug. 2018 - Jul. 2019: Research Engineer at JD AI Research of JD.com, Inc.
 
 Languages
