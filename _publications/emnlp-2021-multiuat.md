@@ -6,7 +6,7 @@ date: 2021-11-07
 venue: 'Proceedings of the 2021 Conference on Empirical Methods in Natural Language Processing (EMNLP 2021)'
 paperurl: 'https://aclanthology.org/2021.emnlp-main.580'
 paperurltext: 'Link to ACL anthology'
-citation: '<b>Minghao Wu</b>, Yitong Li, Meng Zhang, Liangyou Li, Gholamreza Haffari and Qun Liu (2021) <a href="http://minghao-wu.github.io/files/papers/multiuat_EMNLP_2021.pdf"><u>Uncertainty-Aware Balancing for Multilingual and Multi-Domain Neural Machine Translation Training</u></a>, In <i>Proceedings of the 2021 Conference on Empirical Methods in Natural Language Processing (EMNLP 2021)</i>, Punta Cana, Dominican Republic, pp.2850-2856.'
+citation: '<b>Minghao Wu</b>, Yitong Li, Meng Zhang, Liangyou Li, Gholamreza Haffari and Qun Liu (2021) <a href="http://minghao-wu.github.io/files/papers/multiuat_EMNLP_2021.pdf"><u>Uncertainty-Aware Balancing for Multilingual and Multi-Domain Neural Machine Translation Training</u></a>, In <i>Proceedings of the 2021 Conference on Empirical Methods in Natural Language Processing (EMNLP 2021)</i>, Punta Cana, Dominican Republic, pp.7291-7305.'
 ---
 
 ```
