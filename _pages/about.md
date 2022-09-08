@@ -1,7 +1,7 @@
 ---
 permalink: /
 title: "Minghao Wu - Monash University"
-excerpt: "Neural Machine Translation"
+excerpt: "Minghao Wu - Monash University"
 author_profile: true
 redirect_from: 
   - /about/
