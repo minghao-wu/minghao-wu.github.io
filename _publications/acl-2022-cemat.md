@@ -6,7 +6,7 @@ date: 2022-05-22
 venue: 'Proceedings of the 60th Annual Meeting of the Association for Computational Linguistics (Volume 1: Long Papers)'
 paperurl: 'https://aclanthology.org/2022.acl-long.442'
 paperurltext: 'Link to ACL anthology'
-citation: 'Pengfei Li, Liangyou Li, Meng Zhang, <b>Minghao Wu</b>, and Qun Liu. 2022. Universal Conditional Masked Language Pre-training for Neural Machine Translation. In Proceedings of the 60th Annual Meeting of the Association for Computational Linguistics (Volume 1: Long Papers), pages 6379–6391, Dublin, Ireland. Association for Computational Linguistics.'
+citation: 'Pengfei Li, Liangyou Li, Meng Zhang, <b>Minghao Wu</b>, and Qun Liu. 2022. <a href="http://minghao-wu.github.io/files/papers/cemat_ACL_2022.pdf"><u>Evaluating the Utility of Hand-crafted Features in Sequence Labelling</u></a>. In Proceedings of the 60th Annual Meeting of the Association for Computational Linguistics (Volume 1: Long Papers), pages 6379–6391, Dublin, Ireland. Association for Computational Linguistics.'
 ---
 
 ```
