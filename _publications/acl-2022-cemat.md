@@ -6,7 +6,8 @@ date: 2022-05-22
 venue: 'Proceedings of the 60th Annual Meeting of the Association for Computational Linguistics (Volume 1: Long Papers)'
 paperurl: 'https://aclanthology.org/2022.acl-long.442'
 paperurltext: 'Link to ACL anthology'
-citation: '<b>Minghao Wu</b>, Abdul Waheed, Chiyu Zhang, Muhammad Abdul-Mageed, Alham Fikri Aji. 2022. <a href="http://minghao-wu.github.io/files/papers/lamini_arxiv_2023.pdf"><u>LaMini-LM: A Diverse Herd of Distilled Models from Large-Scale Instructions</u></a>. In <i>Proceedings of the 60th Annual Meeting of the Association for Computational Linguistics (Volume 1: Long Papers)</i>, pages 6379–6391, Dublin, Ireland. Association for Computational Linguistics.'
+citation: '<b>Minghao Wu</b>, Abdul Waheed, Chiyu Zhang, Muhammad Abdul-Mageed, Alham Fikri Aji. 2023. <a href="http://minghao-wu.github.io/files/papers/lamini_arxiv_2023.pdf"><u>LaMini-LM: A Diverse Herd of Distilled Models from Large-Scale Instructions</u></a>. CoRR,
+abs/2304.14402.'
 ---
 
 ```
