@@ -1,5 +1,5 @@
 ---
-title: "Universal Conditional Masked Language Pre-training for Neural Machine Translation"
+title: "Document Flattening: Beyond Concatenating Context for Document-Level Neural Machine Translation"
 collection: publications
 permalink: /publication/acl-2022-cemat
 date: 2023-05-02

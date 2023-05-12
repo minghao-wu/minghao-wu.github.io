@@ -79,7 +79,7 @@ analytics:
 # Site Author
 author:
   name             : "Minghao Wu"
-  avatar           : "me.jpeg" #"profile.png"
+  avatar           : "also_me.jpeg" #"profile.png"
   bio              : "Ph.D. student in Neural Machine Translation at Monash University"
   location         : "Melbourne, Australia"
   employer         :
