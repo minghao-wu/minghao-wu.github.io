@@ -19,7 +19,8 @@ Education
 
 Work Experience
 ======
-* Jul. 2020 - Jul. 2021: Research Intern at Huawei Noah's Ark Lab
+* Apr. 2023 - Oct. 2023: Visiting Researcher at Mohamed bin Zayed University of Artificial Intelligence.
+* Jul. 2020 - Jul. 2021: Research Intern at Huawei Noah's Ark Lab.
 * Aug. 2018 - Jul. 2019: Research Engineer at JD AI Research of JD.com, Inc.
 
 Languages
