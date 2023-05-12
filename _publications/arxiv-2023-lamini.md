@@ -6,8 +6,7 @@ date: 2023-05-22
 venue: 'CoRR'
 paperurl: 'https://arxiv.org/abs/2304.14402'
 paperurltext: 'Link to arXiv'
-citation: '<b>Minghao Wu</b>, Abdul Waheed, Chiyu Zhang, Muhammad Abdul-Mageed, Alham Fikri Aji. 2023. <a href="http://minghao-wu.github.io/files/papers/lamini_arxiv_2023.pdf"><u>LaMini-LM: A Diverse Herd of Distilled Models from Large-Scale Instructions</u></a>. CoRR,
-abs/2304.14402.'
+citation: 'Pengfei Li, Liangyou Li, Meng Zhang, <b>Minghao Wu</b>, and Qun Liu. 2022. <a href="http://minghao-wu.github.io/files/papers/lamini_arxiv_2023.pdf"><u>LaMini-LM: A Diverse Herd of Distilled Models from Large-Scale Instructions</u></a>. In <i>CoRR</i>, abs/2304.14402.'
 ---
 
 ```
