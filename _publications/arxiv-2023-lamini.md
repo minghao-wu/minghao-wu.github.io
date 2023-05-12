@@ -2,7 +2,7 @@
 title: "LaMini-LM: A Diverse Herd of Distilled Models from Large-Scale Instructions"
 collection: publications
 permalink: /publication/arxiv-2023-lamini
-date: 2023-05-22
+date: 2023-04-27
 venue: 'CoRR'
 paperurl: 'https://arxiv.org/abs/2304.14402'
 paperurltext: 'Link to arXiv'
