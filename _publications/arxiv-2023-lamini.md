@@ -1,33 +1,32 @@
 ---
 title: "LaMini-LM: A Diverse Herd of Distilled Models from Large-Scale Instructions"
 collection: publications
-permalink: /publication/acl-2022-cemat
-date: 2022-05-22
-venue: 'Proceedings of the 60th Annual Meeting of the Association for Computational Linguistics (Volume 1: Long Papers)'
-paperurl: 'https://aclanthology.org/2022.acl-long.442'
-paperurltext: 'Link to ACL anthology'
-citation: 'Pengfei Li, Liangyou Li, Meng Zhang, <b>Minghao Wu</b>, and Qun Liu. 2022. <a href="http://minghao-wu.github.io/files/papers/cemat_ACL_2022.pdf"><u>Universal Conditional Masked Language Pre-training for Neural Machine Translation</u></a>. In <i>Proceedings of the 60th Annual Meeting of the Association for Computational Linguistics (Volume 1: Long Papers)</i>, pages 6379–6391, Dublin, Ireland. Association for Computational Linguistics.'
+permalink: /publication/arxiv-2023-lamini
+date: 2023-05-22
+venue: 'CoRR'
+paperurl: 'https://arxiv.org/abs/2304.14402'
+paperurltext: 'Link to arXiv'
+citation: '<b>Minghao Wu</b>, Abdul Waheed, Chiyu Zhang, Muhammad Abdul-Mageed, Alham Fikri Aji. 2023. <a href="http://minghao-wu.github.io/files/papers/lamini_arxiv_2023.pdf"><u>LaMini-LM: A Diverse Herd of Distilled Models from Large-Scale Instructions</u></a>. CoRR,
+abs/2304.14402.'
 ---
 
 ```
-@inproceedings{li-etal-2022-universal,
-    title = "Universal Conditional Masked Language Pre-training for Neural Machine Translation",
-    author = "Li, Pengfei  and
-      Li, Liangyou  and
-      Zhang, Meng  and
-      Wu, Minghao  and
-      Liu, Qun",
-    booktitle = "Proceedings of the 60th Annual Meeting of the Association for Computational Linguistics (Volume 1: Long Papers)",
-    month = may,
-    year = "2022",
-    address = "Dublin, Ireland",
-    publisher = "Association for Computational Linguistics",
-    url = "https://aclanthology.org/2022.acl-long.442",
-    doi = "10.18653/v1/2022.acl-long.442",
-    pages = "6379--6391",
-    abstract = "Pre-trained sequence-to-sequence models have significantly improved Neural Machine Translation (NMT). Different from prior works where pre-trained models usually adopt an unidirectional decoder, this paper demonstrates that pre-training a sequence-to-sequence model but with a bidirectional decoder can produce notable performance gains for both Autoregressive and Non-autoregressive NMT. Specifically, we propose CeMAT, a conditional masked language model pre-trained on large-scale bilingual and monolingual corpora in many languages. We also introduce two simple but effective methods to enhance the CeMAT, aligned code-switching {\&} masking and dynamic dual-masking. We conduct extensive experiments and show that our CeMAT can achieve significant performance improvement for all scenarios from low- to extremely high-resource languages, i.e., up to +14.4 BLEU on low resource and +7.9 BLEU improvements on average for Autoregressive NMT. For Non-autoregressive NMT, we demonstrate it can also produce consistent performance gains, i.e., up to +5.3 BLEU. To the best of our knowledge, this is the first work to pre-train a unified model for fine-tuning on both NMT tasks. Code, data, and pre-trained models are available at https://github.com/huawei-noah/Pretrained-Language-Model/CeMAT",
+@article{lamini-lm,
+  author       = {Minghao Wu and
+                  Abdul Waheed and
+                  Chiyu Zhang and
+                  Muhammad Abdul-Mageed and
+                  Alham Fikri Aji
+                  },
+  title        = {LaMini-LM: A Diverse Herd of Distilled Models from Large-Scale Instructions},
+  journal      = {CoRR},
+  volume       = {abs/2304.14402},
+  year         = {2023},
+  url          = {https://arxiv.org/abs/2304.14402},
+  eprinttype   = {arXiv},
+  eprint       = {2304.14402}
 }
 ```
 
 ## Abstract
-Pre-trained sequence-to-sequence models have significantly improved Neural Machine Translation (NMT). Different from prior works where pre-trained models usually adopt an unidirectional decoder, this paper demonstrates that pre-training a sequence-to-sequence model but with a bidirectional decoder can produce notable performance gains for both Autoregressive and Non-autoregressive NMT. Specifically, we propose CeMAT, a conditional masked language model pre-trained on large-scale bilingual and monolingual corpora in many languages. We also introduce two simple but effective methods to enhance the CeMAT, aligned code-switching & masking and dynamic dual-masking. We conduct extensive experiments and show that our CeMAT can achieve significant performance improvement for all scenarios from low- to extremely high-resource languages, i.e., up to +14.4 BLEU on low resource and +7.9 BLEU improvements on average for Autoregressive NMT. For Non-autoregressive NMT, we demonstrate it can also produce consistent performance gains, i.e., up to +5.3 BLEU. To the best of our knowledge, this is the first work to pre-train a unified model for fine-tuning on both NMT tasks. Code, data, and pre-trained models are available at https://github.com/huawei-noah/Pretrained-Language-Model/CeMAT
+Large language models (LLMs) with instruction finetuning demonstrate superior generative capabilities. However, these models are resource intensive. To alleviate this issue, we explore distilling knowledge from instruction-tuned LLMs to much smaller ones. To this end, we carefully develop a large set of 2.58M instructions based on both existing and newly-generated instructions. In addition to being sizeable, we design our instructions to cover a broad set of topics to ensure. A thorough investigation of our instruction data demonstrate their diversity, and we generate responses for these instructions using gpt-3.5-turbo. We then exploit the instructions to tune a host of models, dubbed LaMini-LM, of varying sizes, both from the encoder-decoder as well as the decoder-only families. We evaluate our models both automatically (on 15 different NLP benchmarks) and manually. Results show that our proposed LaMini-LM are on par with competitive baselines while being nearly 10 times smaller in size.
