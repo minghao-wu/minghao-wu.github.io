@@ -1,7 +1,7 @@
 ---
 title: "Document Flattening: Beyond Concatenating Context for Document-Level Neural Machine Translation"
 collection: publications
-permalink: /publication/acl-2022-cemat
+permalink: /publication/eacl-2023-docflat
 date: 2023-05-02
 venue: 'Proceedings of the 17th Conference of the European Chapter of the Association for Computational Linguistics'
 paperurl: 'https://aclanthology.org/2023.eacl-main.33'
