@@ -2,7 +2,7 @@
 title: "LaMini-LM: A Diverse Herd of Distilled Models from Large-Scale Instructions"
 collection: publications
 permalink: /publication/acl-2022-cemat
-date: 2022-05-22
+date: 2023-05-22
 venue: 'Proceedings of the 60th Annual Meeting of the Association for Computational Linguistics (Volume 1: Long Papers)'
 paperurl: 'https://aclanthology.org/2022.acl-long.442'
 paperurltext: 'Link to ACL anthology'
