@@ -10,7 +10,7 @@ citation: '<b>Minghao Wu</b>, Thuy-Trang Vu, Lizhen Qu, George Foster, Gholamrez
 ---
 
 ```
-@article{lamini-lm,
+@article{wu2024docnmt,
   author       = {Minghao Wu, 
                   Thuy-Trang Vu, 
                   Lizhen Qu, 
