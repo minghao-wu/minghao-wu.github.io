@@ -13,7 +13,7 @@ CV can be downloaded from <a href="https://minghao-wu.github.io/files/cv/minghao
 
 Education
 ======
-* Ph.D. Computer Science, Monash University, 2020
+* Ph.D. Computer Science, Monash University, 2021
 * M.Eng. Information Technology, The University of Melbourne, 2018
 * B.Sc. Statistics and Information Systems, The University of Sydney, 2016
 
