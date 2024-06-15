@@ -21,9 +21,9 @@ My CV can be downloaded from <a href="https://minghao-wu.github.io/files/cv/ming
 
 ### Education
 
-* Ph.D. Computer Science, Monash University, 2021, supervised by [Prof. Gholamreza (Reza) Haffari](https://users.monash.edu.au/~gholamrh/) and [Dr. George Foster](http://www.iro.umontreal.ca/~foster/)
-* M.Eng. Information Technology, The University of Melbourne, 2018, supervised by [Prof. Trevor Cohn](https://trevorcohn.github.io/)
-* B.Sc. Statistics and Information Systems, The University of Sydney, 2016
+* Ph.D. Computer Science, Monash University, 2021, supervised by [Prof. Gholamreza (Reza) Haffari](https://users.monash.edu.au/~gholamrh/) and [Dr. George Foster](http://www.iro.umontreal.ca/~foster/).
+* M.Eng. Information Technology, The University of Melbourne, 2018, supervised by [Prof. Trevor Cohn](https://trevorcohn.github.io/).
+* B.Sc. Statistics and Information Systems, The University of Sydney, 2016.
 
 ### Work Experience
 
