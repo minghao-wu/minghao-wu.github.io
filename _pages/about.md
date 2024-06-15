@@ -32,11 +32,6 @@ My CV can be downloaded from <a href="https://minghao-wu.github.io/files/cv/ming
 * Jul. 2020 - Jul. 2021: Research Intern at Huawei Noah's Ark Lab, supervised by [Dr. Meng Zhang](https://zmlarry.github.io/).
 * Aug. 2018 - Jul. 2019: Research Engineer at JD AI Research of JD.com, Inc, supervised by [Dr. Xiaodong He](https://scholar.google.com/citations?user=W5WbqgoAAAAJ&hl=en).
 
-### Languages
-
-* Chinese: Native or Bilingual Proficiency
-* English: Full Professional Proficiency
-
 ### Selected Publications
 You can find the complete list of my articles on my [Google Scholar profile](https://scholar.google.com/citations?user=E2zcuy0AAAAJ&hl=en)
 
