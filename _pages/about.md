@@ -8,14 +8,9 @@ redirect_from:
   - /about.html
 ---
 
-About Me
-======
 
 Minghao Wu is currently a Ph.D. student at Monash University under the supervision of [Prof. Gholamreza (Reza) Haffari](https://users.monash.edu.au/~gholamrh/) and [Dr. George Foster](http://www.iro.umontreal.ca/~foster/). His research interests include <b>large language models</b>, <b>language agent</b>, <b>multilinguality</b>, and <b>machine translation</b>.
 
-
-CV
-======
 
 My CV can be downloaded from <a href="https://minghao-wu.github.io/files/cv/minghao-wu-cv-en.pdf"><u>English version</u></a> and <a href="https://minghao-wu.github.io/files/cv/minghao-wu-cv-zh.pdf"><u>中文版</u></a>.
 
