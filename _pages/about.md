@@ -17,7 +17,7 @@ Minghao Wu is currently a Ph.D. student at Monash University under the supervisi
 CV
 ======
 
-My CV can be downloaded from <a href="https://minghao-wu.github.io/files/cv/minghao-wu-cv-en.pdf"><u>English version</u></a> and <a href="https://minghao-wu.github.io/files/cv/minghao-wu-cv-zh.pdf"><u>中文版</u></a>
+My CV can be downloaded from <a href="https://minghao-wu.github.io/files/cv/minghao-wu-cv-en.pdf"><u>English version</u></a> and <a href="https://minghao-wu.github.io/files/cv/minghao-wu-cv-zh.pdf"><u>中文版</u></a>.
 
 ### Education
 
