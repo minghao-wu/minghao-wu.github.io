@@ -38,6 +38,7 @@ My CV can be downloaded from <a href="https://minghao-wu.github.io/files/cv/ming
 * English: Full Professional Proficiency
 
 ### Selected Publications
+You can find the complete list of my articles on my [Google Scholar profile](https://scholar.google.com/citations?user=E2zcuy0AAAAJ&hl=en)
 
   <ul>{% for post in site.publications reversed %}
     {% include archive-single-cv.html %}
