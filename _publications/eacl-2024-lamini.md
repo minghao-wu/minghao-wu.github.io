@@ -2,7 +2,7 @@
 title: "LaMini-LM: A Diverse Herd of Distilled Models from Large-Scale Instructions"
 collection: publications
 permalink: /publication/eacl-2024-lamini
-date: 2023-04-27
+date: 2024-03-17
 venue: 'Proceedings of the 18th Conference of the European Chapter of the Association for Computational Linguistics (Volume 1: Long Papers)'
 paperurl: 'https://aclanthology.org/2024.eacl-long.57/'
 paperurltext: 'Link to ACL anthology'
