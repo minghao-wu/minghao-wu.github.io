@@ -11,7 +11,7 @@ redirect_from:
 About Me
 ======
 
-Minghao Wu is currently a Ph.D. student at Monash University under the supervision of [Prof. Gholamreza (Reza) Haffari](https://users.monash.edu.au/~gholamrh/) and [Dr. George Foster](http://www.iro.umontreal.ca/~foster/). He visited Mohamed bin Zayed University of Artificial Intelligence, Abu Dhabi, UAE, under the supervision of [Dr. Alham Fikri Aji](https://afaji.github.io/). He interned at Tencent AI Lab under the supervision of [Dr. Longyue Wang](http://www.longyuewang.com/).
+Minghao Wu is currently a Ph.D. student at Monash University under the supervision of [Prof. Gholamreza (Reza) Haffari](https://users.monash.edu.au/~gholamrh/) and [Dr. George Foster](http://www.iro.umontreal.ca/~foster/). His research interests include <b>large language models</b>, <b>language agent</b>, <b>multilinguality</b>, and <b>machine translation</b>.
 
 
 CV
@@ -27,10 +27,10 @@ My CV can be downloaded from <a href="https://minghao-wu.github.io/files/cv/ming
 
 ### Work Experience
 
-* Jul. 2023 - Oct. 2023: Research Intern at Tencent AI Lab.
-* Apr. 2023 - Jul. 2023: Visiting Researcher at Mohamed bin Zayed University of Artificial Intelligence.
-* Jul. 2020 - Jul. 2021: Research Intern at Huawei Noah's Ark Lab.
-* Aug. 2018 - Jul. 2019: Research Engineer at JD AI Research of JD.com, Inc.
+* Jul. 2023 - Oct. 2023: Research Intern at Tencent AI Lab, supervised by [Dr. Longyue Wang](http://www.longyuewang.com/).
+* Apr. 2023 - Jul. 2023: Visiting Researcher at Mohamed bin Zayed University of Artificial Intelligence, supervised by [Dr. Alham Fikri Aji](https://afaji.github.io/).
+* Jul. 2020 - Jul. 2021: Research Intern at Huawei Noah's Ark Lab, supervised by [Dr. Meng Zhang](https://zmlarry.github.io/).
+* Aug. 2018 - Jul. 2019: Research Engineer at JD AI Research of JD.com, Inc, supervised by [Dr. Xiaodong He](https://scholar.google.com/citations?user=W5WbqgoAAAAJ&hl=en).
 
 ### Languages
 
