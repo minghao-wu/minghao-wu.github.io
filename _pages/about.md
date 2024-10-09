@@ -20,6 +20,7 @@ My CV can be downloaded from <a href="https://minghao-wu.github.io/files/cv/ming
 * M.Eng. Information Technology, The University of Melbourne, 2018, supervised by [Prof. Trevor Cohn](https://trevorcohn.github.io/).
 * B.Sc. Statistics and Information Systems, The University of Sydney, 2016.
 
+
 ### Work Experience
 
 * Jul. 2023 - Oct. 2023: Research Intern at Tencent AI Lab, supervised by [Dr. Longyue Wang](http://www.longyuewang.com/).
