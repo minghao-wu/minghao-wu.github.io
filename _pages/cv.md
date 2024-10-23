@@ -9,7 +9,7 @@ redirect_from:
 
 {% include base_path %}
 
-CV can be downloaded from <a href="https://minghao-wu.github.io/files/cv/minghao-wu-cv-en.pdf"><u>English version</u></a> and <a href="https://minghao-wu.github.io/files/cv/minghao-wu-cv-zh.pdf"><u>中文版</u></a>
+CV can be downloaded from <a href="https://minghao-wu.github.io/files/cv/minghao-wu-cv-en.pdf"><u>here</u></a>.
 
 Education
 ======
