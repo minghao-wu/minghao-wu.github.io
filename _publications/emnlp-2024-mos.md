@@ -1,28 +1,32 @@
 ---
 title: "Mixture-of-Skills: Learning to Optimize Data Usage for Fine-Tuning Large Language Models"
 collection: publications
-permalink: /publication/arxiv-2024-mos
+permalink: /publication/emnlp-2024-mos
 date: 2024-06-13
 venue: 'CoRR'
 paperurl: 'https://arxiv.org/abs/2406.08811'
 paperurltext: 'Link to arXiv'
-citation: '<b>Minghao Wu</b>, Thuy-Trang Vu, Lizhen Qu, Gholamreza Haffari. 2024. <a href="http://minghao-wu.github.io/files/papers/mos_arxiv_2024.pdf"><u>Mixture-of-Skills: Learning to Optimize Data Usage for Fine-Tuning Large Language Models</u></a>. In <i>CoRR</i>, abs/2406.08811.'
+citation: '<b>Minghao Wu</b>, Thuy-Trang Vu, Lizhen Qu, and Reza Haf. 2024. Mixture-of-Skills: Learning to Optimize Data Usage for Fine-Tuning Large Language Models. In Proceedings of the 2024 Conference on Empirical Methods in Natural Language Processing, pages 14226–14240, Miami, Florida, USA. Association for Computational Linguistics.'
 ---
 
 ```
-@article{wu2024docnmt,
-  author       = {Minghao Wu, 
-                  Thuy-Trang Vu, 
-                  Lizhen Qu, 
-                  Gholamreza Haffari
-                  },
-  title        = {Mixture-of-Skills: Learning to Optimize Data Usage for Fine-Tuning Large Language Models},
-  journal      = {CoRR},
-  volume       = {abs/2406.08811},
-  year         = {2024},
-  url          = {https://arxiv.org/abs/2406.08811},
-  eprinttype   = {arXiv},
-  eprint       = {2406.08811}
+@inproceedings{wu-etal-2024-mixture-skills,
+    title = "Mixture-of-Skills: Learning to Optimize Data Usage for Fine-Tuning Large Language Models",
+    author = "Wu, Minghao  and
+      Vu, Thuy-Trang  and
+      Qu, Lizhen  and
+      Haf, Reza",
+    editor = "Al-Onaizan, Yaser  and
+      Bansal, Mohit  and
+      Chen, Yun-Nung",
+    booktitle = "Proceedings of the 2024 Conference on Empirical Methods in Natural Language Processing",
+    month = nov,
+    year = "2024",
+    address = "Miami, Florida, USA",
+    publisher = "Association for Computational Linguistics",
+    url = "https://aclanthology.org/2024.emnlp-main.787/",
+    doi = "10.18653/v1/2024.emnlp-main.787",
+    pages = "14226--14240"
 }
 ```
 
