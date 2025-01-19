@@ -24,6 +24,7 @@ My CV can be downloaded from <a href="https://minghao-wu.github.io/files/cv/ming
 
 ### Work Experience
 
+* Nov. 2024 - Apr. 2025: Research Intern at Alibaba Group, supervised by [Dr. Longyue Wang](http://www.longyuewang.com/).
 * Jul. 2023 - Oct. 2023: Research Intern at Tencent AI Lab, supervised by [Dr. Longyue Wang](http://www.longyuewang.com/).
 * Apr. 2023 - Jul. 2023: Visiting Researcher at Mohamed bin Zayed University of Artificial Intelligence, supervised by [Dr. Alham Fikri Aji](https://afaji.github.io/).
 * Jul. 2020 - Jul. 2021: Research Intern at Huawei Noah's Ark Lab, supervised by [Dr. Meng Zhang](https://zmlarry.github.io/).
