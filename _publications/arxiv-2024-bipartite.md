@@ -6,7 +6,7 @@ date: 2024-10-16
 venue: 'CoRR'
 paperurl: 'https://arxiv.org/abs/2410.12458'
 paperurltext: 'Link to arXiv'
-citation: '<b>Minghao Wu</b>, Thuy-Trang Vu, Lizhen Qu, Gholamreza Haffari. 2024. <a href="http://minghao-wu.github.io/files/papers/docnmt_arxiv_2024.pdf"><u>The Best of Both Worlds: Bridging Quality and Diversity in Data Selection with Bipartite Graph</u></a>. In <i>CoRR</i>, abs/2410.12458.'
+citation: '<b>Minghao Wu</b>, Thuy-Trang Vu, Lizhen Qu, Gholamreza Haffari. 2024. <a href="http://minghao-wu.github.io/files/papers/bipartite_arxiv_2024.pdf"><u>The Best of Both Worlds: Bridging Quality and Diversity in Data Selection with Bipartite Graph</u></a>. In <i>CoRR</i>, abs/2410.12458.'
 ---
 
 ```
