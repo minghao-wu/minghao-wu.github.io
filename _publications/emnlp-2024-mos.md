@@ -6,7 +6,7 @@ date: 2024-06-13
 venue: 'Proceedings of the 2024 Conference on Empirical Methods in Natural Language Processing (EMNLP 2024)'
 paperurl: 'https://arxiv.org/abs/2406.08811'
 paperurltext: 'Link to arXiv'
-citation: '<b>Minghao Wu</b>, Thuy-Trang Vu, Lizhen Qu, and Gholamreza Haffari. 2024. Mixture-of-Skills: Learning to Optimize Data Usage for Fine-Tuning Large Language Models. In Proceedings of the 2024 Conference on Empirical Methods in Natural Language Processing, pages 14226–14240, Miami, Florida, USA. Association for Computational Linguistics.'
+citation: '<b>Minghao Wu</b>, Thuy-Trang Vu, Lizhen Qu, and Gholamreza Haffari. 2024. <a href="http://minghao-wu.github.io/files/papers/mos_EMNLP_2024.pdf"><u>Mixture-of-Skills: Learning to Optimize Data Usage for Fine-Tuning Large Language Models</u></a>. In Proceedings of the 2024 Conference on Empirical Methods in Natural Language Processing, pages 14226–14240, Miami, Florida, USA. Association for Computational Linguistics.'
 ---
 
 ```
