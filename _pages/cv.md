@@ -19,6 +19,7 @@ Education
 
 Work Experience
 ======
+* Jun. 2025 - Present: Postdoctoral Research Associate at The University of North Carolina at Chapel Hill.
 * Nov. 2024 - Apr. 2025: Research Intern at Alibaba Group.
 * Jul. 2023 - Oct. 2023: Research Intern at Tencent AI Lab.
 * Apr. 2023 - Jul. 2023: Visiting Researcher at Mohamed bin Zayed University of Artificial Intelligence.
