@@ -6,7 +6,7 @@ date: 2025-7-13
 venue: 'Forty-Second International Conference on Machine Learning (ICML)'
 paperurl: 'https://arxiv.org/abs/2410.12458'
 paperurltext: 'Link to arXiv'
-citation: '<b>Minghao Wu</b>, Thuy-Trang Vu, Lizhen Qu, Gholamreza Haffari. 2025. <a href="http://minghao-wu.github.io/files/papers/bipartite_arxiv_2024.pdf"><u>The Best of Both Worlds: Bridging Quality and Diversity in Data Selection with Bipartite Graph</u></a>. In <i>Proceedings of the 42nd International Conference on Machine Learning</i>, abs/2410.12458.'
+citation: '<b>Minghao Wu</b>, Thuy-Trang Vu, Lizhen Qu, Gholamreza Haffari. 2025. <a href="http://minghao-wu.github.io/files/papers/bipartite_icml_2025.pdf"><u>The Best of Both Worlds: Bridging Quality and Diversity in Data Selection with Bipartite Graph</u></a>. In <i>Proceedings of the 42nd International Conference on Machine Learning</i>, abs/2410.12458.'
 ---
 
 ```
@@ -17,7 +17,7 @@ citation: '<b>Minghao Wu</b>, Thuy-Trang Vu, Lizhen Qu, Gholamreza Haffari. 2025
                   Gholamreza Haffari
                   },
   title        = {The Best of Both Worlds: Bridging Quality and Diversity in Data Selection with Bipartite Graph},
-  booktitle    = {Proceedings of the 42nd International Conference on Machine Learning, {ICML} 2024,
+  booktitle    = {Proceedings of the 42nd International Conference on Machine Learning, {ICML} 2025,
                   Vancouver, Canada, July 13-19, 2025},
   publisher =    {PMLR},
   year         = {2025},
