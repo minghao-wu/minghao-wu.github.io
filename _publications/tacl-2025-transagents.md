@@ -1,7 +1,7 @@
 ---
 title: "(Perhaps) Beyond Human Translation: Harnessing Multi-Agent Collaboration for Translating Ultra-Long Literary Texts"
 collection: publications
-permalink: /publication/arxiv-2024-transagents
+permalink: /publication/tacl-2024-transagents
 date: 2025-7-27
 venue: 'Transactions of the Association for Computational Linguistics'
 paperurl: 'https://arxiv.org/abs/2405.11804'
