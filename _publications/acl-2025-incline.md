@@ -6,7 +6,8 @@ date: 2025-07-27
 venue: 'Proceedings of the 63rd Annual Meeting of the Association for Computational Linguistics (Volume 1: Long Papers)'
 paperurl: 'https://arxiv.org/abs/2410.12462'
 paperurltext: 'Link to ACL anthology'
-citation: 'Weixuan Wang*, <b>Minghao Wu*</b>, Barry Haddow, and Alexandra Birch. 2025. <a href="http://minghao-wu.github.io/files/papers/incline_acl_2025.pdf"><u>Universal Conditional Masked Language Pre-training for Neural Machine Translation</u></a>. In <i>Proceedings of the 63rd Annual Meeting of the Association for Computational Linguistics (<b>ACL</b>)</i> , Vienna, Austria. Association for Computational Linguistics.'
+# citation: 'Weixuan Wang*, <b>Minghao Wu*</b>, Barry Haddow, and Alexandra Birch. 2025. <a href="http://minghao-wu.github.io/files/papers/incline_acl_2025.pdf"><u>Universal Conditional Masked Language Pre-training for Neural Machine Translation</u></a>. In <i>Proceedings of the 63rd Annual Meeting of the Association for Computational Linguistics (Volume 1: Long Papers)</i>, Vienna, Austria. Association for Computational Linguistics.'
+citation: 'Weixuan Wang, <b>Minghao Wu</b>, Barry Haddow, and Alexandra Birch. <a href="https://arxiv.org/abs/2410.12462"><u>Bridging the Language Gaps in Large Language Models with Inference-Time Cross-Lingual Intervention</u></a>. <b>ACL 2025</b>.'
 ---
 
 ```
