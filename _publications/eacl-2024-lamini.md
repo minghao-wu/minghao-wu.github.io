@@ -4,9 +4,9 @@ collection: publications
 permalink: /publication/eacl-2024-lamini
 date: 2024-03-17
 venue: 'Proceedings of the 18th Conference of the European Chapter of the Association for Computational Linguistics (Volume 1: Long Papers)'
-paperurl: 'https://aclanthology.org/2024.eacl-long.57/'
+paperurl: 'https://aclanthology.org/2024.eacl-long.57'
 paperurltext: 'Link to ACL anthology'
-citation: '<b>Minghao Wu</b>, Abdul Waheed, Chiyu Zhang, Muhammad Abdul-Mageed, and Alham Fikri Aji. 2024. <a href="http://minghao-wu.github.io/files/papers/lamini_eacl_2024.pdf"><u>LaMini-LM: A Diverse Herd of Distilled Models from Large-Scale Instructions</u></a>. In <i>Proceedings of the 18th Conference of the European Chapter of the Association for Computational Linguistics (Volume 1: Long Papers)</i>, pages 944–964, St. Julian’s, Malta. Association for Computational Linguistics.'
+citation: '<b>Minghao Wu</b>, Abdul Waheed, Chiyu Zhang, Muhammad Abdul-Mageed, and Alham Fikri Aji. <a href="https://aclanthology.org/2024.eacl-long.57"><u>LaMini-LM: A Diverse Herd of Distilled Models from Large-Scale Instructions</u></a>. <b>EACL 2024</b>'
 ---
 
 ```
