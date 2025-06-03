@@ -6,7 +6,7 @@ date: 2024-01-12
 venue: 'CoRR'
 paperurl: 'https://arxiv.org/abs/2401.06468'
 paperurltext: 'Link to arXiv'
-citation: '<b>Minghao Wu</b>, Thuy-Trang Vu, Lizhen Qu, George Foster, Gholamreza Haffari. 2024. <a href="http://minghao-wu.github.io/files/papers/docnmt_arxiv_2024.pdf"><u>Adapting Large Language Models for Document-Level Machine Translation</u></a>. In <i>CoRR</i>, abs/2401.06468.'
+citation: '<b>Minghao Wu</b>, Thuy-Trang Vu, Lizhen Qu, George Foster, Gholamreza Haffari. <a href="https://arxiv.org/abs/2401.06468"><u>Adapting Large Language Models for Document-Level Machine Translation</u></a>. abs/2401.06468.'
 ---
 
 ```
