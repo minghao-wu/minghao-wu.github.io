@@ -2,7 +2,7 @@
 title: "Bridging the Language Gaps in Large Language Models with Inference-Time Cross-Lingual Intervention"
 collection: publications
 permalink: /publication/emnlp-2024-mos
-date: 2024-06-13
+date: 2025-05-13
 venue: 'Proceedings of the 2024 Conference on Empirical Methods in Natural Language Processing (EMNLP 2024)'
 paperurl: 'https://arxiv.org/abs/2406.08811'
 paperurltext: 'Link to arXiv'
