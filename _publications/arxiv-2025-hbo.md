@@ -6,7 +6,7 @@ date: 2025-05-26
 venue: 'CoRR'
 paperurl: 'https://arxiv.org/abs/2505.12300'
 paperurltext: 'Link to arXiv'
-citation: 'Weixuan Wang*, <b>Minghao Wu*</b>, Barry Haddow, and Alexandra Birch. 2025. <a href="http://minghao-wu.github.io/files/papers/hbo_arxiv_2025.pdf"><u>HBO: Hierarchical Balancing Optimization for Fine-Tuning Large Language Models</u></a>. abs/2505.12300.'
+citation: 'Weixuan Wang*, <b>Minghao Wu*</b>, Barry Haddow, and Alexandra Birch. <a href="https://arxiv.org/abs/2505.12300"><u>HBO: Hierarchical Balancing Optimization for Fine-Tuning Large Language Models</u></a>. abs/2505.12300.'
 ---
 
 ```

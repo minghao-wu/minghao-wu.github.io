@@ -6,7 +6,7 @@ date: 2025-04-12
 venue: 'CoRR'
 paperurl: 'https://arxiv.org/abs/2504.15521'
 paperurltext: 'Link to arXiv'
-citation: '<b>Minghao Wu</b>, Weixuan Wang, Sinuo Liu, Huifeng Yin, Xintong Wang, Yu Zhao, Chenyang Lyu, Longyue Wang, Weihua Luo, Kaifu Zhang. 2025. <a href="http://minghao-wu.github.io/files/papers/multieval_arxiv_2025.pdf"><u>The Bitter Lesson Learned from 2,000+ Multilingual Benchmarks</u></a>. In <i>CoRR</i>, abs/2504.15521.'
+citation: '<b>Minghao Wu</b>, Weixuan Wang, Sinuo Liu, Huifeng Yin, Xintong Wang, Yu Zhao, Chenyang Lyu, Longyue Wang, Weihua Luo, Kaifu Zhang. 2025. <a href="http://minghao-wu.github.io/files/papers/multieval_arxiv_2025.pdf"><u>The Bitter Lesson Learned from 2,000+ Multilingual Benchmarks</u></a>. abs/2504.15521.'
 ---
 
 ```
