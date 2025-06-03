@@ -6,7 +6,7 @@ date: 2025-05-15
 venue: 'Proceedings of the 63rd Annual Meeting of the Association for Computational Linguistics (Volume 1: Long Papers)'
 paperurl: 'https://arxiv.org/abs/2410.12462'
 paperurltext: 'Link to arXiv'
-citation: 'Weixuan Wang*, <b>Minghao Wu*</b>, Barry Haddow, and Alexandra Birch. <b>ACL 2025</b>'
+citation: 'Weixuan Wang*, <b>Minghao Wu*</b>, Barry Haddow, and Alexandra Birch. <b>ACL 2025</b>. [Link to arXiv](https://arxiv.org/abs/2410.12462)'
 ---
 
 ```

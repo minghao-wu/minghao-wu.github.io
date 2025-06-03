@@ -3,10 +3,10 @@ title: "(Perhaps) Beyond Human Translation: Harnessing Multi-Agent Collaboration
 collection: publications
 permalink: /publication/tacl-2025-transagents
 date: 2025-05-15
-venue: 'Proceedings of the 63rd Annual Meeting of the Association for Computational Linguistics (Volume 1: Long Papers)'
+venue: 'Transactions of the Association for Computational Linguistics'
 paperurl: 'https://arxiv.org/abs/2405.11804'
 paperurltext: 'Link to arXiv'
-citation: '<b>Minghao Wu</b>, Jiahao Xu, Yulin Yuan, Gholamreza Haffari, Longyue Wang, Weihua Luo, and Kaifu Zhang. <b>TACL 2025</b>'
+citation: '<b>Minghao Wu</b>, Jiahao Xu, Yulin Yuan, Gholamreza Haffari, Longyue Wang, Weihua Luo, and Kaifu Zhang. <b>TACL 2025</b>. [Link to arXiv](https://arxiv.org/abs/2405.11804)'
 ---
 
 ```
