@@ -6,7 +6,7 @@ date: 2023-05-02
 venue: 'Proceedings of the 17th Conference of the European Chapter of the Association for Computational Linguistics'
 paperurl: 'https://aclanthology.org/2023.eacl-main.33'
 paperurltext: 'Link to ACL anthology'
-citation: '<b>Minghao Wu</b>, George Foster, Lizhen Qu, and Gholamreza Haffari. 2023. <a href="http://minghao-wu.github.io/files/papers/docflat_EACL_2023.pdf"><u>Document Flattening: Beyond Concatenating Context for Document-Level Neural Machine Translation</u></a>. In Proceedings of the 17th Conference of the European Chapter of the Association for Computational Linguistics, pages 448–462, Dubrovnik, Croatia. Association for Computational Linguistics.'
+citation: '<b>Minghao Wu</b>, George Foster, Lizhen Qu, and Gholamreza Haffari. 2023. <a href="https://aclanthology.org/2023.eacl-main.33"><u>Document Flattening: Beyond Concatenating Context for Document-Level Neural Machine Translation</u></a>. <b>EACL 2023</b>'
 ---
 
 ```
