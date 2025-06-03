@@ -6,7 +6,7 @@ date: 2025-05-26
 venue: 'CoRR'
 paperurl: 'https://arxiv.org/abs/2505.12313'
 paperurltext: 'Link to arXiv'
-citation: 'Weixuan Wang*, <b>Minghao Wu*</b>, Barry Haddow, and Alexandra Birch. <a href="http://minghao-wu.github.io/files/papers/expertsteer_arxiv_2025.pdf"><u>ExpertSteer: Intervening in LLMs through Expert Knowledge</u></a>. abs/2505.12313.'
+citation: 'Weixuan Wang*, <b>Minghao Wu*</b>, Barry Haddow, and Alexandra Birch. 2025. <a href="http://minghao-wu.github.io/files/papers/expertsteer_arxiv_2025.pdf"><u>ExpertSteer: Intervening in LLMs through Expert Knowledge</u></a>. In <i>CoRR</i>, abs/2505.12313.'
 ---
 
 ```
