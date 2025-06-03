@@ -1,7 +1,7 @@
 ---
 title: "The Best of Both Worlds: Bridging Quality and Diversity in Data Selection with Bipartite Graph"
 collection: publications
-permalink: /publication/arxiv-2024-bipartite
+permalink: /publication/icml-2024-bipartite
 date: 2025-7-13
 venue: 'Forty-Second International Conference on Machine Learning (ICML)'
 paperurl: 'https://arxiv.org/abs/2410.12458'
