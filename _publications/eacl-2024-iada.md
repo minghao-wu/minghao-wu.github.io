@@ -6,7 +6,7 @@ date: 2024-03-17
 venue: 'Proceedings of the 18th Conference of the European Chapter of the Association for Computational Linguistics (Volume 1: Long Papers)'
 paperurl: 'https://aclanthology.org/2024.eacl-long.44/'
 paperurltext: 'Link to ACL anthology'
-citation: '<b>Minghao Wu</b>, Yufei Wang, George Foster, Lizhen Qu, and Gholamreza Haffari. 2024. <a href="https://aclanthology.org/2024.eacl-long.44/"><u>Importance-Aware Data Augmentation for Document-Level Neural Machine Translation</u></a>. <b>EACL 2024</b>'
+citation: '<b>Minghao Wu</b>, Yufei Wang, George Foster, Lizhen Qu, and Gholamreza Haffari. 2024. <a href="https://aclanthology.org/2024.eacl-long.44"><u>Importance-Aware Data Augmentation for Document-Level Neural Machine Translation</u></a>. <b>EACL 2024</b>'
 ---
 
 ```
