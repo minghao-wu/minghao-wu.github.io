@@ -1,16 +1,16 @@
 ---
 title: "The Best of Both Worlds: Bridging Quality and Diversity in Data Selection with Bipartite Graph"
 collection: publications
-permalink: /publication/icml-2024-bipartite
+permalink: /publication/icml-2025-bipartite
 date: 2025-7-13
 venue: 'Forty-Second International Conference on Machine Learning (ICML)'
 paperurl: 'https://arxiv.org/abs/2410.12458'
 paperurltext: 'Link to arXiv'
-citation: '<b>Minghao Wu</b>, Thuy-Trang Vu, Lizhen Qu, Gholamreza Haffari. 2025. <a href="http://minghao-wu.github.io/files/papers/bipartite_icml_2025.pdf"><u>The Best of Both Worlds: Bridging Quality and Diversity in Data Selection with Bipartite Graph</u></a>. In <i>Proceedings of the 42nd International Conference on Machine Learning</i>, abs/2410.12458.'
+citation: '<b>Minghao Wu</b>, Thuy-Trang Vu, Lizhen Qu, Gholamreza Haffari. <b>ICML 2025</b>.
 ---
 
 ```
-@article{wu2024best,
+@article{wu2025best,
   author       = {Minghao Wu, 
                   Thuy-Trang Vu, 
                   Lizhen Qu, 
