@@ -6,7 +6,7 @@ date: 2025-05-15
 venue: 'Transactions of the Association for Computational Linguistics'
 paperurl: 'https://arxiv.org/abs/2405.11804'
 paperurltext: 'Link to arXiv'
-citation: '<b>Minghao Wu</b>, Jiahao Xu, Yulin Yuan, Gholamreza Haffari, Longyue Wang, Weihua Luo, and Kaifu Zhang. <b>TACL 2025</b>. [Link to arXiv](https://arxiv.org/abs/2405.11804)'
+citation: '<b>Minghao Wu</b>, Jiahao Xu, Yulin Yuan, Gholamreza Haffari, Longyue Wang, Weihua Luo, and Kaifu Zhang. <a href="https://arxiv.org/abs/2405.11804"><u>(Perhaps) Beyond Human Translation: Harnessing Multi-Agent Collaboration for Translating Ultra-Long Literary Texts</u></a>. <b>TACL 2025</b>'
 ---
 
 ```

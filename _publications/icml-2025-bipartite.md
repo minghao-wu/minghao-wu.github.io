@@ -6,7 +6,7 @@ date: 2025-05-01
 venue: 'Proceedings of the 42nd International Conference on Machine Learning'
 paperurl: 'https://arxiv.org/abs/2410.12458'
 paperurltext: 'Link to arXiv'
-citation: '<b>Minghao Wu</b>, Thuy-Trang Vu, Lizhen Qu, and Gholamreza Haffari. <b>ICML 2025</b>. [Link to arXiv](https://arxiv.org/abs/2410.12458)'
+citation: '<b>Minghao Wu</b>, Thuy-Trang Vu, Lizhen Qu, Gholamreza Haffari. <a href="https://arxiv.org/abs/2410.12458"><u>The Best of Both Worlds: Bridging Quality and Diversity in Data Selection with Bipartite Graph</u></a>. <b>ICML 2025</b>'
 ---
 
 ```
