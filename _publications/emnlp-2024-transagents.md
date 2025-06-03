@@ -6,7 +6,7 @@ date: 2024-06-13
 venue: 'Proceedings of the 2024 Conference on Empirical Methods in Natural Language Processing (EMNLP 2024)'
 paperurl: 'https://aclanthology.org/2024.emnlp-demo.14'
 paperurltext: 'Link to ACL anthology'
-citation: '<b>Minghao Wu</b>, Thuy-Trang Vu, Lizhen Qu, and Gholamreza Haffari. <a href="https://aclanthology.org/2024.emnlp-demo.14"><u>TransAgents: Build Your Translation Company with Language Agents</u></a>. <b>EMNLP 2024</b>'
+citation: '<b>Minghao Wu</b>, Jiahao Xu, and Longyue Wang. <a href="https://aclanthology.org/2024.emnlp-demo.14"><u>TransAgents: Build Your Translation Company with Language Agents</u></a>. <b>EMNLP 2024</b>'
 ---
 
 ```
