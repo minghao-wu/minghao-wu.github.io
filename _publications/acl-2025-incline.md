@@ -1,17 +1,17 @@
 ---
-title: "Mixture-of-Skills: Learning to Optimize Data Usage for Fine-Tuning Large Language Models"
+title: "Bridging the Language Gaps in Large Language Models with Inference-Time Cross-Lingual Intervention"
 collection: publications
 permalink: /publication/emnlp-2024-mos
 date: 2024-06-13
 venue: 'Proceedings of the 2024 Conference on Empirical Methods in Natural Language Processing (EMNLP 2024)'
 paperurl: 'https://arxiv.org/abs/2406.08811'
 paperurltext: 'Link to arXiv'
-citation: '<b>Minghao Wu</b>, Thuy-Trang Vu, Lizhen Qu, and Gholamreza Haffari. 2024. <a href="http://minghao-wu.github.io/files/papers/mos_EMNLP_2024.pdf"><u>Mixture-of-Skills: Learning to Optimize Data Usage for Fine-Tuning Large Language Models</u></a>. In Proceedings of the 2024 Conference on Empirical Methods in Natural Language Processing, pages 14226–14240, Miami, Florida, USA. Association for Computational Linguistics.'
+citation: '<b>Minghao Wu</b>, Thuy-Trang Vu, Lizhen Qu, and Gholamreza Haffari. 2024. <a href="http://minghao-wu.github.io/files/papers/mos_EMNLP_2024.pdf"><u>Bridging the Language Gaps in Large Language Models with Inference-Time Cross-Lingual Intervention</u></a>. In Proceedings of the 2024 Conference on Empirical Methods in Natural Language Processing, pages 14226–14240, Miami, Florida, USA. Association for Computational Linguistics.'
 ---
 
 ```
 @inproceedings{wu-etal-2024-mixture-skills,
-    title = "Mixture-of-Skills: Learning to Optimize Data Usage for Fine-Tuning Large Language Models",
+    title = "Bridging the Language Gaps in Large Language Models with Inference-Time Cross-Lingual Intervention",
     author = "Wu, Minghao  and
       Vu, Thuy-Trang  and
       Qu, Lizhen  and
