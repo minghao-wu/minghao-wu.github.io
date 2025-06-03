@@ -2,7 +2,7 @@
 title: "Bridging the Language Gaps in Large Language Models with Inference-Time Cross-Lingual Intervention"
 collection: publications
 permalink: /publication/acl-2025-incline
-date: 2025-07-29
+date: 2025-06-01
 venue: 'Proceedings of the 63rd Annual Meeting of the Association for Computational Linguistics (Volume 1: Long Papers)'
 paperurl: 'https://arxiv.org/abs/2410.12462'
 paperurltext: 'Link to arXiv'
