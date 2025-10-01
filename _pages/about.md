@@ -30,9 +30,10 @@ My CV can be downloaded from <a href="https://minghao-wu.github.io/files/cv/Ming
 
 ### Work Experience
 
+* Jul. 2025 - Nov. 2025: Vsisting Researcher at The University of Edinburgh, supervised by [Prof. Alexandra Birch](https://sites.google.com/view/alexandra-birch/home).
 * Nov. 2024 - Apr. 2025: Research Intern at Alibaba Group, supervised by [Dr. Longyue Wang](http://www.longyuewang.com/).
 * Jul. 2023 - Oct. 2023: Research Intern at Tencent AI Lab, supervised by [Dr. Longyue Wang](http://www.longyuewang.com/).
-* Apr. 2023 - Jul. 2023: Visiting Researcher at Mohamed bin Zayed University of Artificial Intelligence, supervised by [Dr. Alham Fikri Aji](https://afaji.github.io/).
+* Apr. 2023 - Jul. 2023: Visiting Researcher at Mohamed bin Zayed University of Artificial Intelligence, supervised by [Prof. Alham Fikri Aji](https://afaji.github.io/).
 * Jul. 2020 - Jul. 2021: Research Intern at Huawei Noah's Ark Lab, supervised by [Dr. Meng Zhang](https://zmlarry.github.io/).
 * Aug. 2018 - Jul. 2019: Research Engineer at JD AI Research of JD.com, Inc, supervised by [Dr. Xiaodong He](https://scholar.google.com/citations?user=W5WbqgoAAAAJ&hl=en).
 
