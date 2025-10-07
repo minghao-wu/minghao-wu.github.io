@@ -7,23 +7,25 @@ date: 2025-10-06
 location: "Online"
 ---
 
-Today's research landscape showcases significant advancements in multi-agent collaboration and model orchestration, with several papers exploring how AI systems can work together more effectively. A key theme is the development of specialized frameworks for orchestrating Small Language Models (SLMs), where SLM-MUX demonstrates that carefully selected ensembles can outperform much larger monolithic models on complex reasoning tasks. In parallel, Multi-Agent Tool-Integrated Policy Optimization (MATPO) enables distinct planner and worker roles to be trained within a single Large Language Model (LLM), achieving substantial performance gains while avoiding the overhead of deploying multiple separate models. These developments are complemented by novel evaluation benchmarks like LLM-Hanabi, which provides automated assessment of Theory-of-Mind (ToM) capabilities in dynamic collaborative settings, revealing that first-order ToM (interpreting others' intent) correlates more strongly with success than complex recursive reasoning.
+Today's research landscape showcases exciting advancements in multi-agent systems and model optimization, with several papers exploring how Large Language Models (LLMs) can collaborate more effectively. The theme of multi-agent collaboration appears prominently across multiple studies, including frameworks like MARS (Multi-Agent System for Deep ReSearch) and MATPO (Multi-Agent Tool-Integrated Policy Optimization), which demonstrate how specialized agent roles can enhance complex reasoning tasks. Another significant trend involves improving training efficiency through innovative approaches to combining Supervised Fine-Tuning (SFT) and Reinforcement Learning (RL), with methods like MIFO (Mitigating Forgetting Between Supervised and Reinforcement Learning) showing remarkable data efficiency gains. In the multilingual domain, analysis of Mixture-of-Experts (MoE) architectures reveals fascinating routing patterns, while new benchmarks like LLM-Hanabi provide sophisticated ways to evaluate Theory-of-Mind (ToM) capabilities in collaborative settings. These developments collectively point toward more efficient, collaborative, and capable AI systems that better mimic human reasoning processes.
 
 ## TL;DR
 
 Here's a TL;DR summary of the key themes and insights from these papers:
 
-**Multi-Agent Collaboration & Reasoning:** Several papers explore multi-agent systems where language models collaborate. LLM-Hanabi introduces a benchmark showing that first-order Theory-of-Mind (interpreting others' intent) is more critical for collaboration success than complex recursive reasoning. MATPO enables training planner-worker agents within a single LLM, achieving 18%+ performance gains while avoiding multi-model overhead.
+**Main Themes:**
+- **Multi-agent collaboration & orchestration** - Multiple papers explore how to effectively coordinate multiple language models or agent roles for improved reasoning and task performance
+- **Training optimization** - Focus on efficient training methods combining supervised fine-tuning (SFT) and reinforcement learning (RL) while mitigating catastrophic forgetting
+- **Reasoning model alignment** - New methods for aligning large reasoning models with human preferences while managing gradient variance
 
-**Efficient Model Orchestration:** SLM-MUX demonstrates that orchestrating small language models through confidence-based selection (rather than discussion) can match or outperform much larger models, providing a cost-effective "multi-core" alternative to scaling monolithic models.
+**Key Insights:**
+- **SLM-MUX** shows that orchestrating small language models can match or exceed performance of much larger models through confidence-based selection
+- **MIFO** demonstrates that mitigating forgetting between SFT and RL yields stronger reasoners with dramatically improved data efficiency (using only 1.5% SFT data)
+- **BVPO** addresses gradient variance in reasoning model alignment by optimizing bias-variance trade-off, improving both alignment and reasoning performance
+- **Routing analysis** reveals that MoE models process multilingual content with language-specific routing in early/late layers but cross-lingual alignment in middle layers
+- **Theory-of-Mind** capability strongly correlates with collaborative performance in multi-agent settings, with first-order ToM being more critical than higher-order reasoning
 
-**Alignment & Optimization:** BVPO addresses alignment challenges in Large Reasoning Models by optimizing the bias-variance trade-off in preference optimization, reducing gradient variance from stochastic trace sampling and improving both alignment and reasoning performance.
-
-**Multilingual & Architectural Insights:** Analysis of Mixture-of-Experts models reveals language-specific routing in early/late layers with universal expert sharing in middle layers, where routing alignment with English correlates strongly with multilingual performance.
-
-**Information Theory & Efficiency:** New methods for Partial Information Decomposition using normalizing flows enable efficient quantification of redundant, unique, and synergistic information in multimodal data, with applications to model selection and dataset analysis.
-
-**Key Insight:** Across these papers, we see a trend toward specialized, efficient systems (multi-agent, SLM orchestration, MoE routing) that outperform monolithic approaches through smart coordination and optimization, rather than simply scaling model size.
+**Trend:** Move toward more efficient, collaborative AI systems that combine multiple specialized components rather than scaling monolithic models.
 
 ---
 
@@ -31,7 +33,7 @@ Here's a TL;DR summary of the key themes and insights from these papers:
 
 Authors: Mingkang Zhu, Xi Chen, Bei Yu, Hengshuang Zhao, Jiaya Jia
 
-Keywords: Multi-Agent Collaboration, Theory-of-Mind, Rationale Inference, Imperfect Information Games, Large Language Model Evaluation, Cooperative Gameplay
+Keywords: Large Reasoning Models, Preference Optimization, Bias-Variance Trade-off, Gradient Variance, Direct Preference Optimization, Trace Sampling, Alignment, Mathematical Reasoning
 
 Comments: None
 
@@ -43,61 +45,47 @@ Large reasoning models (LRMs) generate intermediate reasoning traces before prod
 
 ## Summary
 
-This paper introduces **LLM-Hanabi**, a novel benchmark designed to evaluate **Theory-of-Mind (ToM)** and **rationale inference** in large language models (LLMs) within a dynamic, multi-agent collaboration setting. The benchmark is built upon the cooperative card game *Hanabi*, where players have imperfect information and must rely on interpreting sparse linguistic hints to succeed. The key contribution is an automated evaluation framework that measures both game performance and ToM proficiency, addressing a gap in existing benchmarks that are often static and fail to capture the interactive nature of real-world collaboration.
+This paper addresses the challenge of aligning Large Reasoning Models (LRMs) with human preferences, identifying high gradient variance from stochastic reasoning trace sampling as a key bottleneck. While standard preference optimization methods like DPO work well for conventional LLMs, they struggle with LRMs due to the computational intractability of marginalizing over all possible reasoning traces, forcing practical implementations to rely on single sampled traces that introduce substantial gradient noise.
 
-The methodology involves using LLM-driven agents to play Hanabi in a 5-player configuration, with the game state translated into natural language. During gameplay, agents generate structured reasoning statements: *Rationale* (the hinter's intent), *First-Order ToM* (the recipient's interpretation of the intent), and *Second-Order ToM* (the hinter's prediction of the recipient's interpretation). An LLM-as-a-judge then evaluates these statements post-game to produce quantitative ToM scores, providing a scalable assessment of collaborative reasoning.
+The key contribution is Bias–Variance Optimized Preference Optimization (BVPO), a simple yet principled method that combines two gradient estimators: a high-variance trace-based estimator and a low-variance empty-trace estimator (obtained by disabling reasoning trace generation). BVPO forms a convex combination of these estimators, with the mixing weight optimized to minimize Mean Squared Error relative to the ideal marginal gradient. Theoretically, the authors prove that BVPO strictly reduces trace-induced variance, provides a closed-form optimal mixing coefficient, and tightens SGD convergence bounds.
 
-The results, evaluated across a diverse set of LLMs and large reasoning models (LRMs), reveal two main findings: (1) **LRMs significantly outperform standard LLMs** in both game performance and ToM capabilities, with models like Deepseek-R1 and GPT-4.1 achieving the highest scores; (2) There is a **strong positive correlation between ToM proficiency and game success**, with first-order ToM (interpreting others' intent) showing a stronger correlation (r=0.76) with performance than second-order ToM (predicting others' interpretations; r=0.58). This indicates that accurate inference of a partner's rationale is more critical for effective collaboration than higher-order reasoning. The benchmark provides a valuable tool for future research aimed at enhancing the collaborative capabilities of AI systems.
+Empirical results demonstrate BVPO's effectiveness across three LRMs. On alignment benchmarks (AlpacaEval 2 and Arena-Hard), BVPO improves over the best baselines by up to 7.8 and 6.8 points respectively. Notably, despite being trained only on general conversational data, BVPO also enhances reasoning performance, boosting the average performance on six math reasoning benchmarks by up to 4.0 points. These results establish trace sampling variance as a critical alignment challenge and show that explicit bias–variance optimization yields both training stability and performance improvements.
 
 ## Critique
 
-Of course. Here is a critique of the paper "LLM-Hanabi: Evaluating Multi-Agent Gameplays with Theory-of-Mind and Rationale Inference in Imperfect Information Collaboration Game."
-
-### Overall Summary
-
-This is a strong, well-executed paper that makes a clear and valuable contribution to the field of multi-agent AI evaluation. It presents a novel benchmark and provides insightful empirical results that challenge a common assumption about the hierarchy of Theory-of-Mind (ToM) reasoning.
-
----
+Of course. Here is a commentary on the strengths and weaknesses of the paper "From Noisy Traces to Stable Gradients: Bias–Variance Optimized Preference Optimization for Aligning Large Reasoning Models."
 
 ### Strengths
 
-1.  **Novelty and Significance of the Benchmark:**
-    *   **Fills a Clear Gap:** The authors correctly identify a limitation in existing ToM benchmarks, which are often static and text-based (e.g., story QA). LLM-Hanabi addresses this by providing a dynamic, interactive environment where reasoning must happen in real-time under uncertainty.
-    *   **Ideal Testbed:** The choice of Hanabi is excellent. Its cooperative nature, imperfect information, and reliance on sparse linguistic hints perfectly isolate the core challenges of collaborative reasoning and rationale inference, avoiding the confounding factors of deception found in adversarial games.
+1.  **High Novelty and Timeliness:** The paper tackles a highly relevant and underexplored problem: the alignment of Large Reasoning Models (LRMs). While preference optimization (e.g., DPO) is well-established for standard LLMs, its application to LRMs that generate long, stochastic reasoning traces is a nascent area. The core insight—that trace sampling introduces debilitating gradient variance—is both novel and significant.
 
-2.  **Well-Designed Evaluation Framework:**
-    *   The automated "LLM-as-a-judge" system for scoring first-order and second-order ToM is a clever and scalable solution. By extracting structured rationales during gameplay, they create a traceable and quantifiable metric for a typically qualitative concept.
-    *   The evaluation is comprehensive, testing a wide range of models (both LLMs and the newer LRMs) and reporting multiple relevant metrics (game score, rounds, and both orders of ToM).
+2.  **Elegant and Principled Solution:** The proposed method, BVPO, is conceptually simple, elegant, and grounded in solid statistical theory. The idea of mixing a high-variance trace-based gradient with a low-variance, deterministic "empty-trace" gradient is a direct and intuitive application of the bias-variance trade-off. Its "drop-in" nature makes it easy to adopt.
 
-3.  **Significant and Actionable Results:**
-    *   The key finding—that **first-order ToM is a stronger predictor of collaborative success than second-order ToM**—is both surprising and highly significant. It provides a crucial, data-driven insight for the community: for practical collaboration, accurately interpreting your partner's intent is more critical than engaging in complex recursive reasoning about what they think you think.
-    *   The clear performance gap between standard LLMs and Large Reasoning Models (LRMs) is a valuable data point that underscores the importance of specialized reasoning architectures for complex, multi-step tasks.
+3.  **Strong Theoretical Foundation:** The paper is not just an empirical demonstration; it provides a rigorous theoretical analysis. Theorems on conditional variance reduction, MSE-optimal combination, and the direct link to tighter SGD convergence bounds are major strengths. This theoretical grounding elevates the work from a mere engineering trick to a principled contribution.
 
-4.  **Clarity of Presentation:**
-    *   The paper is exceptionally well-structured and easy to follow. The contributions are listed clearly in the introduction.
-    *   Figures 1 and 2 effectively illustrate the evaluation pipeline and the core correlation finding.
-    *   Table 1 is comprehensive and allows for easy comparison across models.
+4.  **Comprehensive and Compelling Empirical Evaluation:** The experiments are thorough. The authors:
+    *   Test on multiple model sizes (1.5B, 7B, 8B), demonstrating scalability.
+    *   Evaluate on standard alignment benchmarks (AlpacaEval 2, Arena-Hard) and show significant improvements (up to +7.8 points).
+    *   Crucially, evaluate on **mathematical reasoning benchmarks** to show that alignment on conversational data does not harm (and can even improve) core reasoning capabilities. This addresses a critical concern for deploying aligned LRMs.
+    *   Evaluate models in both "Thinking" and "NoThinking" modes, showing the method's robustness.
 
----
+5.  **Clarity of Presentation:** The paper is generally well-written. The structure is logical, moving from problem formulation to solution, theory, and experiments. The use of clear notation (e.g., \(g_t\), \(g_e\), \(g_c\), \(\mathcal{L}_m\), \(\mathcal{L}_t\)) and the step-by-step explanation of the theoretical motivation make the complex concepts accessible.
 
-### Weaknesses and Potential Improvements
+### Weaknesses
 
-1.  **Limited Model Analysis and "Why" Behind Performance:**
-    *   The paper thoroughly documents *what* models perform well but offers less insight into *why*. A deeper analysis into the failure modes (e.g., common types of misinterpretations in first-order ToM, or what makes second-order ToM so difficult) would greatly enhance the paper.
-    *   For instance, are the errors in second-order ToM due to a fundamental limitation in recursive reasoning, or are they a consequence of compounding errors from imperfect first-order understanding?
+1.  **Limited Exploration of the Optimal \(\alpha\):** While Theorem 2 provides a closed-form solution for the optimal mixing weight \(\alpha^*\), the paper does not detail how this is computed or approximated in practice. The experiments seem to use a fixed \(\alpha\) (the value is not specified in the main text, though it might be in the appendix). A discussion on the practical challenges of estimating the biases and covariances for \(\alpha^*\), or an ablation study on the sensitivity to the choice of \(\alpha\), would have strengthened the practical contribution.
 
-2.  **Dependence on LLM-as-Judge:**
-    *   While the authors appropriately list this as a limitation, it remains a significant methodological concern. The ToM scores are only as reliable as the judge model's own ToM capabilities. A small-scale human evaluation to validate the judge's scoring would have strengthened the results considerably.
+2.  **Baseline Comparison Could Be Broader:** The empirical comparison is primarily against DPO and SimPO. It would be valuable to see a comparison against other strategies for reducing variance, such as using multiple trace samples (a multi-sample Monte Carlo estimator) to see if the performance gains are due specifically to the bias-variance optimization or simply from using more compute to reduce variance.
 
-3.  **Clarity on "Rationale Inference" vs. Standard ToM:**
-    *   The paper introduces the term "rationale inference" alongside ToM. While the concept is clear in context, the paper could more explicitly define how it relates to or differs from the established definitions of first and second-order ToM. Is it a refinement, a subset, or a synonymous term? A more precise theoretical framing would be beneficial.
+3.  **Ablation Studies:** The paper would benefit from more ablation studies. For instance:
+    *   How much of the performance gain comes from the empty-trace loss \(\mathcal{L}_e\) alone?
+    *   An analysis of how the variance of the gradients (or the loss) actually changes during training with BVPO versus baselines would provide direct empirical support for the core thesis.
 
-4.  **Potential for Overstatement:**
-    *   The conclusion that "prioritizing first-order ToM is a promising direction" is well-supported. However, one should be cautious about generalizing this too far. Hanabi is a specific type of collaboration; in other scenarios (e.g., negotiation, teaching), higher-order ToM might be far more critical. The paper could more strongly caveat its findings to this specific collaborative paradigm.
+4.  **Clarity on the "Empty Trace":** The implementation of the "empty trace" (appending `<think></think>`) is mentioned, but it would be helpful to explicitly state that this is a feature supported by the specific LRMs (DeepSeek-R1) used in the experiments. A reader might wonder if this is a general technique or model-specific.
 
-### Conclusion
+### Overall Assessment
 
-This is a high-quality paper that makes a substantive contribution. Its primary strength lies in its elegant benchmark design and its empirically-grounded, counter-intuitive finding regarding the relative importance of first-order ToM. The weaknesses are primarily opportunities for deeper analysis rather than fundamental flaws. The LLM-Hanabi benchmark is likely to be adopted by the community, and the paper's core insight will influence how researchers think about and build collaborative AI agents.
+This is a high-quality paper that makes a significant contribution to the field of aligning large generative models. It identifies a clear and important problem, proposes a simple yet theoretically sound solution, and backs it up with thorough experiments and rigorous theory. The weakness regarding the practical determination of \(\alpha\) is minor compared to the overall strength and novelty of the work. The results are highly significant, showing that it is possible to achieve better alignment **and** better reasoning simultaneously by explicitly managing the bias-variance trade-off inherent in training LRMs. This work is likely to influence both future research and practical deployment of reasoning models.
 
 ---
 
@@ -105,7 +93,7 @@ This is a high-quality paper that makes a substantive contribution. Its primary 
 
 Authors: Chenyu Wang, Zishen Wan, Hao Kang, Emma Chen, Zhiqiang Xie, Tushar Krishna, Vijay Janapa Reddi, Yilun Du
 
-Keywords: Large Reasoning Models, Preference Optimization, Bias-Variance Trade-off, Gradient Variance, Direct Preference Optimization, Trace Sampling, Alignment, Mathematical Reasoning
+Keywords: Small Language Models, Model Orchestration, Multi-Agent Systems, Reasoning, Confidence Estimation, Model Selection, Compute Scaling, Test-time Scaling
 
 Comments: None
 
@@ -117,48 +105,48 @@ With the rapid development of language models, the number of small language mode
 
 ## Summary
 
-This paper addresses the challenge of aligning Large Reasoning Models (LRMs) with human preferences, identifying a key bottleneck: the high gradient variance caused by stochastic sampling of reasoning traces during preference optimization. While the statistically correct approach requires marginalizing over all possible reasoning traces, this is computationally intractable in practice. Current methods like DPO instead optimize using single sampled traces, which introduces substantial noise and instability during training.
+Here is a summary of the paper "SLM-MUX: Orchestrating Small Language Models for Reasoning":
 
-The authors propose Bias–Variance Optimized Preference Optimization (BVPO), a simple yet effective method that combines two gradient estimators: a high-variance trace-based estimator and a low-variance empty-trace estimator obtained by disabling reasoning trace generation. BVPO forms a convex combination of these estimators, explicitly optimizing the bias-variance trade-off by minimizing the Mean Squared Error relative to the ideal marginal gradient. Theoretically, the authors prove that BVPO strictly reduces trace-induced variance, provides a closed-form optimal mixing weight, and tightens SGD convergence bounds under standard conditions.
+**Key Problem and Contribution:** This paper identifies a critical limitation in existing LLM orchestration methods—they are designed for and perform well with frontier models like GPT-4 but actually *harm* performance when applied to Small Language Models (SLMs). The authors find that discussion-based methods (e.g., Mixture-of-Agents, LLM-Debate) cause SLMs to fall into "groupthink," amplifying errors rather than correcting them. To address this, they propose SLM-MUX, a novel orchestration framework specifically designed for SLMs that avoids explicit model discussions and instead selects outputs based on confidence scores.
 
-Empirical results demonstrate BVPO's effectiveness across three LRMs. On alignment benchmarks, BVPO improves over the best baseline by up to 7.8 points on AlpacaEval 2 and 6.8 points on Arena-Hard. Remarkably, despite being trained only on general conversational data, BVPO also enhances reasoning performance, boosting the base model's average performance across six math reasoning benchmarks by up to 4.0 points. These results establish trace sampling variance as a critical alignment challenge and demonstrate that directly optimizing the bias-variance trade-off yields both more stable training and stronger overall performance.
+**Proposed Method (SLM-MUX):** The framework operates in two phases: 1) **Independent Generation**, where each SLM independently generates multiple responses to a query, and 2) **Confidence Estimation**, where the most frequent answer from each model is selected, with its frequency serving as a confidence score. The final output is chosen from the model with the highest self-consistency (confidence), using validation accuracy as a tie-breaker. The authors also introduce a **Model Selection Search** strategy that systematically identifies complementary model subsets by maximizing union accuracy while penalizing cases where overconfident wrong answers suppress correct ones. Additionally, they explore **Compute Scaling Strategies** along two dimensions: adding more model types and drawing more samples per model.
+
+**Key Results:** Experiments on MATH, GPQA, and GSM8K benchmarks demonstrate that SLM-MUX significantly outperforms existing orchestration methods, achieving improvements of up to 13.4% on MATH, 8.8% on GPQA, and 7.0% on GSM8K. With just two optimally selected SLMs, SLM-MUX matches or even surpasses the performance of the much larger Qwen 2.5 72B model—outperforming it on GPQA and GSM8K and matching its performance on MATH. The model selection search and compute scaling strategies are shown to provide substantial additional performance gains, validating the importance of complementary model pairing and careful resource allocation.
+
+In summary, this work establishes that a "multi-core" approach of intelligently orchestrating multiple efficient SLMs is a viable and promising alternative to scaling ever-larger monolithic models, opening a new direction for building capable and cost-effective AI systems.
 
 ## Critique
 
-Of course. Here is a commentary on the strengths and weaknesses of the paper "From Noisy Traces to Stable Gradients: Bias–Variance Optimized Preference Optimization for Aligning Large Reasoning Models".
+Of course. Here is a critique of the paper "SLM-MUX: Orchestrating Small Language Models for Reasoning," focusing on its strengths and weaknesses.
 
 ### Strengths
 
-1.  **High Novelty and Well-Defined Problem:** The paper tackles a very timely and under-explored problem: the alignment of Large Reasoning Models (LRMs). It clearly identifies a specific and significant bottleneck—the high gradient variance introduced by stochastic trace sampling—that is not present in standard LLM alignment. The core idea of mixing a high-variance trace-based gradient with a low-variance empty-trace gradient is elegant, intuitive, and novel in this context.
+1.  **Clear Problem Identification and Motivation:** The paper excels at identifying a specific, important, and counter-intuitive problem: existing discussion-based LLM orchestration methods (like Mixture-of-Agents, LLM-Debate) fail when applied to Small Language Models (SLMs). The analogy to multi-core processors is compelling and effectively frames the research direction.
 
-2.  **Strong Theoretical Foundation:** This is a major strength of the paper. The authors don't just propose a heuristic; they provide a rigorous theoretical analysis.
-    *   **Theorem 1** formally proves the variance reduction property of their combined estimator.
-    *   **Theorem 2** provides a closed-form, principled method for choosing the optimal mixing coefficient `α` by minimizing the Mean Squared Error (MSE), with a guarantee that their estimator is never worse than the best individual component.
-    *   **Theorems 3 & 4** connect this statistical improvement directly to tighter convergence bounds for Stochastic Gradient Descent (SGD), creating a clear link from the method's design to its expected algorithmic performance.
+2.  **Novelty of the Approach:** The core idea of SLM-MUX is simple, elegant, and well-motivated. Instead of forcing SLMs to "discuss" (a process where they tend to amplify errors), it uses a confidence-based selection mechanism (self-consistency) to pick the best answer from a pool of independently generated ones. This is a pragmatic shift in perspective for the SLM domain. The accompanying **model selection search** is a valuable contribution that moves beyond naive model aggregation by explicitly optimizing for complementary strengths and penalizing overconfident contradictions.
 
-3.  **Compelling and Comprehensive Empirical Results:** The experimental evaluation is thorough and convincing.
-    *   **Alignment Performance:** The improvements on established benchmarks like AlpacaEval 2 and Arena-Hard are substantial (up to +7.8 points), demonstrating the practical effectiveness of BVPO.
-    *   **Reasoning Preservation/Improvement:** A critical and impressive result is that BVPO not only preserves but *improves* reasoning performance on six math benchmarks, even though it was trained only on general conversational data. This directly addresses a key concern when aligning specialized models and significantly strengthens the paper's claim.
-    *   **Model Scale:** Testing on three different model sizes (1.5B, 7B, 8B) shows the method's robustness and scalability.
+3.  **Significant and Well-Evaluated Results:** The empirical results are a major strength. The paper demonstrates:
+    *   **Clear Failure of Baselines:** It systematically shows that existing methods harm SLM performance.
+    *   **Strong Performance of SLM-MUX:** It achieves substantial improvements (e.g., +13.4% on MATH) over both single models and other orchestration methods.
+    *   **Competitiveness with Large Models:** The headline result—that a 2-SLM ensemble can outperform or match a 72B parameter model (Qwen 2.5 72B)—is significant and validates the "multi-core" thesis. The ablation studies on model selection and compute scaling provide a thorough understanding of the method's behavior.
 
-4.  **Clarity of Presentation:** The paper is generally well-written. The structure is logical, moving from problem formulation to method description, theoretical analysis, and finally experiments. The use of clear notation (e.g., `g_t`, `g_e`, `g_c`, `L_m`, `L_t`) helps in following the technical arguments.
+4.  **Clarity of Presentation:** The paper is generally well-structured and easy to follow. The use of algorithms (Algorithm 1), figures (visualizing workflows, results, and trade-offs), and tables makes the methodology and findings accessible.
 
 ### Weaknesses
 
-1.  **Limited Discussion of Practical `α` Selection:** While Theorem 2 provides a closed-form solution for the optimal `α`, it relies on population-level statistics (biases, covariances) that are unknown in practice. The paper does not explicitly detail how `α` was set in the experiments. Was it treated as a hyperparameter? Was the theoretical form approximated empirically? A brief discussion on the practical implementation of choosing `α` would strengthen the methodological clarity.
+1.  **Limited Analysis of "Why" Discussion Fails:** While the paper identifies the "groupthink" problem, the analysis in the main text is somewhat superficial. The claim that SLMs lack the reasoning ability to correct each other is plausible but not deeply investigated. A more thorough qualitative analysis of failure cases in the discussion-based methods (e.g., how correct answers get overturned) would have strengthened this key argument. The relegation of this analysis to an appendix is a minor weakness.
 
-2.  **Ablation Studies and Sensitivity Analysis:** The paper would be even stronger with a more detailed ablation study.
-    *   **`α` Sensitivity:** How sensitive are the results to the choice of `α`? A plot showing performance vs. `α` would be very informative.
-    *   **Component Contribution:** An ablation directly comparing `L_t` (trace-only), `L_e` (empty-trace-only), and `L_c` (combined) on a learning curve would visually demonstrate the improved stability and final performance of BVPO.
-    *   **Method Agnosticism:** The authors state BVPO is agnostic to the preference optimization algorithm, but they only instantiate it with DPO. Showing its application with another method like SimPO would solidify this claim.
+2.  **Simplicity and Potential Limitations of the Core Method:** The strength of SLM-MUX is its simplicity, but this is also a potential weakness. The paper acknowledges two key limitations:
+    *   **Static Framework:** The model selection is fixed per benchmark and does not adapt to the specific query. A per-instance routing mechanism could be a more powerful (though more complex) future direction.
+    *   **Confidence Metric:** Relying solely on self-consistency as a confidence measure is a known weakness, as models can be consistently wrong. The "Contradiction Penalty" in the model search indirectly addresses this, but the core method itself remains vulnerable to this issue.
 
-3.  **Comparison to a Simple Baseline:** A natural baseline to include would be a version of DPO that uses multiple trace samples to reduce variance (e.g., using a multi-sample Monte Carlo estimator for the marginal loss). Comparing against such a baseline would help quantify the data efficiency and computational trade-off of BVPO versus simply "throwing more samples" at the problem.
+3.  **Theoretical Analysis Could Be Stronger:** The mathematical analysis in Section 5 is a good start but feels somewhat disconnected from the main method. It primarily explains why self-consistency works for a single model under certain conditions and why Agent Forest (which averages over models) is inferior to selecting the best model's output. A more formal analysis framing the problem as a selection rule among multiple, potentially correlated, agents would have been more impactful.
 
-4.  **Clarity on "Empty Trace" Implementation:** The description of how the empty-trace mode is implemented ("disabling reasoning trace generation by appending “<think></think>”") is clear from a systems perspective but slightly glosses over the modeling assumption. It assumes that `π_θ(r=∅, y|x)` is a meaningful and well-defined distribution that the model can learn, which is a valid approach but could be briefly discussed or justified.
+4.  **Scope of Evaluation:** The evaluation is strong but focused exclusively on reasoning-heavy, multiple-choice-style benchmarks (MATH, GPQA, GSM8K). It remains to be seen how well SLM-MUX generalizes to more open-ended tasks like creative writing, summarization, or complex instruction-following, where the concept of a "correct answer" is less well-defined and self-consistency may be a less reliable signal.
 
-### Overall Significance
+### Overall Assessment
 
-This is a high-quality paper that makes a significant contribution. It identifies a clear and important problem in the emerging field of LRM alignment, proposes a simple yet theoretically grounded solution, and backs it up with extensive empirical evidence. The fact that the method improves both alignment *and* core reasoning capabilities is a particularly notable result. The work is likely to influence future research and practical efforts in aligning large-scale reasoning agents. The weaknesses are relatively minor and mostly concern additional analyses that could further bolster the already strong claims.
+This is a strong paper that makes a clear and valuable contribution. It identifies a genuine problem in the current research landscape and proposes a simple, effective, and well-evaluated solution. The significance of the results—showing that small, efficiently orchestrated models can compete with much larger monolithic models—is high and has practical implications for cost-effective AI deployment. While the analysis of the core problem and the theoretical underpinnings could be deepened, the empirical evidence is compelling and the core ideas are novel and impactful. The presentation is clear and effectively communicates the research.
 
 ---
 
@@ -166,7 +154,7 @@ This is a high-quality paper that makes a significant contribution. It identifie
 
 Authors: Fangzhou Liang, Tianshi Zheng, Chunkit Chan, Yauwai Yim, Yangqiu Song
 
-Keywords: Mixture-of-Experts, Multilingual Routing, Cross-lingual Transfer, Sparse Activation, Language Specialization, Router Intervention, Multilingual Generalization
+Keywords: Multi-Agent Collaboration, Theory-of-Mind, Rationale Inference, Imperfect Information Games, Large Language Model Evaluation, Hanabi Benchmark
 
 Comments: EMNLP 2025 Wordplay
 
@@ -178,60 +166,137 @@ Effective multi-agent collaboration requires agents to infer the rationale behin
 
 ## Summary
 
-This paper investigates multilingual routing behavior in Mixture-of-Experts (MoE) LLMs, revealing how sparse activation patterns affect cross-lingual generalization. The key contribution is demonstrating that MoE models exhibit language-specific routing in early and late layers but share language-universal experts in middle layers, mirroring patterns observed in dense LLMs. The authors establish a strong correlation between a language's performance and its routing alignment with English in these middle layers, showing that better-performing languages route more similarly to English.
+Of course. Here is a summary of the paper "LLM-Hanabi: Evaluating Multi-Agent Gameplays with Theory-of-Mind and Rationale Inference in Imperfect Information Collaboration Game."
 
-The methodology involves two main components: interpretability analysis using parallel multilingual datasets to measure routing divergence, and intervention experiments that manipulate router logits during inference. For the analysis, the authors develop metrics to quantify cross-lingual routing divergence and entropy, revealing U-shaped patterns where divergence is lowest in middle layers. For interventions, they identify task-specific experts (using English domain data) and apply soft or hard interventions to steer non-English tokens toward these experts during evaluation.
+### Summary
 
-The results show that activating English task experts in middle layers consistently improves multilingual performance across three state-of-the-art MoE models (Qwen3, Phi-3.5-MoE, GPT-OSS) and two evaluation tasks (MGSM and Global-MMLU medicine). Gains of 1-2% are statistically significant and particularly pronounced for lower-resource languages. Importantly, interventions are only effective when targeting middle layers and task experts—activating multilingual-specialized experts or intervening in other layers degrades performance.
+This paper introduces **LLM-Hanabi**, a novel benchmark designed to evaluate the Theory-of-Mind (ToM) and rationale inference capabilities of Large (Language) Models in a dynamic, collaborative setting. The key idea is to move beyond static, text-based ToM evaluations and assess how well AI agents can reason about each other's intentions and beliefs during an interactive task.
 
-This work provides the first comprehensive analysis of multilingual routing in MoE LLMs and demonstrates that cross-lingual expert sharing is a key driver of multilingual generalization, suggesting opportunities for improved training methods that enhance this alignment.
+**Key Contributions & Methods:**
+The authors use the cooperative card game **Hanabi** as their testbed, as its core mechanics—where players hold hidden cards and must communicate via sparse, linguistic hints—naturally require inferring a partner's rationale. The LLM-Hanabi framework features an automated evaluation system that operates in two phases:
+1.  **During gameplay**, agents are prompted to generate structured reasoning statements: the *Rationale* behind a hint (ground truth), the recipient's *First-Order ToM* (interpreting the hint's intent), and the hinter's *Second-Order ToM* (predicting how the recipient will interpret it).
+2.  **Post-game**, an LLM-as-a-judge scores the alignment between these statements to produce quantitative First-Order and Second-Order ToM scores.
+
+**Key Results:**
+The evaluation of a diverse set of LLMs and larger reasoning models (LRMs) yielded several important findings:
+*   **LRMs generally outperformed standard LLMs** in both game performance and ToM capabilities.
+*   There is a **strong positive correlation between an agent's ToM score and its in-game success**.
+*   Most notably, **First-Order ToM (interpreting a partner's intent) was a significantly stronger predictor of game performance** than Second-Order ToM (predicting a partner's interpretation), with correlation coefficients of r=0.76 vs. r=0.58.
+
+**Conclusion:**
+The paper concludes that for developing effective collaborative AI, the primary focus should be on enhancing an agent's ability to accurately **interpret its partners' actions and rationale** (first-order ToM), rather than on more complex higher-order reasoning. The LLM-Hanabi benchmark provides a scalable tool for pursuing this direction.
 
 ## Critique
 
-Of course. Here is a commentary on the strengths and weaknesses of the paper "Multilingual Routing in Mixture-of-Experts".
+Of course. Here is a critique of the paper "LLM-Hanabi: Evaluating Multi-Agent Gameplays with Theory-of-Mind and Rationale Inference in Imperfect Information Collaboration Game".
 
-### Overall Assessment
+### Strengths
 
-This is a strong, well-executed paper that makes a significant contribution to the interpretability of Mixture-of-Experts (MoE) models, specifically in the context of multilingualism. It successfully bridges findings from dense model interpretability with the unique architecture of MoEs, providing both novel insights and a practical intervention method.
+1.  **Strong and Well-Motivated Benchmark:** The choice of Hanabi is excellent. It is a well-established game in AI research for studying cooperation under imperfect information. The paper correctly identifies the limitations of static, text-based ToM evaluations and effectively argues that Hanabi provides a dynamic, interactive, and scalable alternative. The focus on a purely cooperative game (as opposed to adversarial ones like Poker) cleanly isolates the challenge of collaborative reasoning.
+
+2.  **Novel and Automated Evaluation Framework:** The core contribution—the automated ToM evaluation system—is novel and practical. By prompting agents to generate structured rationales and first/second-order ToM statements during gameplay and then using an LLM-as-a-judge to score them, the authors create a scalable method for quantifying a previously qualitative and hard-to-measure capability. This is a significant step beyond simply measuring win rates.
+
+3.  **Significant and Actionable Findings:** The results are compelling and provide clear, actionable insights for the field. The strong positive correlation between ToM and game performance validates the benchmark's premise. The most impactful finding is that **first-order ToM is a stronger predictor of success than second-order ToM**. This challenges any assumption that more complex, recursive reasoning is always better and provides a clear direction for future model development: prioritize accurate intent interpretation.
+
+4.  **Comprehensive Evaluation:** The paper benchmarks a wide range of models, including both standard LLMs and the newer "Large Reasoning Models" (LRMs), across multiple performance dimensions (game score, rounds, 1st/2nd-order ToM). This provides a rich, comparative landscape of the current state of the art.
+
+### Weaknesses
+
+1.  **Clarity on "LRM" and Reasoning Methods:** The distinction between "LLM" and "LRM" is not clearly defined in the main text. While it's implied that LRMs use "Long-CoT," the paper would benefit from a more explicit explanation of what constitutes an LRM, how their reasoning process differs architecturally or in terms of prompting, and why this leads to superior performance. The conflation of model type (LLM vs. LRM) with reasoning method (CoT vs. Long-CoT) in Table 1 is slightly confusing.
+
+2.  **Potential Circularity in ToM Scoring:** A major methodological weakness is the reliance on the agent's own generated "Rationale" as the ground truth for scoring its partner's First-Order ToM. This creates a potential for circular reasoning: an agent could generate a poor or post-hoc rationale, which would then make it impossible for its partner to score highly on First-Order ToM, even if the partner made a correct and useful inference. The scoring system measures alignment with the stated rationale, not necessarily the correctness or optimality of the reasoning itself.
+
+3.  **Limited Analysis of Failure Modes:** The results are presented at a high level (scores and correlations). The paper would be strengthened by a qualitative analysis of *why* models fail. For instance, what are common errors in Second-Order ToM? Are there specific game situations that consistently challenge all models? Providing examples of poor rationales or misinterpretations would make the findings more concrete and informative for developers.
+
+4.  **Presentation and Proofreading:** The paper has several typographical and formatting issues (e.g., "LRM (Long-CoT)" in Table 1, broken figure references like `[1](https://arxiv.org/html/2510.04980v1#S1.F1)`, inconsistent bolding in the table caption). While minor, these errors detract from the professionalism and clarity of the presentation.
+
+### Summary
+
+This paper presents a strong, timely, and valuable contribution to the field of multi-agent AI and LLM evaluation. Its primary strength lies in the novel LLM-Hanabi benchmark and its automated ToM scoring system, which enables the discovery of the critical relationship between first-order reasoning and collaborative success. The main weaknesses are a lack of clarity around the "LRM" concept and a potentially problematic reliance on self-reported rationales as ground truth. Despite these issues, the core findings are significant and the benchmark itself is likely to be adopted and built upon by the research community.
+
+---
+
+# MARS: Optimizing Dual-System Deep Research via Multi-Agent Reinforcement Learning
+
+Authors: Guoxin Chen, Zile Qiao, Wenqing Wang, Donglei Yu, Xuanzhong Chen, Hao Sun, Minpeng Liao, Kai Fan, Yong Jiang, Penguin Xie, Wayne Xin Zhao, Ruihua Song, Fei Huang
+
+Keywords: Multi-Agent Reinforcement Learning, Dual-System Reasoning, Retrieval-Augmented Generation, Deep Research, Tool-Augmented Reasoning, Large Reasoning Models
+
+Comments: Ongoing Work
+
+Paper link: [http://arxiv.org/abs/2510.04935v1](http://arxiv.org/abs/2510.04935v1)
+
+## Abstract
+
+Large Reasoning Models (LRMs) often exhibit a tendency for overanalysis in simple tasks, where the models excessively utilize System 2-type, deliberate reasoning, leading to inefficient token generation. Furthermore, these models face challenges in adapting their reasoning capabilities to rapidly changing environments due to the static nature of their pretraining data. To address these issues, advancing Large Language Models (LLMs) for complex reasoning tasks requires innovative approaches that bridge intuitive and deliberate cognitive processes, akin to human cognition's dual-system dynamic. This paper introduces a Multi-Agent System for Deep ReSearch (MARS) enabling seamless integration of System 1's fast, intuitive thinking with System 2's deliberate reasoning within LLMs. MARS strategically integrates multiple external tools, such as Google Search, Google Scholar, and Python Interpreter, to access up-to-date information and execute complex computations, while creating a specialized division of labor where System 1 efficiently processes and summarizes high-volume external information, providing distilled insights that expand System 2's reasoning context without overwhelming its capacity. Furthermore, we propose a multi-agent reinforcement learning framework extending Group Relative Policy Optimization to simultaneously optimize both systems with multi-turn tool interactions, bin-packing optimization, and sample balancing strategies that enhance collaborative efficiency. Extensive experiments demonstrate MARS achieves substantial improvements of 3.86% on the challenging Humanity's Last Exam (HLE) benchmark and an average gain of 8.9% across 7 knowledge-intensive tasks, validating the effectiveness of our dual-system paradigm for complex reasoning in dynamic information environments.
+
+## Summary
+
+Of course. Here is a summary of the paper "MARS: Optimizing Dual-System Deep Research via Multi-Agent Reinforcement Learning."
+
+**Key Contributions & Method:**
+This paper introduces MARS, a novel multi-agent framework that enhances the reasoning capabilities of Large Language Models (LLMs) by integrating the dual-process theory of human cognition. The core innovation is the seamless collaboration between two systems within a single LLM: **System 2** handles deliberate, multi-step reasoning and strategically invokes external tools (Google Search, Google Scholar, Python Interpreter), while **System 1** acts as an efficient information processor, using fast, intuitive thinking to distill and summarize the often lengthy and noisy outputs from these tools. This division of labor prevents System 2 from being overwhelmed by large volumes of raw data, allowing it to focus on complex reasoning.
+
+To train this system, the authors propose a multi-agent Reinforcement Learning (RL) framework that extends Group Relative Policy Optimization (GRPO) to optimize both systems simultaneously. Key technical strategies include:
+1.  **Bin-Packing Optimization:** Efficiently organizes variable-length tool outputs (e.g., multiple web pages) into optimally-sized chunks for parallel processing by System 1.
+2.  **Balanced Sampling Mechanism:** Pre-computes advantage signals and balances the number of training samples between the two systems to prevent one from dominating the learning process.
+
+**Key Results:**
+Extensive experiments demonstrate MARS's effectiveness on highly challenging benchmarks:
+*   **Humanity’s Last Exam (HLE):** MARS achieves a substantial improvement of **3.86%** over its base model (Qwen2.5-7B), reaching **7.38%** accuracy. It outperforms all other open-source reasoning methods, including those based on much larger models (e.g., 32B and 72B parameters), and significantly narrows the performance gap with powerful proprietary systems.
+*   **Knowledge-Intensive QA Tasks:** On a suite of 7 single-hop and multi-hop question-answering datasets, MARS achieves an average performance gain of **8.9%** over the previous state-of-the-art method, with particularly strong improvements on complex multi-hop reasoning tasks.
+
+The paper provides comprehensive analyses, including an ablation study confirming the complementary value of different tools and an examination of the training dynamics, which show the model learning to use more tools and generate more sophisticated responses over time.
+
+## Critique
+
+Of course. Here is a critique of the paper "MARS: Optimizing Dual-System Deep Research via Multi-Agent Reinforcement Learning."
+
+### Overall Summary
+
+This paper presents a well-executed and compelling study on enhancing complex reasoning in LLMs. The core idea is both intuitive and powerful, and the empirical results are substantial, demonstrating clear improvements over strong baselines. The presentation is generally clear, though it has some minor organizational weaknesses.
 
 ---
 
 ### Strengths
 
-1.  **High Novelty and Timeliness:** The core research question—*how do MoEs handle multilinguality internally?*—is highly novel. While the "U-shape" of language-specific vs. language-universal representations has been observed in dense models, demonstrating and quantifying this phenomenon through the lens of discrete expert routing in MoEs is a fresh and important contribution. The paper is timely given the industry's rapid adoption of MoE architectures.
+1.  **High Novelty and Conceptual Elegance:**
+    *   The central idea of formalizing a "dual-system" architecture within a single LLM, inspired by cognitive theory, is highly novel. The division of labor—System 2 for deliberate reasoning/planning and System 1 for efficient, high-volume information distillation—is an elegant solution to the problem of context overload in complex RAG tasks.
+    *   The integration of this dual-system concept with a **multi-agent RL framework** is a significant contribution, moving beyond simple prompting or supervised fine-tuning to actively optimize the collaborative behavior between the two "agents."
 
-2.  **Compelling and Multi-faceted Analysis:** The paper doesn't stop at a single observation. It builds a comprehensive case through a series of interconnected findings:
-    *   **Finding 1 (U-shape):** Establishes the core phenomenon.
-    *   **Finding 2 (Correlation with Performance):** Links the internal routing mechanics directly to a key external metric (task accuracy), making the analysis much more impactful.
-    *   **Findings 3 & 4 (Entropy & Consistency):** Provide a deeper, more nuanced understanding of *how* routing differs for English vs. other languages, revealing that non-English tokens rely on fewer, more consistently activated experts.
-    *   **Finding 5 (Language-Task Modularity):** This is a critical discovery that shows multilingual and task-specific experts are distinct sets, which directly enables the intervention strategy.
+2.  **Significant and Comprehensive Empirical Results:**
+    *   The results are the paper's strongest asset. Achieving state-of-the-art performance on the extremely challenging **Humanity's Last Exam (HLE)** benchmark and a large average gain (+8.9%) across 7 other knowledge-intensive tasks is a major accomplishment.
+    *   The fact that MARS, based on a 7B/8B parameter model, outperforms methods using models up to 72B parameters and even narrows the gap with some proprietary models is a powerful demonstration of its efficiency and effectiveness.
+    *   The ablation study on tools is thorough and provides valuable insights into the contribution of each component (Python, Search, Scholar) across different domains.
 
-3.  **Significant and Actionable Results:** The intervention methodology is the paper's crowning achievement. Moving from correlation to causation, the authors demonstrate that simply steering the router to activate English-task experts during inference for non-English queries leads to consistent, statistically significant performance gains across multiple models and tasks. The fact that this works on fully trained, state-of-the-art models like Qwen and GPT-OSS is remarkable and suggests a clear pathway for future optimization.
-
-4.  **Excellent Clarity and Presentation:**
-    *   The writing is clear, logical, and easy to follow.
-    *   The figures are well-designed and effectively illustrate the key concepts (e.g., the U-shape in Figure 2, the expert counts in Figure 5).
-    *   The methodology for calculating routing divergence and identifying experts is described with precise mathematical formalism.
-    *   The results are presented comprehensively in tables, showing both aggregated and per-language performance.
+3.  **Thoughtful Engineering and Methodological Rigor:**
+    *   The proposed optimizations are practical and well-motivated:
+        *   **Bin-Packing for System 1:** This is a clever engineering solution to a real-world problem (processing variable-length documents efficiently), directly contributing to the system's scalability.
+        *   **Balanced Sampling Mechanism:** Addressing the sample imbalance between System 1 and System 2 during RL training is a crucial detail that likely prevents the training dynamics from being dominated by one system.
+    *   The analysis section (Figure 3) is excellent, providing a transparent look into the training dynamics, including score progression, tool usage evolution, and response length changes.
 
 ---
 
 ### Weaknesses
 
-1.  **Limited Exploration of Causality in Analysis:** While the intervention proves a causal link between expert sharing and performance, some of the initial correlational findings could be probed deeper. For instance, the strong correlation between routing alignment and performance (Finding 2) might be partially confounded by the amount of pre-training data for each language. The authors mention language families as a confounder but a more rigorous ablation (e.g., controlling for data size) could strengthen this claim.
+1.  **Clarity and Presentation:**
+    *   **Repetitive Introduction/Contributions:** The abstract and introduction are somewhat repetitive, with the contributions section largely rephrasing points already made. This could be condensed for better flow.
+    *   **Methodology Section Complexity:** While the dual-system framework (Section 2.1) is well-explained, the jump to the RL optimization strategies (Section 2.2) is quite abrupt. A brief high-level overview of why RL is the chosen optimization paradigm before diving into the specifics would improve readability for a broader audience.
+    *   **Figure Quality:** The figures in the paper (e.g., Figures 1 and 2) are described as "Refer to caption" in this text-only version, but in a final paper, their clarity is paramount. Figure 2, which outlines the complex RL process, must be exceptionally clear to be understood.
 
-2.  **Scope and Generalizability of Interventions:**
-    *   The improvements, while consistent, are modest (~1-2%). The paper rightly frames this as significant given the simplicity of the intervention, but it leaves open the question of how much room for improvement truly exists.
-    *   The intervention is highly tailored, requiring model-specific tuning of layers, thresholds (`τ`), and intervention strength (`λ`). This limits its out-of-the-box applicability and suggests the underlying mechanism might be complex and brittle.
-    *   The experiments are focused on knowledge-intensive tasks (math, medicine). It's unclear if the same intervention strategy would benefit more creative or open-ended generation tasks.
+2.  **Technical and Experimental Limitations:**
+    *   **Limited Comparison with Top Proprietary Systems:** While the results are impressive, the comparison with the strongest proprietary systems like "OpenAI Deep Research" is incomplete, as only the average score is reported. A full subject-by-subject comparison would provide a more precise benchmark.
+    *   **Computational Cost Omission:** The paper does not discuss the significant computational and API costs associated with the training and inference process (e.g., the cost of multiple Google Search/Scholar API calls per question, and the RL training over thousands of steps). An analysis of cost-to-performance would be valuable for practical adoption.
+    *   **Baseline Implementation Details:** It is not entirely clear if all baselines (like Search-R1, C-3PO) were re-implemented by the authors or taken from prior literature. If re-implemented, ensuring exact reproducibility is a challenge; if taken from other papers, the experimental conditions may not be perfectly aligned.
 
-3.  **Unexplained Phenomena:** The paper notes but does not fully explain some curious observations, such as Phi-3.5-MoE's first layer activating the same few experts for all languages, which they attribute to "very poor load-balancing." A more in-depth hypothesis or investigation into why this occurs would have been interesting.
+3.  **Conceptual Scope:**
+    *   The "Dual-System" metaphor is powerful but could be explored further. The paper focuses on the division of labor (reasoning vs. summarization), but a deeper discussion on how this architecture specifically mitigates the stated problem of LRM "overanalysis" on simple tasks would strengthen the narrative.
 
-4.  **Potential Over-reliance on English as a Pivot:** The entire methodology is predicated on using English as the source of "good" expert activation patterns. This inherently reinforces English-centricity. While pragmatic, it would be valuable for future work to explore if experts from other high-resource languages could serve as effective pivots for linguistically related low-resource languages.
+---
 
 ### Conclusion
 
-This is an excellent paper that makes a substantial contribution to the field. Its primary strength lies in its successful translation of dense model interpretability concepts to the MoE setting, backed by a rigorous analysis and a compelling causal intervention. The weaknesses are minor and primarily point to exciting directions for future research rather than flaws in the current work. The findings have significant implications for both understanding and improving multilingual capabilities in the next generation of large language models.
+This is a strong paper with a highly novel core idea that is backed by significant empirical results. The proposed MARS framework represents a meaningful advance in building capable and efficient reasoning systems that can leverage large volumes of external information. Its main weaknesses lie in the presentation, which could be streamlined for greater clarity, and a more thorough discussion of computational costs and comparisons with the very best proprietary models. Overall, it is a solid contribution that likely represents a step forward in the field of agentic reasoning systems.
 
 ---
 
@@ -239,7 +304,7 @@ This is an excellent paper that makes a substantial contribution to the field. I
 
 Authors: Lucas Bandarkar, Chenyuan Yang, Mohsen Fayyaz, Junlin Hu, Nanyun Peng
 
-Keywords: Multi-Agent Reinforcement Learning, Tool-Integrated Planning, Policy Optimization, Large Language Models, Multi-Agent Systems
+Keywords: Multi-Agent Reinforcement Learning, Tool-Integrated Planning, Policy Optimization, Multi-Agent Systems, Language Model Training
 
 Comments: None
 
@@ -253,49 +318,57 @@ Mixture-of-Experts (MoE) architectures have become the key to scaling modern LLM
 
 Here is a summary of the paper "Multi-Agent Tool-Integrated Policy Optimization (MATPO)":
 
-**Key Contributions:** This paper introduces MATPO, a novel reinforcement learning framework that enables training multiple agent roles (planner and worker agents) within a single large language model (LLM) instance. The key innovation is addressing the context length limitations and noisy tool responses that plague single-agent tool-integrated planning systems by decomposing tasks into planner-worker interactions while maintaining infrastructure efficiency.
+**Key Contributions:** This paper introduces MATPO, a novel reinforcement learning framework that enables multiple agent roles (planner and worker) to be trained within a single LLM instance. The key innovation is addressing the credit assignment problem in multi-agent RL by developing a principled approach that allows both planner and worker agents to share responsibility for the final accuracy reward. This eliminates the need for deploying multiple LLMs while preserving the benefits of specialization.
 
-**Methods:** MATPO extends Group Relative Policy Optimization (GRPO) to the multi-agent setting with a principled credit assignment mechanism across planner and worker rollouts. The framework uses role-specific system prompts to activate different agent behaviors within the same LLM, where the planner agent orchestrates high-level task decomposition and the worker agents handle specific subtasks (e.g., web searching). The method includes practical implementations like final summary mechanisms and user query recapping to improve inter-agent communication.
+**Methods:** MATPO extends single-agent Group Relative Policy Optimization (GRPO) to the multi-agent setting by modifying the policy gradient objective to account for both planner-agent rollouts and worker-agent rollouts. The framework uses a two-agent system where: 1) a planner-agent orchestrates high-level planning and delegates subtasks, and 2) worker-agents handle specific browsing tasks using search tools. Crucially, both roles are implemented using the same LLM with different system prompts. The implementation builds on existing single-agent RL frameworks and includes practical components like final-summary mechanisms and user query recapping to improve performance.
 
-**Results:** Experiments on GAIA-text, WebWalkerQA, and FRAMES benchmarks demonstrate that MATPO consistently outperforms single-agent GRPO baselines by an average of 18.38% relative improvement. The multi-agent approach shows greater robustness to noisy tool outputs and more stable training progress. Ablation studies validate the importance of key components like final summaries and user query recapping, while also revealing practical insights about search result blocking and response formatting.
+**Results:** Experiments on GAIA-text, WebWalkerQA, and FRAMES benchmarks show that MATPO consistently outperforms single-agent GRPO baselines, achieving average relative improvements of 18.38%. MATPO demonstrates greater robustness to noisy tool outputs and more stable training progress compared to single-agent approaches. Ablation studies reveal that key components like final summaries and user query recapping significantly contribute to performance gains, while practical insights highlight the importance of blocking sensitive URLs and improving response formats between agents.
 
-The work represents a significant step toward efficient multi-agent RL training that preserves the benefits of specialization while avoiding the infrastructure overhead of deploying multiple separate models.
+The work demonstrates that unifying multiple agent roles within a single LLM can effectively address context length limitations and noise issues in tool-integrated planning while maintaining infrastructure efficiency.
 
 ## Critique
 
-Of course. Here is a critique of the paper "Multi-Agent Tool-Integrated Policy Optimization (MATPO)" based on its strengths and weaknesses.
+Of course. Here is a critique of the paper "Multi-Agent Tool-Integrated Policy Optimization" (MATPO).
+
+### Overall Summary
+
+This is a strong and timely paper that addresses a clear gap in the field of tool-using language agents. The core idea—training a single LLM to perform multiple agent roles (planner and worker) via reinforcement learning—is novel, practical, and well-executed. The paper presents a solid theoretical foundation, compelling empirical results, and valuable practical insights.
+
+---
 
 ### Strengths
 
-1.  **High Novelty and Clear Problem Formulation:** The paper tackles a genuinely novel and important problem: how to perform Reinforcement Learning (RL) on a multi-agent system where all agents are instantiated from a *single* Large Language Model (LLM). This "multi-agent-in-one-model" approach is a clever solution to the significant infrastructure and memory costs of deploying multiple separate models. The problem is well-motivated by the limitations of single-agent systems (context length, noise from tool outputs).
+1.  **High Novelty and Clear Problem Formulation:** The paper identifies a significant limitation in single-agent tool-integrated planning (TIP): context window saturation and noise from tool outputs. The proposed solution—a multi-agent-in-one-model framework trained with RL—is a genuinely novel contribution. It elegantly addresses the infrastructure and parameter inefficiency of using separate models for each agent.
 
-2.  **Principled and Well-Derived Methodology:** A key strength is the rigorous derivation of the MATPO algorithm from first principles. The paper clearly extends the single-agent Group Relative Policy Optimization (GRPO) objective to the multi-agent case, providing a principled credit assignment mechanism that shares the final task reward across both the planner and worker agent rollouts. This theoretical grounding is a significant contribution.
+2.  **Principled Methodology:** The derivation of the MATPO objective from the multi-agent policy gradient is rigorous. The extension of the Group Relative Policy Optimization (GRPO) algorithm to handle credit assignment across a planner and multiple worker rollouts is a key technical contribution. The paper clearly explains how rewards are assigned and normalized across the different agent trajectories within a single model.
 
-3.  **Significant and Robust Results:** The experimental results are compelling. An average relative improvement of **18.38%** over a strong single-agent GRPO baseline across three diverse benchmarks (GAIA-text, WebWalkerQA, FRAMES) is a substantial gain. The observation that MATPO is more stable and continues to improve where the single-agent baseline sometimes collapses is a powerful argument for its robustness.
+3.  **Significant and Robust Results:** The experimental results are convincing. An average relative improvement of **18.38%** over a strong single-agent GRPO baseline across three diverse benchmarks (GAIA-text, WebWalkerQA, FRAMES) is a substantial result. The finding that MATPO is more stable and avoids the performance collapse sometimes seen in single-agent training is a major point in its favor, highlighting a key advantage of the multi-agent decomposition.
 
-4.  **Excellent Practical Insights:** The "Ablation Studies and Practical Take-Aways" section is exceptionally valuable. It moves beyond just reporting scores to provide actionable engineering insights (e.g., the necessity of final summaries, the mild impact of blocking certain URLs, the significant boost from "user query recapping"). This section greatly enhances the paper's practical utility for other researchers and engineers.
+4.  **Excellent Practical Insights:** The "Ablation Studies and Practical Take-Aways" section is a standout strength. It moves beyond simply reporting scores and provides actionable advice for practitioners, such as:
+    *   The necessity of final summaries for worker agents.
+    *   The mild impact of blocking certain URLs (HuggingFace).
+    *   The crucial importance of "user query recapping" for the worker agent.
+    *   The insightful observation about the "user message" format potentially biasing the planner, which is a great point for future work.
 
-5.  **Clear Presentation and Implementation Details:** The paper is well-structured, with clear visualizations (Figures 1-4) that effectively illustrate the single-agent, multi-agent, and MATPO rollout processes. The inclusion of implementation details and the release of code promote reproducibility.
+5.  **Clear Presentation and Implementation Details:** The paper is well-structured and the figures (1, 2, 3, 4) are effective in visualizing the different frameworks and the training process. The authors have provided code and detailed their implementation on top of an existing RL framework (veRL), which enhances reproducibility.
 
-### Weaknesses
+---
 
-1.  **Limited Comparison to Multi-Agent-Multi-Model Baselines:** The most notable weakness is the lack of an empirical comparison to a "multi-agent-multi-model" baseline. While the paper argues convincingly for the infrastructure efficiency of the single-model approach, it does not demonstrate that MATPO's performance is comparable or superior to a system where the planner and worker are separate, fine-tuned models. This leaves an open question about the absolute performance ceiling.
+### Weaknesses and Potential Improvements
 
-2.  **Ablations Could Be More Quantitative:** While the ablation study is a strength, the results in Figure 6 are presented as trend lines without final numerical scores or statistical significance tests. A table summarizing the final performance of each ablated variant would make the conclusions more concrete and easier to digest.
+1.  **Limited Comparison to a "Multi-Agent-Multi-Model" Baseline:** While the focus on the "in-one-model" approach is justified for efficiency, the paper would be even stronger if it included a comparison to a "multi-agent-multi-model" baseline. This would help isolate the benefit of the *architectural decomposition* from the benefit of *training a single model on multiple roles*. Does the performance gain come from the multi-agent structure itself, or from the multi-role training?
 
-3.  **Narrow Focus on Search/Web Tasks:** The experiments are confined to a specific class of tasks involving web search and scraping. While these are important, the paper's claims are broader. Demonstrating MATPO's effectiveness on tasks involving other tools (e.g., code execution, database querying, file processing) would significantly strengthen the generalizability of the approach. The future work section mentions this, but initial results would have been more impactful.
+2.  **Computational Cost Analysis:** The method is more parameter-efficient than deploying multiple models, but it is undoubtedly more computationally expensive during training and rollouts than single-agent GRPO due to the nested worker rollouts. A brief discussion or analysis of the increased computational/token cost would provide a more complete picture of the method's trade-offs.
 
-4.  **Potential Overhead and Complexity:** The method inherently introduces complexity. Each planner step triggers a full, multi-turn worker rollout, which can be computationally expensive and slow during both training and inference. The paper does not provide a analysis of the computational or latency overhead compared to the single-agent baseline.
+3.  **Ablation on the Core Idea:** The most critical ablation would be to test a version of MATPO where the planner and worker are the same model but are **not jointly trained with RL** (i.e., using a base or SFT model for the worker). This would directly test the hypothesis that "RL training can benefit the model when it is exposed to experience from multiple agent roles."
 
-### Summary
+4.  **Clarity on the "Single Model":** While the concept is clear, the paper could be more explicit upfront about the fact that the same model weights are used for both planner and worker, differentiated *only* by the system prompt. This is a subtle but crucial point that could be emphasized earlier.
 
-**Novelty:** High. The "multi-agent-in-one-model" RL formulation is a novel and timely contribution to the field of AI agents.
+---
 
-**Significance of Results:** Very High. The demonstrated performance gains and improved training stability are significant and directly address key pain points in tool-integrated LLM systems.
+### Conclusion
 
-**Clarity of Presentation:** High. The paper is well-written, logically structured, and supported by clear diagrams and a valuable practical insights section.
-
-In conclusion, this is a strong paper that introduces a novel, principled, and effective method for training multi-agent systems within a single LLM. Its main weaknesses lie in the scope of its empirical validation, but its core contributions are substantial and likely to influence future work in agent-based RL.
+This paper makes a valuable contribution to the field of AI agents and reinforcement learning for LLMs. The proposed MATPO framework is novel, effective, and practically useful. Its strengths in problem formulation, methodological rigor, empirical results, and practical guidance far outweigh its minor weaknesses. The work successfully demonstrates that a single LLM can be trained to effectively play multiple collaborative roles, opening a promising direction for future research into more complex and capable agentic systems.
 
 ---
 
@@ -303,7 +376,7 @@ In conclusion, this is a strong paper that introduces a novel, principled, and e
 
 Authors: Zhanfeng Mo, Xingxuan Li, Yuntao Chen, Lidong Bing
 
-Keywords: Partial Information Decomposition, Normalizing Flows, Gaussian Distributions, Multimodal Learning, Information Theory, Mutual Information
+Keywords: Multilingual Routing, Mixture-of-Experts (MoE), Cross-lingual Transfer, Expert Activation, Inference-time Intervention
 
 Comments: Work in progress
 
@@ -315,124 +388,142 @@ Large language models (LLMs) increasingly rely on multi-turn tool-integrated pla
 
 ## Summary
 
-This paper introduces a new framework for Partial Information Decomposition (PID) that enables efficient and accurate estimation of information interactions in continuous, high-dimensional multimodal data. The key challenge addressed is that existing PID methods struggle with computational complexity and accuracy when dealing with continuous modalities, as they depend on optimizing over joint distributions constrained by estimated pairwise probabilities.
+This paper investigates multilingual routing patterns in Mixture-of-Experts (MoE) large language models and introduces intervention methods to improve cross-lingual performance. The key contributions are:
 
-The paper makes three main contributions. First, it establishes that PID for Gaussian distributions (GPID) can be solved efficiently without loss of optimality when pairwise marginals are Gaussian, resolving an open question about joint Gaussian solutions. Second, it proposes Thin-PID, a gradient-based algorithm that significantly improves computational efficiency over existing methods by optimizing only the off-diagonal block of the noise covariance matrix, reducing complexity from O((d_X1+d_X2)³) to O(min(d_X1,d_X2)³). Third, the authors develop Flow-PID, which uses normalizing flows to transform arbitrary input distributions into latent Gaussian spaces while preserving mutual information, thus extending GPID's applicability to non-Gaussian data.
+**Key Findings from Routing Analysis:**
+The authors analyze four prominent MoE LLMs (Qwen3, Phi-3.5-MoE, GPT-OSS, OLMoE) using parallel multilingual datasets and discover that MoE models exhibit a U-shaped routing divergence pattern - early and late layers show language-specific routing, while middle layers demonstrate significant cross-lingual routing alignment. Crucially, they find a strong correlation between a model's performance in a language and how similarly its tokens are routed to English in these middle layers. The analysis also reveals that routing entropy decreases across layers more rapidly for non-English languages, and there's higher routing consistency within non-English sequences.
 
-Experimental results demonstrate that Thin-PID achieves exact recovery of ground truth in Gaussian cases with errors <10⁻¹² and runs 10× faster than previous methods. Flow-PID shows superior performance on non-Gaussian synthetic examples and real-world multimodal benchmarks, providing more accurate quantification of redundant, unique, and synergistic information. The framework also proves effective for practical applications including dataset quantification and model selection, achieving over 96% of optimal performance when recommending models based on PID similarity.
+**Intervention Methodology:**
+Building on these observations, the authors develop inference-time interventions that steer router logits to activate task-specific experts (identified using English domain data) during multilingual evaluation. They explore both soft interventions (adding/subtracting values proportional to logit standard deviation) and hard interventions (force-activation/deactivation). The interventions specifically target middle layers where language-universal representations are concentrated.
 
-The work addresses critical limitations in multimodal information analysis and provides both theoretical foundations and practical tools for understanding complex information interactions in high-dimensional data, with potential applications in guiding multimodal model development and data collection strategies.
+**Results:**
+The interventions yield consistent improvements across three models (Qwen3, Phi-3.5-MoE, GPT-OSS) and two evaluation tasks (MGSM mathematical reasoning and Global-MMLU medical subset). Gains of 1-2% are observed across 15+ languages, with particularly strong improvements for lower-resource languages. The effectiveness is highly sensitive to target layers - interventions outside the identified middle layers or targeting multilingual-specialized experts instead of task experts lead to performance degradation.
+
+The work demonstrates that improved cross-lingual routing alignment causally enhances multilingual generalization, revealing the modular separation between language-specific and language-universal parameters in MoE architectures and motivating future methods to promote expert sharing across languages.
 
 ## Critique
 
-Of course. Here is a critique of the paper "Partial Information Decomposition via Normalizing Flows in Latent Gaussian Distributions," focusing on its strengths and weaknesses.
+Of course. Here is a critique of the paper "Multilingual Routing in Mixture-of-Experts," focusing on its strengths, weaknesses, novelty, significance, and clarity.
 
 ### Overall Summary
 
-This paper presents a novel and computationally efficient framework, "Flow-PID," for estimating Partial Information Decomposition (PID) in high-dimensional, continuous data. It makes two key contributions: a theoretically-grounded, efficient algorithm for the Gaussian PID case ("Thin-PID") and a method to extend this to non-Gaussian data using normalizing flows. The paper is well-structured, the methodology is sound, and the results are significant, demonstrating clear improvements in speed and accuracy over existing baselines.
+This is a strong, well-executed paper that provides valuable insights into the inner workings of multilingual Mixture-of-Experts (MoE) models. The work successfully bridges the gap between interpretability research on dense models and the increasingly dominant MoE architecture, presenting compelling evidence for language-universal processing in middle layers and demonstrating a causal link between routing alignment and performance through effective interventions.
 
 ---
 
 ### Strengths
 
-1.  **High Novelty and Strong Theoretical Foundation:**
-    *   **Resolving an Open Problem:** The paper's first major contribution is proving that the optimal solution for Gaussian PID (GPID) is indeed a joint Gaussian distribution. This resolves the theoretical uncertainty in prior work (e.g., ~G-PID) and solidifies the foundation for all subsequent GPID algorithms.
-    *   **Thin-PID Algorithm:** The derivation of Thin-PID is elegant. By reformulating the PID optimization within a Gaussian broadcast channel framework and optimizing only the off-diagonal noise covariance block, the authors achieve a significant reduction in computational complexity compared to methods requiring full eigenvalue decompositions.
-    *   **Flow-PID Framework:** The idea of using a Cartesian product of normalizing flows to transform arbitrary data into a latent space with Gaussian marginals is innovative. The theoretical justification—that mutual information is preserved under these bijective mappings—is correct and powerful, allowing the efficient Thin-PID to be applied broadly.
+1.  **High Novelty and Timeliness:** The focus on interpreting multilingual behavior in MoE models is highly novel. While the "U-shape" finding (language-specific early/late layers, language-universal middle layers) aligns with prior work on dense models, demonstrating this phenomenon through the discrete, interpretable lens of expert routing is a significant contribution. The intervention methodology is a creative and powerful way to move from correlation to causation.
 
-2.  **Significant and Comprehensive Empirical Results:**
-    *   **Validation on Synthetic Data:** The paper thoroughly validates its methods on synthetic data with known ground truth. The experiments show that Thin-PID is exact for Gaussian data and achieves superior accuracy and a **10x speedup** over the next-best method (Tilde-PID), especially as dimensions grow.
-    *   **Generalization to Non-Gaussian Data:** The experiments on non-Gaussian synthetic data demonstrate that Flow-PID successfully recovers the true PID structure where Tilde-PID fails, validating the core premise of the framework.
-    *   **Relevance to Real-World Problems:** The application to large-scale multimodal benchmarks (MultiBench) and specialized datasets (TCGA, VQA) is compelling. It moves beyond a theoretical exercise and shows the method's utility for quantifying modality interactions in practice and for model selection.
+2.  **Significant and Actionable Results:** The key finding—that manually steering routers in middle layers to activate task-specific experts (identified from English data) improves multilingual performance—is both significant and practical. Achieving consistent, statistically significant gains of 1-2% across three different state-of-the-art models and two distinct tasks is a robust result. It strongly suggests that suboptimal routing, not a fundamental lack of capability, limits multilingual generalization in these models.
 
-3.  **Clarity of Presentation:**
-    *   The paper is generally well-written and logically organized. The progression from the Gaussian case (Thin-PID) to the general case (Flow-PID) is easy to follow.
-    *   The use of theorems, lemmas, and propositions helps to clearly delineate the theoretical contributions.
-    *   Figures and tables are effective in summarizing complex results, such as the complexity analysis and the comparison of PID values across different datasets and methods.
+3.  **Rigor and Thoroughness:** The paper is exceptionally thorough. The authors:
+    *   Analyze four different MoE models (Qwen3, Phi-3.5-MoE, GPT-OSS, OLMoE), showing the generality of their findings.
+    *   Use multiple, parallel datasets (FLoRes, MGSM, Global-MMLU) for both analysis and evaluation.
+    *   Systematically explore the intervention space (layer sensitivity, expert type, intervention strength/type) before presenting the optimal configuration, which adds credibility to their claims.
+    *   Provide extensive appendices with additional plots and methodological details.
+
+4.  **Clear and Effective Presentation:** The paper is well-structured and easy to follow. The use of visualizations (e.g., Figure 1 & 2) effectively communicates the core "U-shape" finding and the correlation with performance. The writing is precise, and the methodology is described in sufficient detail for reproducibility.
 
 ---
 
 ### Weaknesses
 
-1.  **Technical Complexity and Accessibility:**
-    *   The paper is highly technical, blending information theory, optimization, and deep learning. While the high-level idea is accessible, the full details of the Thin-PID derivation (e.g., the gradient in Proposition 3.4) and the Flow-PID objective will be challenging for readers without a strong background in all these areas. A higher-level intuition for the Thin-PID update steps could improve accessibility.
+1.  **Modest Performance Gains:** While statistically significant, the performance improvements from the interventions (1-2%) are modest in absolute terms. The paper rightly frames this as impressive given the simplicity of the intervention versus the scale of the models, but it tempers the immediate practical impact. The work is more of a compelling "proof-of-concept" than a ready-to-deploy technique.
 
-2.  **Limitations of the Flow-PID Approximation:**
-    *   The authors correctly identify the main limitation: the accuracy of Flow-PID hinges on how well the normalizing flows can transform the true data marginals into Gaussians. The `Gaussian Marginal Loss` is a practical solution, but it is an approximation. The performance will degrade if the underlying data distribution is too complex or if the flow model is insufficiently powerful or trained with insufficient data. The paper could benefit from an ablation study on how flow architecture and dataset size affect the final PID estimate accuracy.
+2.  **Limited Exploration of Negative Results:** The paper clearly states that many intervention strategies (e.g., deactivation, intervening outside middle layers) led to performance degradation. While this reinforces their main hypothesis, a more detailed analysis of *why* these specific interventions fail could provide even deeper insights into the model's routing mechanics. For instance, what happens when you force-activate a multilingual expert in the middle layers?
 
-3.  **Validation on Real-World Data:**
-    *   While the results on real-world data are interesting, the ultimate "ground truth" for PID in these datasets is unknown. The paper argues for plausibility (e.g., high synergy in VQA matches intuition), but this is inherently qualitative. A more rigorous, quantitative validation on a real-world(ish) task where the information structure is partially known would further strengthen the claims.
+3.  **English as the Sole Pivot:** The entire analysis and intervention methodology are centered on aligning non-English languages with English. The authors briefly mention that using other high-resource languages as the pivot flattens the trends but do not explore this further. A more multilingual-centric analysis (e.g., aligning Spanish with Chinese) could reveal more about the underlying "language-universal" space and whether it is truly universal or simply an "Anglocentric" one.
 
-4.  **Computational Cost of Training Flows:**
-    *   Although Thin-PID is fast, the overall Flow-PID pipeline requires training three separate normalizing flows. The paper does not discuss the computational cost of this training phase. For very large-scale applications, this upfront cost could be non-trivial and should be considered a part of the method's total computational footprint.
+4.  **Potential Overstatement of Modularity:** Finding 5 states there is "no overlap" between multilingual and task experts. This is a very strong claim. While likely true for the specific thresholds (`τ ≥ 0.3`) and datasets used, it may not hold for more nuanced tasks or different thresholds. The claim of "complete separation" could be slightly tempered.
+
+---
+
+### Detailed Assessment
+
+*   **Novelty of the Approach:** **High.** Translating established interpretability methods from dense models to the sparse, modular setting of MoEs is a novel and fruitful direction. The intervention technique, while building on concepts like activation steering, is creatively adapted to the unique routing mechanism of MoEs.
+
+*   **Significance of the Results:** **High.** The results provide a causal explanation for cross-lingual transfer in MoEs: it is mediated by the activation of shared, task-relevant experts in the middle layers. This finding has significant implications for future model design and training, motivating techniques that explicitly encourage this kind of cross-lingual expert sharing.
+
+*   **Clarity of the Presentation:** **Excellent.** The paper is a model of clear scientific writing. The logical flow from analysis to hypothesis to intervention is seamless. The figures are informative, the methodology is transparent, and the results are presented honestly and comprehensively.
 
 ### Conclusion
 
-This is a strong paper that makes substantial theoretical and practical contributions to the field of information-theoretic analysis in machine learning. By resolving a key theoretical question and introducing a highly efficient algorithm for the Gaussian case, it advances the state-of-the-art. The Flow-PID framework then creatively leverages this advancement to tackle the much more general and challenging problem of PID for arbitrary continuous data. The empirical validation is comprehensive and convincing. The main weaknesses relate to the inherent complexity of the method and the approximations introduced by the flow-based encoding, which the authors appropriately acknowledge. This work is likely to become a important reference for future research in multimodal learning and interpretability.
+This is a high-quality paper that makes a substantial contribution to the fields of NLP interpretability and multilingual modeling. Its strengths in novelty, rigor, and clarity far outweigh its minor weaknesses. It opens up a promising research direction for improving multilingual performance in large language models by manipulating their internal routing dynamics, either during inference or as a guide for more effective training strategies.
 
 ---
 
-# Partial Information Decomposition via Normalizing Flows in Latent Gaussian Distributions
+# Mitigating Forgetting Between Supervised and Reinforcement Learning Yields Stronger Reasoners
 
-Authors: Wenyuan Zhao, Adithya Balachandran, Chao Tian, Paul Pu Liang
+Authors: Xiangchi Yuan, Xiang Chen, Tong Yu, Dachuan Shi, Can Jin, Wenke Lee, Saayan Mitra
 
-Keywords: Small Language Models, Model Orchestration, Multi-Agent Systems, Reasoning, Model Selection, Test-time Scaling, Confidence Estimation, Ensemble Methods
+Keywords: Reinforcement Learning, Supervised Fine-tuning, Catastrophic Forgetting, Reasoning, Parameter Freezing, Data Efficiency
 
-Comments: NeurIPS 2025
+Comments: None
 
-Paper link: [http://arxiv.org/abs/2510.04417v1](http://arxiv.org/abs/2510.04417v1)
+Paper link: [http://arxiv.org/abs/2510.04454v1](http://arxiv.org/abs/2510.04454v1)
 
 ## Abstract
 
-The study of multimodality has garnered significant interest in fields where the analysis of interactions among multiple information sources can enhance predictive modeling, data fusion, and interpretability. Partial information decomposition (PID) has emerged as a useful information-theoretic framework to quantify the degree to which individual modalities independently, redundantly, or synergistically convey information about a target variable. However, existing PID methods depend on optimizing over a joint distribution constrained by estimated pairwise probability distributions, which are costly and inaccurate for continuous and high-dimensional modalities. Our first key insight is that the problem can be solved efficiently when the pairwise distributions are multivariate Gaussians, and we refer to this problem as Gaussian PID (GPID). We propose a new gradient-based algorithm that substantially improves the computational efficiency of GPID based on an alternative formulation of the underlying optimization problem. To generalize the applicability to non-Gaussian data, we learn information-preserving encoders to transform random variables of arbitrary input distributions into pairwise Gaussian random variables. Along the way, we resolved an open problem regarding the optimality of joint Gaussian solutions for GPID. Empirical validation in diverse synthetic examples demonstrates that our proposed method provides more accurate and efficient PID estimates than existing baselines. We further evaluate a series of large-scale multimodal benchmarks to show its utility in real-world applications of quantifying PID in multimodal datasets and selecting high-performing models.
+Large Language Models (LLMs) show strong reasoning abilities, often amplified by Chain-of-Thought (CoT) prompting and reinforcement learning (RL). Although RL algorithms can substantially improve reasoning, they struggle to expand reasoning boundaries because they learn from their own reasoning trajectories rather than acquiring external knowledge. Supervised fine-tuning (SFT) offers complementary benefits but typically requires large-scale data and risks overfitting. Recent attempts to combine SFT and RL face three main challenges: data inefficiency, algorithm-specific designs, and catastrophic forgetting. We propose a plug-and-play framework that dynamically integrates SFT into RL by selecting challenging examples for SFT. This approach reduces SFT data requirements and remains agnostic to the choice of RL or SFT algorithm. To mitigate catastrophic forgetting of RL-acquired skills during SFT, we select high-entropy tokens for loss calculation and freeze parameters identified as critical for RL. Our method achieves state-of-the-art (SoTA) reasoning performance using only 1.5% of the SFT data and 20.4% of the RL data used by prior SoTA, providing an efficient and plug-and-play solution for combining SFT and RL in reasoning post-training.
 
 ## Summary
 
-Here is a summary of the paper "SLM-MUX: Orchestrating Small Language Models for Reasoning":
+Based on the provided paper, here is a summary focusing on its key contributions, methods, and results:
 
-**Key Problem & Contribution:** This paper identifies a critical limitation in existing LLM orchestration methods (e.g., Mixture-of-Agents, LLM-Debate) when applied to Small Language Models (SLMs). While these discussion-based methods work well for frontier LLMs by enabling them to correct each other, the authors show they actually *harm* SLM performance, causing accuracy drops of up to 5.5% due to error amplification and "groupthink." To address this, the paper introduces SLM-MUX, a novel orchestration framework specifically designed for SLMs that avoids explicit inter-model communication.
+**Key Contributions:**
+This paper introduces MIFO (Mitigating Forgetting Between Supervised and Reinforcement Learning), a novel framework designed to effectively combine Supervised Fine-Tuning (SFT) and Reinforcement Learning (RL) for enhancing the reasoning capabilities of Large Language Models (LLMs). The authors identify and address a critical challenge in existing methods: catastrophic forgetting, where SFT's extensive parameter updates overwrite the knowledge acquired during RL training. They also tackle the issues of data inefficiency and algorithm-specific design dependencies common in prior SFT+RL approaches.
 
-**Method:** The SLM-MUX framework operates in two main phases:
-1. **Independent Generation:** Multiple SLMs independently generate several responses to the same query.
-2. **Confidence Estimation & Selection:** Instead of discussing, the system selects the final answer based on which model shows the highest self-consistency (i.e., produces the same answer most frequently across its samples). Ties are broken using the models' validation accuracy.
+**Methods:**
+MIFO is built on two core mechanisms to limit the disruptive impact of SFT on RL-learned knowledge:
+1.  **Data Processing:** The framework dynamically interleaves RL and SFT phases. It uses RL rollouts to identify challenging questions (those with low accuracy) and populates an SFT buffer only with these cases and their verified solutions. Furthermore, during SFT, the loss is calculated only on high-entropy tokens (positions of high model uncertainty), which focuses learning and reduces unnecessary updates on already-confident tokens.
+2.  **Parameter Freezing:** MIFO tracks which parameters are most updated (and thus deemed important) during an RL phase. It then freezes these RL-critical parameters during the subsequent SFT phase to protect them from being overwritten. These parameters are unfrozen for the next RL cycle. This design is informed by the key insight that SFT updates are "redundant" (some can be dropped without major performance loss) while RL updates are "parsimonious" (more critical and sensitive to change).
 
-The authors also introduce a **model selection search** strategy that systematically identifies complementary SLMs from a pool by optimizing for "Union Accuracy" (the percentage of questions at least one model can solve) while penalizing "Contradiction" (cases where an overconfident wrong answer suppresses a correct one). Furthermore, they explore **compute scaling strategies** by varying the number of models and samples per model.
-
-**Key Results:**
-- SLM-MUX significantly outperforms existing orchestration methods, achieving improvements of up to **13.4% on MATH, 8.8% on GPQA, and 7.0% on GSM8K**.
-- With just two optimally selected SLMs, SLM-MUX **outperforms the much larger Qwen 2.5 72B model** on GPQA and GSM8K, and matches its performance on MATH.
-- The model selection search proves crucial, as simply adding more models can be counterproductive without considering complementarity and contradiction penalties.
-- The work provides both empirical evidence and mathematical analysis to explain why their method succeeds where others fail, positioning multi-SLM orchestration as a viable "multi-core" alternative to scaling ever-larger monolithic models.
+**Results:**
+The proposed MIFO framework achieves state-of-the-art reasoning performance on multiple mathematical benchmarks (including AIME, AMC, OlympiadBench, and MATH500) using the Qwen2.5-Math models (1.5B and 7B parameters). Notably, it does so with significantly improved data efficiency, requiring only **1.5% of the SFT data** and **20.4% of the RL data** compared to the previous SOTA method. Additionally, models trained with MIFO generate more concise reasoning traces (shorter response lengths) while maintaining or improving accuracy, demonstrating enhanced reasoning efficiency. Ablation studies confirm that both the entropy-based token selection and parameter freezing components are crucial for MIFO's performance gains.
 
 ## Critique
 
-Of course. Here is a critique of the paper "SLM-MUX: Orchestrating Small Language Models for Reasoning," focusing on its strengths and weaknesses.
+Of course. Here is a critique of the paper "Mitigating Forgetting Between Supervised and Reinforcement Learning Yields Stronger Reasoners," focusing on its strengths and weaknesses.
+
+### Overall Summary
+
+This paper presents **MIFO**, a novel framework designed to effectively combine Supervised Fine-Tuning (SFT) and Reinforcement Learning (RL) for improving the reasoning capabilities of Large Language Models (LLMs). The core contribution is the identification and mitigation of "catastrophic forgetting," where SFT overwrites knowledge acquired during RL. The results are significant, demonstrating state-of-the-art performance with dramatically improved data and response-length efficiency.
+
+---
 
 ### Strengths
 
-1.  **Clear Problem Identification and Motivation:** The paper excels at identifying a specific, important, and under-explored problem: the failure of existing "discussion-based" LLM orchestration methods (like Mixture-of-Agents, LLM-Debate) when applied to Small Language Models (SLMs). The analogy to multi-core processors as an alternative to scaling monolithic models is compelling and effectively frames the research.
+1.  **Novel and Well-Motivated Problem Formulation:** The paper's central thesis—that SFT causes catastrophic forgetting of RL-gained skills due to its larger, more redundant parameter updates—is a fresh and compelling insight. It moves beyond simply combining SFT and RL to diagnosing a fundamental flaw in how they interact. The initial experiments in Section 3 (gradient dropping, update magnitude) are elegant and provide strong, empirical motivation for the proposed method.
 
-2.  **Novelty of the Approach:** The core idea of SLM-MUX is simple yet powerful and well-motivated. Recognizing that SLMs are poor at critiquing each other's reasoning, the authors pivot to a non-communicative, confidence-based selection method. This is a novel and timely contribution to the field of model ensembling and orchestration, specifically tailored for the burgeoning class of SLMs.
+2.  **Innovative and Cohesive Method Design:** MIFO is not a single trick but a cohesive framework with two synergistic components that directly address the identified problem:
+    *   **Data Processing:** Selecting only challenging examples for SFT and focusing the loss on high-entropy tokens is a clever way to reduce the overall magnitude and "blast radius" of SFT updates.
+    *   **Parameter Freezing:** Dynamically identifying and freezing parameters critical to RL performance is a direct and intuitive solution to the core problem of SFT overwriting. The use of a historical importance map (`C_i`) is a sophisticated touch that accounts for long-term training stability.
 
-3.  **Comprehensive and Significant Results:** The empirical evaluation is thorough and convincing.
-    *   **Headline Results:** The key claim—that an ensemble of just two carefully selected SLMs can match or even outperform a massive model like Qwen 2.5 72B on challenging benchmarks (GPQA, GSM8K, MATH)—is a significant result. It provides a strong, cost-effective alternative to using frontier models.
-    *   **Ablation and Comparison:** The paper systematically demonstrates the failure of baseline methods on SLMs and then shows SLM-MUX's consistent superiority. The exploration of two compute-scaling dimensions (number of models vs. samples per model) adds practical depth.
+3.  **Significant and Impressive Results:** The experimental results are a major strength. Achieving state-of-the-art performance while using only **1.5% of the SFT data and 20.4% of the RL data** of the previous best method is a remarkable claim that, if reproducible, represents a substantial leap in training efficiency. The simultaneous improvement in **response length efficiency** (shorter, more concise reasoning chains) is another highly valuable and practical outcome.
 
-4.  **Insightful Model Selection Strategy:** The proposed model selection search, which optimizes for "Union Accuracy" while penalizing "Contradiction Penalty," is a sophisticated and crucial component. It moves beyond the naive assumption that simply adding the highest-performing individual models is optimal, addressing the real-world challenge of model complementarity and overconfident errors.
+4.  **Rigorous and Extensive Evaluation:** The paper is thorough in its evaluation, using multiple model sizes (1.5B and 7B), a wide array of strong baselines, and a comprehensive suite of reasoning benchmarks. The inclusion of ablations, hyperparameter analyses, and template robustness studies in the main paper and appendix adds considerable weight to the claims.
+
+---
 
 ### Weaknesses
 
-1.  **Limited Analysis of Confidence Estimation:** The method's primary weakness lies in its reliance on self-consistency as a proxy for confidence. The paper acknowledges this in the limitations section, but the analysis could be deeper. For instance, how often does a model produce a confidently wrong (highly self-consistent but incorrect) answer that "wins" the selection? A quantitative breakdown of such failure cases would strengthen the critique of the method's core mechanism.
+1.  **Clarity of Presentation and Writing:**
+    *   The writing, while technically sound, is occasionally dense and could benefit from clearer phrasing. Some sentences are long and complex, which can hinder readability.
+    *   The use of acronyms is slightly excessive. While "MIFO" is fine, introducing `MIFO†` for the `α=0` variant so early can be confusing. A simple phrase like "MIFO (no history)" in the table would be clearer for a first-time reader.
+    *   The connection between certain design choices and their observed effects is sometimes left for the reader to infer. For example, the hypothesis for *why* Parameter Freezing leads to shorter responses (Section 5.4) is buried in the caption of Figure 7 and could be more explicitly stated in the main text.
 
-2.  **Scalability of Model Selection:** The exhaustive search strategy for model selection, while effective for the 5-model pool used, does not scale. The paper correctly identifies this as a limitation, but it remains a significant practical hurdle for anyone wanting to apply this method to a larger zoo of available SLMs. A discussion of, or experiment with, a more scalable heuristic (even a simple greedy search) would have been valuable.
+2.  **Limited Exploration of the "Why":** While the paper excellently demonstrates *that* SFT updates are more redundant and RL's are more parsimonious, it offers only a brief theoretical appendix (Appendix C) on the underlying cause. A more in-depth discussion or analysis of *why* these two training paradigms exhibit such fundamentally different update characteristics would strengthen the foundational contribution. Is it the nature of the loss functions? The data distribution?
 
-3.  **Clarity of Mathematical Analysis:** The mathematical analysis in Section 5, while well-intentioned, is somewhat simplistic and feels disconnected from the actual method. It primarily analyzes self-consistency and a straw-man "Agent Forest" baseline. A more direct theoretical analysis of SLM-MUX's selection rule and how it compares to an optimal selector would be more impactful.
+3.  **Narrow Problem Scope:** The evaluation is exclusively on mathematical reasoning tasks. While this is a standard and challenging domain, the paper's claims are framed more generally ("reasoning," "LLMs"). It remains an open question whether the SFT-RL forgetting phenomenon and MIFO's effectiveness generalize to other reasoning domains (e.g., commonsense, symbolic) or tasks like instruction-following and dialogue. A discussion of this limitation would be appropriate.
 
-4.  **Presentation and Figure Clarity:**
-    *   **Referenced Figures:** The text frequently references figures (e.g., "Figure 1," "Figure 4") that are not included in the provided markdown, which hinders the reader's ability to fully assess the claims.
-    *   **Table 1 Ambiguity:** In Table 1, the "Single-Best-SC" (Self-Consistency) baseline is extremely strong, even outperforming SLM-MUX on GPQA. This is a critical point that deserves more discussion. Why does a simple self-consistency on the single best model sometimes rival the more complex multi-model orchestration? This suggests the gains from SLM-MUX are highly dependent on the specific benchmark and model pool.
+4.  **Complexity and Computational Overhead:** The method introduces non-trivial complexity: maintaining a rolling buffer of SFT data, computing token-wise entropies for the entire SFT dataset, and tracking/updating a parameter importance map. The paper does not discuss the computational overhead of these steps compared to simpler baselines like `SFT->RL` or `ReLIFT`. This is a relevant practical consideration for adoption.
 
-### Overall Assessment
+---
 
-This is a strong paper that makes a valuable contribution. It identifies a genuine gap in the literature and proposes a simple, effective, and well-evaluated solution. The results are significant, demonstrating that intelligent orchestration of smaller models is a viable and powerful alternative to using monolithic, large models. While the method has limitations, particularly regarding its confidence estimation and selection scalability, the core insight and empirical evidence are compelling. The presentation is generally clear, though the reliance on missing figures and the need for a deeper discussion of certain baseline comparisons are minor drawbacks.
+### Conclusion
+
+This is a **high-quality, impactful paper** that identifies a genuine and previously underexplored problem in LLM post-training. The proposed MIFO framework is novel, well-designed, and directly tackles the problem with an elegant two-pronged approach. The empirical results are strong and convincingly demonstrate substantial improvements in both performance and efficiency.
+
+The main weaknesses lie in the presentation, which could be more accessible, and the scope of the evaluation, which is currently limited to mathematical reasoning. Nonetheless, the core insights and the effectiveness of the method are likely to influence future work on combining diverse learning signals in LLM training.
 
