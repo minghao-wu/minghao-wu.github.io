@@ -1,7 +1,7 @@
 ---
 permalink: /
 title: "Minghao Wu (吴明昊) - Monash University"
-excerpt: "Minghao Wu - Ph.D. student at Monash University, Australia."
+excerpt: "Ph.D. student at Monash University, Australia."
 author_profile: true
 redirect_from: 
   - /about/
