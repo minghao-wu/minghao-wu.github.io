@@ -1,7 +1,6 @@
 ---
 title: "Teaching experience 1"
 collection: digests
-
 type: "Undergraduate course"
 permalink: /digests/2014-spring-teaching-1
 venue: "University 1, Department"
