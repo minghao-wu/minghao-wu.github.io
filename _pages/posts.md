@@ -5,8 +5,7 @@ permalink: /posts/
 author_profile: true
 ---
 
-I write blog posts on various topics, including technology, programming, and personal experiences. Below is a collection of my blog posts.
-
+Besides writing research papers, I also enjoy sharing my thoughts and experiences through blog posts. 
 {% include base_path %}
 
 {% for post in site.posts reversed %}
