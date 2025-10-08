@@ -25,4 +25,4 @@ More recently, large language models (LLMs) like GPT-4 have demonstrated impress
 
 Current MT systems can even perform on par or better than human translators in certain scenarios. So, what is the next step? Where should MT research go from here?
 
-I believe that the second half of machine translation should start from the evaluation perspective. Although some researches claim that their approaches outperform humans, are they 
+I believe that the second half of machine translation should start from the evaluation perspective. Although some researches claim that their approaches outperform humans, are they really better than humans? In my opinion, the answer is no, even though one of my own papers made such a claim. The reason is that current evaluation metrics, such as BLEU, METEOR, and ROUGE, primarily focus on surface-level similarities between the generated translation and reference translations. These metrics often fail to capture deeper aspects of translation quality, such as fluency, adequacy, and cultural nuances.
