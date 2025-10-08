@@ -7,23 +7,19 @@ date: 2025-10-07
 location: "Online"
 ---
 
-Today's research landscape showcases significant advancements in cross-lingual and reasoning capabilities, with several papers proposing innovative tokenization and prompting strategies to overcome language barriers. A standout approach is **Parallel Tokenizers**, a framework that aligns vocabularies across languages to enhance cross-lingual transfer, while **Code-Switching In-Context Learning (CSICL)** progressively transitions demonstrations from target languages to English, effectively bridging reasoning gaps in multilingual settings. In reasoning and agentic systems, **Agentic Reasoning Modules (ARM)** evolve Chain-of-Thought (CoT) reasoning by discovering specialized modules via evolutionary search, and **In-the-Flow Agentic System Optimization** introduces **Flow-based Group Refined Policy Optimization (Flow-GRPO)**, a reinforcement learning method that optimizes planning within dynamic, multi-turn interactions. Additionally, **Influence Functions** offer a causal, data-centric perspective for selecting high-quality reasoning examples, emphasizing efficiency in fine-tuning large language models (LLMs).
+Today's research highlights a strong focus on optimizing the fundamental building blocks of language models, with several papers proposing novel methods to enhance reasoning and cross-lingual capabilities. A key theme is improving how models process and structure information: one paper introduces **Parallel Tokenizers**, a framework that redesigns vocabulary construction to better align semantically equivalent words across languages, significantly boosting cross-lingual transfer in low-resource settings. Another work presents **CAM (Constructivist Agentic Memory)**, a memory framework inspired by cognitive theory that uses hierarchical and dynamic structures to help large language models (LLMs) better comprehend long documents. In the realm of automated reasoning, **ARM (Agentic Reasoning Modules)** offers a paradigm shift by evolving specialized, agentic modules to replace simple Chain-of-Thought (CoT) steps, leading to more generalizable multi-agent systems. Complementing these architectural advances, other papers tackle data efficiency—one uses **Influence Functions (IFs)** for principled data selection in reasoning tasks, while **RoSE (Round-robin Synthetic data Evaluation)** provides a robust, human-free method for selecting the best LLM as a synthetic data generator, proving particularly valuable for low-resource languages.
 
 ## TL;DR
 
-Based on the provided papers, here is a TL;DR summary of the main themes and insights:
+Here's a TL;DR summary of the key themes and insights from these papers:
 
-**Core Theme:** Improving reasoning and multilingual capabilities in language models through novel optimization and architectural approaches.
+**Cross-lingual & Multilingual NLP**: "Parallel Tokenizers" introduces vocabulary alignment to improve cross-lingual transfer by ensuring semantically equivalent words share embeddings across languages, particularly benefiting low-resource settings.
 
-**Key Insights:**
+**Data Efficiency & Selection**: "Influence Functions" uses causal impact analysis to select high-quality reasoning data, while "RoSE" provides a round-robin evaluation method for choosing optimal LLM data generators without human test sets.
 
-1.  **Agentic Systems & Reasoning Optimization:** Two papers focus on optimizing agentic reasoning systems. **AgentFlow** introduces in-the-flow optimization of a modular agent framework, converting multi-turn RL into tractable single-turn updates for better tool use and planning. **ARM** discovers specialized reasoning modules through evolutionary search, enhancing the basic Chain-of-Thought (CoT) unit for superior generalization across tasks and models.
+**Agentic Reasoning & Memory Systems**: "ARM" evolves specialized reasoning modules from Chain-of-Thought, creating more effective multi-agent systems, and "CAM" applies constructivist theory to build hierarchical memory structures for long-text comprehension.
 
-2.  **Efficient Data Selection for Reasoning:** One paper uses **Influence Functions** to causally define and select high-quality reasoning data, outperforming heuristic-based methods (like perplexity) for within-model-family fine-tuning on math tasks, though cross-model transfer remains a challenge.
-
-3.  **Cross-Lingual Transfer & Tokenization:** Two papers address multilingual limitations. **Parallel Tokenizers** redesign vocabulary creation by aligning semantically equivalent words across languages, improving cross-lingual transfer, especially for low-resource languages. **Code-Switching ICL** uses progressive language transitions in prompts to scaffold LLMs' "latent reasoning in English," effectively bridging the translation barrier and boosting performance in target and unseen languages.
-
-**Overall Trend:** The research moves beyond simply scaling models, focusing instead on smarter system design—optimizing the fundamental components of reasoning (agents, data, tokenization) and their interaction dynamics to achieve stronger, more efficient, and more equitable performance.
+**Common Insights**: All papers focus on making LLM systems more efficient and robust—whether through better tokenization, smarter data selection, or more sophisticated reasoning architectures—with particular emphasis on generalization across tasks and resource-constrained scenarios.
 
 ---
 
@@ -31,7 +27,7 @@ Based on the provided papers, here is a TL;DR summary of the main themes and ins
 
 Authors: Muhammad Dehan Al Kautsar, Fajri Koto
 
-Keywords: Parallel Tokenizers, Vocabulary Design, Cross-Lingual Transfer, Multilingual Language Models, Low-Resource Languages, Tokenization Efficiency, Semantic Alignment
+Keywords: Parallel Tokenizers, Cross-Lingual Transfer, Vocabulary Design, Multilingual Language Models, Low-Resource Languages, Tokenization Efficiency, Semantic Alignment
 
 Comments: 18 pages, 25 tables, 7 figures
 
@@ -43,70 +39,58 @@ Tokenization defines the foundation of multilingual language models by determini
 
 ## Summary
 
-Based on the paper "Parallel Tokenizers: Rethinking Vocabulary Design for Cross-Lingual Transfer," here is a summary focusing on its key contributions, methods, and results:
+This paper introduces **Parallel Tokenizers**, a novel framework for multilingual language modeling that addresses fundamental limitations in cross-lingual transfer by redesigning vocabulary construction. The key insight is that conventional multilingual tokenizers, which use a single shared vocabulary across languages, often fail to align semantically equivalent words (e.g., "eat" in English and "ci" in Hausa), assigning them distinct embeddings and thus hindering effective cross-lingual generalization. This misalignment, combined with fertility imbalance (where low-resource languages require more tokens to express the same meaning), limits model performance, especially in low-resource settings.
 
-**Key Contributions:**
-The paper introduces a novel framework called **parallel tokenizers** to address fundamental limitations in multilingual language models. The core idea is to redesign tokenization to ensure semantically equivalent words across languages share the same vocabulary indices, thereby enhancing cross-lingual transfer. This approach directly tackles issues like fertility imbalance (where low-resource languages require more tokens per word) and semantic misalignment in standard multilingual tokenizers.
+The core contribution is a **method for constructing parallel tokenizers**: first, a monolingual tokenizer (English) is trained as a pivot; then, its word-type vocabulary is translated into target languages using machine translation; finally, these aligned word tokens are combined with tokens from monolingual tokenizers trained on each target language. This ensures that semantically equivalent words across languages share the same token indices and embedding representations. The model input incorporates **language identity embeddings** to disambiguate unaligned tokens and maintain language-specific signals.
 
-**Methods:**
-The parallel tokenizer is constructed in three main steps:
-1. **Monolingual Tokenizer as Pivot**: First, a monolingual tokenizer (e.g., English) is trained, and only its word-type vocabulary is retained.
-2. **Vocabulary Alignment**: Each word in this vocabulary is translated into target languages using machine translation (e.g., Google Translate), ensuring semantic equivalence.
-3. **Vocabulary Concatenation**: The translated word-type tokens are combined with a monolingually trained tokenizer for each target language, and duplicates are removed. Language identity embeddings are incorporated to disambiguate unaligned tokens and maintain language-specific signals.
+The authors evaluated their approach by pretraining transformer encoders on 13 low-resource languages (both seen and unseen by mBERT) and benchmarking against standard multilingual tokenizers (Single-102L and Single-13L). Key results demonstrate that **Parallel Tokenizers**:
+- Achieve **superior tokenization quality**, with lower fertility (more compact segmentation) and parity scores (better cross-lingual consistency) than multilingual baselines.
+- **Outperform baselines** on sequence classification tasks (sentiment analysis, hate speech detection, emotion classification) across varying data availability levels (1% to 100% training data), showing stronger cross-lingual transfer.
+- Yield **more semantically aligned representations**, as evidenced by improved bitext mining performance and PCA visualizations where sentences cluster by meaning rather than language family.
 
-The authors pretrain transformer encoders from scratch on 13 low-resource languages and evaluate against baselines like mBERT (Single-102L) and a jointly trained multilingual tokenizer (Single-13L). Tasks include sentiment analysis, hate speech detection, emotion classification, and bitext mining for cross-lingual similarity.
-
-**Key Results:**
-- **Tokenization Efficiency**: Parallel tokenizers achieve lower fertility (fewer tokens per word) and parity (better cross-lingual consistency) scores than multilingual baselines, closing the gap with monolingual tokenizers.
-- **Downstream Performance**: Models using parallel tokenizers consistently outperform baselines across sequence classification tasks, especially in low-data regimes (e.g., 1–50% of training data), with an average improvement of 0.72–1.28% F1.
-- **Cross-Lingual Alignment**: Visualization and bitext mining show that parallel tokenizers produce more semantically clustered representations across languages, enhancing cross-lingual transfer even with limited or zero target-language data.
-
-In conclusion, the paper demonstrates that rethinking tokenization to enforce semantic alignment across languages is a scalable and effective strategy for improving multilingual representation learning, particularly in low-resource settings.
+The work underscores that rethinking tokenization is crucial for advancing multilingual representation learning, particularly for low-resource languages, and provides a scalable framework for enhancing cross-lingual semantic sharing without retraining entire vocabularies.
 
 ## Critique
 
-Of course. Here is a critique of the paper "Parallel Tokenizers: Rethinking Vocabulary Design for Cross-Lingual Transfer," focusing on its strengths and weaknesses.
+Of course. Here is a detailed analysis of the strengths and weaknesses of the paper "Parallel Tokenizers: Rethinking Vocabulary Design for Cross-Lingual Transfer."
 
-### Overall Assessment
-This is a strong, well-executed paper that tackles a fundamental and often overlooked problem in multilingual NLP: the misalignment of tokenization. The proposed method is intuitive, the experimental setup is rigorous, and the results are significant, particularly for low-resource languages.
+### Overall Summary
+
+This is a well-executed and impactful paper that tackles a fundamental, often overlooked problem in multilingual NLP: the misalignment of tokenization across languages. The proposed "Parallel Tokenizer" is a simple yet powerful idea, and the authors provide comprehensive empirical evidence of its effectiveness, particularly for low-resource languages.
 
 ---
 
 ### Strengths
 
-1.  **Novelty and Conceptual Clarity:** The core idea of "parallel tokenizers" is highly novel. The paper convincingly argues that standard multilingual tokenizers create artificial semantic barriers by assigning different indices to equivalent words across languages. The proposed solution—aligning vocabularies via translation to enforce shared embeddings—is both simple and powerful. The concept is explained clearly with a good motivating example ("I eat rice" vs. "Ina cin shinkafa").
+1.  **High Novelty and Conceptual Simplicity:** The core idea—aligning vocabularies across languages by translating the word-type tokens of a pivot (English) tokenizer—is highly novel. It directly addresses the semantic fragmentation issue where equivalent words in different languages get different embeddings. The approach is elegant and intuitive, making it easy to understand and build upon.
 
-2.  **Comprehensive and Rigorous Evaluation:** The paper does an excellent job of validating its claims from multiple angles:
-    *   **Tokenization Quality:** It uses established metrics (fertility, parity) to show that the parallel tokenizer is more efficient and balanced than standard multilingual ones.
-    *   **Downstream Performance:** It tests on a diverse set of tasks (sentiment, hate speech, emotion) across various data regimes (1% to 100%), demonstrating consistent improvements.
-    *   **Representation Analysis:** The use of PCA visualization and bitext mining provides compelling, intrinsic evidence that the method genuinely improves cross-lingual semantic alignment, moving beyond just task-based metrics.
+2.  **Rigorous and Comprehensive Evaluation:** The paper's experimental design is a major strength. The authors go beyond a single task and benchmark their method across:
+    *   **Tokenization Quality:** Using fertility and parity scores.
+    *   **Downstream Performance:** Multiple sequence classification tasks (sentiment, hate speech, emotion).
+    *   **Representation Analysis:** Bitext mining and PCA visualization to show improved cross-lingual alignment.
+    This multi-faceted evaluation provides strong, holistic evidence for the method's benefits.
 
-3.  **Significance for Low-Resource Languages:** The focus on languages unseen by mBERT (e.g., Amharic, Oromo, Tigrinya) is a major strength. The results show that the method is particularly beneficial in these challenging, low-resource scenarios, making it a valuable contribution for promoting linguistic equity in NLP.
+3.  **Significant and Consistent Results:** The results are not just statistically significant; they are practically meaningful. The Parallel Tokenizer consistently outperforms strong multilingual baselines (Single-13L and mBERT's Single-102L) across nearly all data regimes (from 1% to 100% of training data). The improvements in cross-lingual representation similarity (Table 3, Figure 4) are particularly convincing, demonstrating that the method achieves its primary goal of creating a more unified semantic space.
 
-4.  **Thorough Experimental Design:** The paper includes important ablations and analyses that strengthen its conclusions:
-    *   The comparison of "pretraining from scratch" vs. "continual pre-training" is insightful.
-    *   The experiments on limited target-language data (0% and 50%) effectively demonstrate the method's advantage in cross-lingual transfer.
-    *   The comparison between multilingual and monolingual fine-tuning (Section 5.5) provides a nuanced view of the benefits of the shared semantic space.
+4.  **Strong Focus on Low-Resource Languages:** The choice of languages is excellent. By including languages both seen and *unseen* by mBERT, and focusing on those with limited resources, the paper highlights the method's value precisely where it is needed most. The analysis of performance with limited or zero target-language data (Section 5.4) is a crucial and well-placed experiment.
+
+5.  **Clarity and Thoroughness:** The paper is generally well-written and clearly structured. The figures effectively illustrate the core concept and results. The inclusion of extensive appendices with detailed results, hyperparameters, and ablation studies (e.g., on input representation) adds to the paper's credibility and reproducibility.
+
+---
 
 ### Weaknesses
 
-1.  **Scalability and Practical Overhead:** The paper's primary weakness is a lack of deep discussion on the scalability of the approach. Constructing a parallel tokenizer for a new language requires:
-    *   Training a monolingual tokenizer for that language.
-    *   Performing word-by-word translation of the entire English word-type vocabulary.
-    *   A manual filtering step (back-translation) to remove invalid translations.
-    While the framework is presented as "scalable," the practical engineering and computational cost of adding dozens or hundreds of languages is non-trivial and deserves more explicit discussion.
+1.  **Dependence on Machine Translation Quality:** The authors correctly identify this as a limitation. The method's foundation is the quality of the word-level translations from Google Translate. Errors in translation (e.g., incorrect sense, multi-word outputs) directly introduce noise into the aligned vocabulary. While their use of back-translation is a good mitigation, this remains a potential point of failure, especially for very low-resource or morphologically complex languages not well-handled by the MT system.
 
-2.  **Dependence on Machine Translation Quality:** The method's effectiveness is inherently tied to the quality of the word-level MT used for vocabulary alignment. The authors acknowledge this in the "Limitations" section, noting issues with multi-word and malformed translations. This dependency could propagate errors or cultural biases from the MT system into the model's fundamental vocabulary, a point that could be explored further.
+2.  **Scalability to a Large Number of Languages:** The paper demonstrates the method for 13 languages. A key question is how it scales to hundreds of languages. The process of creating a parallel tokenizer for each new language requires training a monolingual tokenizer and performing the alignment step. While more scalable than retraining a full model from scratch, it could become computationally and logistically complex compared to a single multilingual tokenizer, especially if the pivot language's vocabulary is not optimal for the new language family.
 
-3.  **Clarity on the "Word-Type" Filtering:** The decision to only align "word-type" tokens (excluding subwords, short words, and numbers) is pragmatic but has significant implications. It means that a substantial portion (~38%) of the final vocabulary is *not* aligned across languages. The paper could do more to analyze the impact of this—for instance, are most of the cross-lingual benefits coming from the aligned 61%, or is the unaligned portion causing interference?
+3.  **Limited Exploration of the Pivot Language Choice:** The paper uses English as the pivot, which is a natural choice but may not be optimal. The performance might differ if a different, perhaps more morphologically "average" language were chosen as the pivot. A brief discussion or ablation on this choice would have strengthened the method's generalizability.
 
-4.  **Minor Presentation Issues:**
-    *   The difference in learning rates for Single-13L (5e-5) and Parallel-13L (1e-4) during pre-training is mentioned but not justified. A brief explanation would strengthen the reproducibility and fairness of the comparison.
-    *   While the overall structure is good, the flow between some sections (e.g., from the results to the limitations) feels slightly abrupt.
+4.  **Slightly Buried Lead in Continual Pre-training:** In Section 5.6, the continual pre-training results show that the Parallel Tokenizer does not always outperform the Single-13L baseline on downstream tasks, even though it still shows better cross-lingual alignment. This nuanced result is important but could be more prominently discussed in the conclusion, as it suggests that the benefits in representation space do not always directly translate to task performance when starting from a strong pre-trained base like mBERT.
 
 ### Conclusion
 
-This paper presents a novel and impactful approach to a core problem in multilingual NLP. The **strengths—**a clever and well-motivated idea, backed by extensive and multi-faceted experiments that clearly demonstrate its value for low-resource languages—far outweigh the **weaknesses**, which are primarily concerns about long-term scalability and practical implementation details. The work successfully makes the case that "rethinking tokenization is essential for advancing multilingual representation learning," and the proposed "parallel tokenizer" is a compelling step in that direction.
+This is a strong paper that makes a valuable contribution to multilingual NLP. The proposed **Parallel Tokenizer** is a **novel and effective solution** to a well-known problem. Its **significance is high**, as it provides a clear path to more equitable and efficient models for low-resource languages. The **presentation is clear** and supported by extensive, well-designed experiments. The main weaknesses relate to its dependence on external MT resources and questions of extreme scalability, which the authors openly acknowledge and which provide clear directions for future work. This paper is likely to influence how researchers and practitioners think about and construct tokenizers for multilingual models.
 
 ---
 
@@ -114,7 +98,7 @@ This paper presents a novel and impactful approach to a core problem in multilin
 
 Authors: Prateek Humane, Paolo Cudrano, Daniel Z. Kaplan, Matteo Matteucci, Supriyo Chakraborty, Irina Rish
 
-Keywords: Agentic Systems, Reinforcement Learning, Tool Use, Multi-turn Planning, In-the-Flow Optimization, Flow-GRPO
+Keywords: Influence Functions, Data Selection, Reasoning, Chain-of-Thought, Fine-tuning, Data Pruning, Math Reasoning
 
 Comments: None
 
@@ -126,59 +110,209 @@ Fine-tuning large language models (LLMs) on chain-of-thought (CoT) data shows th
 
 ## Summary
 
-This paper introduces **AgentFlow**, a trainable agentic system for effective planning and tool use, and proposes **Flow-based Group Refined Policy Optimization (Flow-GRPO)**, a novel reinforcement learning method for optimizing such systems. The key motivation is to address limitations in existing approaches: monolithic tool-integrated reasoning models struggle with long horizons and diverse tools, while most agentic systems remain training-free or use offline methods decoupled from live multi-turn dynamics.
+Of course. Here is a summary of the paper "Influence Functions for Efficient Data Selection in Reasoning."
 
-The core contribution is **AgentFlow**, a framework with four specialized modules (Planner, Executor, Verifier, Generator) coordinated through an evolving memory. Unlike prior work, AgentFlow directly optimizes its Planner *in-the-flow*—within the live multi-turn interaction loop—enabling dynamic adaptation to tool outputs and verification signals. The **Flow-GRPO** algorithm tackles the long-horizon, sparse-reward credit assignment problem by broadcasting a single, verifiable final-outcome reward to every turn in the trajectory. This effectively converts multi-turn RL into a sequence of tractable single-turn policy updates, using group-normalized advantages to stabilize training.
+**Key Contribution:** This paper proposes a novel method for selecting high-quality data to fine-tune Large Language Models (LLMs) on reasoning tasks. The core idea is to use **influence functions (IFs)** to define data quality based on the causal effect a training example has on downstream model accuracy, rather than relying on indirect heuristics like problem difficulty or diversity.
 
-Experiments across ten diverse benchmarks (search-intensive, agentic, mathematical, and scientific reasoning) demonstrate that AgentFlow with a 7B backbone significantly outperforms specialized baselines, achieving average accuracy gains of 14.9% on search, 14.0% on agentic, 14.5% on mathematical, and 4.1% on scientific tasks. Notably, it surpasses larger proprietary models like GPT-4o. Analyses confirm that Flow-GRPO enhances planning quality, improves tool-calling reliability, reduces error rates, and enables the autonomous discovery of effective solution pathways. The method also shows positive scaling with model size and turn budgets, and outperforms offline training approaches like supervised fine-tuning, which led to performance collapse.
+**Methodology:** The authors fine-tune a base model (LLaMA-3-8B-Instruct) on the LIMO reasoning dataset to get a converged model. They then analyze how fine-tuning changes the model's performance on a validation set (MATH500), identifying which validation questions transitioned from incorrect to correct (set C) and vice-versa (set I). For each training example, they compute its influence score, which estimates its contribution to these performance changes on the validation sets. This results in two scores per training example: `s_C(d)` (beneficial influence) and `s_I(d)` (harmful influence). They then test three pruning strategies:
+1.  **Correct:** Prune examples with the least beneficial influence.
+2.  **Incorrect:** Prune examples with the most harmful influence.
+3.  **Combined:** A hybrid of the two.
+
+**Key Results:**
+1.  **Effective Within-Model Pruning:** When fine-tuning the same model family (LLaMA-3-8B-Instruct) used for data selection, the IF-based pruning strategies consistently matched or outperformed strong baselines like random selection, perplexity-based filtering (Mid-PPL), and embedding-based selection (RDS+). This demonstrates that IFs can successfully identify a higher-quality data subset for improving reasoning performance.
+2.  **Limited Cross-Model Transfer:** When the data subsets selected using LLaMA-3-8B-Instruct were used to fine-tune a different model family (Qwen2.5-Math-7B-Instruct), the benefits did not consistently transfer. This suggests that data quality, as measured by influence functions, may be somewhat model-specific.
+
+In conclusion, the paper establishes influence functions as a powerful, principled tool for data selection in reasoning, achieving state-of-the-art results within a model family, while highlighting model-specificity as a key area for future research.
 
 ## Critique
 
-Of course. Here is a critique of the paper "In-the-Flow Agentic System Optimization for Effective Planning and Tool Use," focusing on its strengths, weaknesses, novelty, significance, and clarity.
+Of course. Here is a critique of the paper "Influence Functions for Efficient Data Selection in Reasoning," focusing on its strengths, weaknesses, and overall presentation.
+
+### Strengths
+
+1.  **Novel and Principled Approach:** The core idea of applying Influence Functions (IFs) to define and select "quality" data for reasoning tasks is highly novel and well-motivated. Moving beyond heuristics like problem difficulty or CoT length to a method that directly estimates the *causal impact* of a training example on downstream accuracy is a significant conceptual advance.
+2.  **Strong Empirical Results (Within-Model):** The paper provides compelling evidence that IF-based pruning works. On the LLaMA-3-8B-Instruct model, their method consistently matches or outperforms strong baselines like RDS+ and Mid-PPL across several math reasoning benchmarks (GSM8k, OlympiadBench, AMC23), demonstrating the practical utility of their approach.
+3.  **Rigorous Methodology:** The methodology is well-designed. The separation of validation data into sets where fine-tuning improved (`C`) or harmed (`I`) performance is clever, allowing for a nuanced definition of "beneficial" and "harmful" influence. The combination of raw influence scores with rank-based scores (`r(d)`) to mitigate outlier effects is a thoughtful and robust design choice.
+4.  **Clarity of Presentation:** The paper is generally well-written and structured. The introduction effectively sets up the problem, the related work is clearly categorized, and the method section is detailed enough to be understood. Figures and tables are relevant and support the narrative.
+
+### Weaknesses
+
+1.  **Limited Cross-Model Generalizability:** The most significant weakness is the failure of the method to transfer convincingly across model families. The fact that data selected using LLaMA-3-8B-Instruct's IFs does not consistently help Qwen2.5-Math-7B-Instruct raises a critical question: **is data quality model-specific?** This limitation curtails the broader applicability and significance of the findings, suggesting the approach may be most useful for in-family distillation rather than as a general data curation tool.
+2.  **High Computational Cost:** The paper openly acknowledges but does not solve the high computational cost of calculating Influence Functions, which involves Hessian approximations. This is a major practical barrier to widespread adoption, especially as model sizes continue to grow. The lack of a cost-benefit analysis comparing the compute for selection vs. the savings from training on a smaller dataset is a minor omission.
+3.  **Narrow Experimental Scope:** The evaluation, while positive, has limitations:
+    *   **Single Dataset:** Experiments are conducted only on the LIMO dataset, which is pre-curated. The performance of IF-based pruning on a larger, noisier dataset (like Open-R1) remains an open and important question.
+    *   **Limited Baselines:** The comparison lacks some relevant reasoning-specific heuristics mentioned in the related work (e.g., Select2Reason). A more comprehensive head-to-head comparison would strengthen the claim of superiority.
+    *   **Single Run per Experiment:** The lack of multiple runs with different random seeds means the results are presented without confidence intervals, making it difficult to assess the statistical significance of the improvements.
+4.  **Clarity Gaps in Pruning Strategy:** The description of the three pruning strategies, while illustrated, could be more precise. For instance, the exact intersection logic (e.g., percentiles used for "low" `s_C(d)` and `r_C(d)`) is not explicitly stated in the main text, requiring the reader to infer from the context and appendix.
 
 ### Overall Assessment
 
-This is a strong, well-executed paper that presents a significant advancement in training agentic systems. The core idea—optimizing a planner *within* a live, multi-turn agentic loop—is both novel and impactful, addressing a key limitation in current systems. The empirical results are compelling and thoroughly support the authors' claims.
+This is a **high-quality paper** that makes a valuable contribution by introducing a principled, causality-based framework for data selection in reasoning. The novelty of the approach and its strong within-model performance are its key strengths. However, the **lack of cross-model generalization** is a substantial limitation that tempers the broader impact of the results. The paper successfully proves the concept but also highlights a crucial challenge for future work. It is clearly presented, though the experimental scope could be broader and the computational cost remains a significant practical hurdle.
+
+---
+
+# RoSE: Round-robin Synthetic Data Evaluation for Selecting LLM Generators without Human Test Sets
+
+Authors: Jan Cegin, Branislav Pecher, Ivan Srba, Jakub Simko
+
+Keywords: Synthetic Data Evaluation, LLM Selection, Low-resource Languages, Proxy Metrics, Round-robin Evaluation
+
+Comments: 16 pages
+
+Paper link: [http://arxiv.org/abs/2510.06143v1](http://arxiv.org/abs/2510.06143v1)
+
+## Abstract
+
+LLMs are powerful generators of synthetic data, which are used for training smaller, specific models. This is especially valuable for low-resource languages, where human-labelled data is scarce but LLMs can still produce high-quality text. However, LLMs differ in how useful their outputs are for training. Selecting the best LLM as a generator is challenging because extrinsic evaluation requires costly human annotations (which are often unavailable for low-resource languages), while intrinsic metrics correlate poorly with downstream performance. We introduce Round robin Synthetic data Evaluation (RoSE), a proxy metric for selecting the best LLM generator without human test sets. RoSE trains a small model on the outputs of a candidate generator (LLM) and then evaluates it on generated synthetic examples from all other candidate LLMs. The final RoSE score is the mean performance of this small model. Across six LLMs, eleven languages, and three tasks (sentiment, topic, intent), RoSE identifies the optimal generator more often than any other intrinsic heuristics. RoSE outperforms intrinsic heuristics and comes within 0.76 percentage points of the optimal generator baseline. This result is measured in terms of downstream performance, obtained by training a small model on the chosen generator's outputs (optimal vs. proxy metric selected) and evaluating it on human-labelled test data. Additionally, RoSE is the only metric to achieve a positive correlation with performance on human test data.
+
+## Summary
+
+This paper introduces **RoSE (Round-robin Synthetic data Evaluation)**, a novel proxy metric for selecting the best large language model (LLM) as a synthetic data generator when human-annotated test sets are unavailable—a common challenge in low-resource language settings. 
+
+**Key Contribution:** RoSE addresses the critical limitation of existing intrinsic metrics (e.g., diversity scores, token entropy), which often correlate poorly with downstream task performance. It provides a practical, human-test-free method to reliably identify the optimal LLM generator for training smaller, task-specific models.
+
+**Method:** RoSE operates through a round-robin evaluation process:
+1. Each candidate LLM generates synthetic training and test data for a given task-language pair.
+2. A small downstream model (e.g., XLM-R) is trained on one LLM’s synthetic data and evaluated on the synthetic test sets from all other LLMs.
+3. The RoSE score for an LLM is the mean performance of its trained model across these cross-evaluations. The LLM with the highest score is selected as the best generator.
+
+**Results:** Extensive experiments across 11 languages and 3 tasks (sentiment analysis, topic classification, intent recognition) using 6 diverse LLMs demonstrate RoSE’s superiority:
+- **Accuracy:** RoSE identified the optimal generator in **60.6%** of cases, significantly outperforming the next-best metric (36.36%).
+- **Performance Gap:** Models trained on RoSE-selected data were within **0.76% F1** of those using the optimal generator (human-selected), compared to **2.52%** for the second-best metric.
+- **Consistency:** RoSE achieved the **only positive correlation** with human-based performance and ranked best in 9 of 11 languages.
+- **Robustness:** It remained effective with as few as three candidate LLMs and performed well even when excluding the largest model (unlike parameter-size heuristics).
+
+**Ablation Insights:** RoSE’s effectiveness depends on using human examples in prompts during data generation; its zero-shot variant (RoSE-Z) performed notably worse, highlighting the importance of high-quality, human-like synthetic data for reliable evaluation.
+
+In summary, RoSE offers a scalable, cost-effective solution for synthetic data generator selection in low-resource scenarios, bridging the gap between intrinsic metrics and extrinsic human evaluation.
+
+## Critique
+
+Of course. Here is a critique of the paper "RoSE: Round-robin Synthetic Data Evaluation for Selecting LLM Generators without Human Test Sets," focusing on its strengths, weaknesses, novelty, significance, and clarity.
+
+### Strengths
+
+1.  **High Novelty and Clever Intuition:** The core idea of RoSE is highly novel and well-motivated. The intuition that a good generator should produce data that allows a model to generalize to the outputs of *other* LLMs is elegant and directly addresses the problem of not having a human "oracle" test set. The round-robin cross-evaluation scheme is a direct and logical implementation of this idea.
+
+2.  **Extensive and Rigorous Evaluation:** The paper's experimental design is a major strength. The evaluation across **6 LLMs, 11 languages** (spanning high to low-resource), and **3 distinct tasks** provides compelling, multi-faceted evidence for RoSE's effectiveness. This breadth makes the results highly generalizable.
+
+3.  **Significant and Practical Results:** The results are not just statistically significant but also practically so. An average performance gap of only **0.76% F1** compared to the optimal (human-selected) generator is a remarkably strong result. The fact that RoSE is the **only metric with a consistently positive correlation** with human test performance underscores its unique utility.
+
+4.  **Thorough Ablation Studies:** The paper goes beyond the main result with valuable ablations. Investigating the impact of excluding the largest model, varying the number of candidate LLMs, reducing computational cost, and testing a zero-shot variant (RoSE-Z) provides a deep understanding of the method's robustness and limitations.
+
+5.  **Clear Superiority Over Baselines:** The paper convincingly demonstrates that RoSE is not just slightly better but substantially outperforms a wide range of common-sense and intrinsic baselines, including the strong but naive "largest model" heuristic.
+
+### Weaknesses
+
+1.  **High Computational Cost:** The authors openly acknowledge that RoSE is computationally expensive, as it requires training multiple downstream models for each candidate LLM. While the cost-effectiveness analysis (using fewer LLMs for evaluation) is a good addition, it remains a significant barrier for resource-constrained environments, potentially limiting its immediate widespread adoption.
+
+2.  **Dependence on High-Quality Generation Setup:** The analysis in Section 5 reveals a critical limitation: RoSE's performance is heavily dependent on the quality of the initial data generation. When human in-context examples are removed (RoSE-Z), its effectiveness drops significantly. This means RoSE is not a silver bullet for scenarios with *absolutely zero* human data; it still requires a small seed of human examples to guide the generation process effectively.
+
+3.  **Limited Scope of Tasks and Models:** While the scope is already broad, it is necessarily limited. The evaluation is confined to **text classification tasks**. It is unclear how RoSE would perform on generation tasks (e.g., machine translation, summarization) or more complex reasoning tasks. Similarly, only 6 open-weight LLMs were tested.
+
+4.  **Potential Data Contamination:** The authors note the unknown impact of data contamination (where LLMs may have been trained on the test data) as a limitation. This is a common issue in LLM research but could potentially inflate the performance of some models and confound RoSE's rankings.
+
+### Novelty
+
+The novelty is **high**. The concept of using a round-robin evaluation on synthetic data itself as a proxy for human evaluation is, to the best of this reviewer's knowledge, a new and creative contribution. It reframes the problem from "evaluating data quality" to "evaluating the generalizability of a model trained on that data," which is a more direct measure of utility for the end goal.
+
+### Significance
+
+The significance of this work is **substantial**. For researchers and practitioners working with low-resource languages and domains, the lack of high-quality evaluation data is a fundamental roadblock. RoSE provides a principled, empirically-validated methodology for making a critical decision—which LLM to use as a data generator—without needing a costly human-annotated test set. This can accelerate research and application development in underserved linguistic and topical areas.
+
+### Clarity of Presentation
+
+The paper is **very clearly written and well-structured**.
+
+*   **Writing:** The prose is clear, concise, and logically flows from the introduction to the conclusion.
+*   **Visualizations:** Figure 1 provides an excellent, intuitive overview of the RoSE method. The bar plots and forest plots in the results section effectively communicate the key findings.
+*   **Organization:** The separation of results by task, language, and various ablation studies makes the paper easy to follow. The tables succinctly summarize complex comparative data.
+*   **Limitations:** The limitations section is honest and comprehensive, addressing the main caveats of the work.
+
+### Overall Summary
+
+This is a strong paper that introduces a novel, effective, and practically significant method for a pressing problem in NLP. Its major strengths are its clever core idea and its exhaustive evaluation. Its primary weaknesses are its computational cost and its reliance on a non-zero-shot generation setup, but these are openly discussed. The presentation is exemplary. This work is likely to be influential and widely cited in the field of data-efficient NLP and LLM application.
+
+---
+
+# CAM: A Constructivist View of Agentic Memory for LLM-Based Reading Comprehension
+
+Authors: Rui Li, Zeyu Zhang, Xiaohe Bo, Zihang Tian, Xu Chen, Quanyu Dai, Zhenhua Dong, Ruiming Tang
+
+Keywords: Agentic Memory, Constructivist Theory, Large Language Models, Reading Comprehension, Hierarchical Memory Structures, Memory Retrieval, Long-Text Processing
+
+Comments: Accepted by NeurIPS 2025
+
+Paper link: [http://arxiv.org/abs/2510.05520v1](http://arxiv.org/abs/2510.05520v1)
+
+## Abstract
+
+Current Large Language Models (LLMs) are confronted with overwhelming information volume when comprehending long-form documents. This challenge raises the imperative of a cohesive memory module, which can elevate vanilla LLMs into autonomous reading agents. Despite the emergence of some heuristic approaches, a systematic design principle remains absent. To fill this void, we draw inspiration from Jean Piaget's Constructivist Theory, illuminating three traits of the agentic memory -- structured schemata, flexible assimilation, and dynamic accommodation. This blueprint forges a clear path toward a more robust and efficient memory system for LLM-based reading comprehension. To this end, we develop CAM, a prototype implementation of Constructivist Agentic Memory that simultaneously embodies the structurality, flexibility, and dynamicity. At its core, CAM is endowed with an incremental overlapping clustering algorithm for structured memory development, supporting both coherent hierarchical summarization and online batch integration. During inference, CAM adaptively explores the memory structure to activate query-relevant information for contextual response, akin to the human associative process. Compared to existing approaches, our design demonstrates dual advantages in both performance and efficiency across diverse long-text reading comprehension tasks, including question answering, query-based summarization, and claim verification.
+
+## Summary
+
+Based on the provided paper, here is a summary focusing on its key contributions, methods, and results:
+
+**Key Contributions:** This paper introduces CAM (Constructivist Agentic Memory), a novel memory framework designed to enhance the long-text reading comprehension capabilities of Large Language Models (LLMs). The primary contribution is a design blueprint for agentic memory, which is grounded in Jean Piaget’s Constructivist Theory from cognitive science. This blueprint posits that an effective memory module must embody three key traits: *structured schemata* (hierarchical organization of information), *flexible assimilation* (integrating new information into multiple existing structures), and *dynamic accommodation* (efficiently updating the memory structure with new inputs). CAM is presented as a prototype implementation that is the first to simultaneously incorporate all three traits.
+
+**Methods:** The CAM framework constructs a hierarchical memory structure from input text chunks. Its core technical innovation is an *incremental overlapping clustering algorithm* for memory development. This process involves: 1) **Foundational Network Expansion**, where new text chunks are integrated into a semantic network based on textual relevance and narrative coherence; 2) **Ego-Centric Disentanglement**, which uses node replication to explicitly model a chunk's multiple roles, enabling flexible assimilation; and 3) **Online Clustering Updates**, which employs an incremental label propagation algorithm to dynamically update cluster assignments locally, ensuring efficient accommodation. For memory retrieval, CAM uses a "*Prune-and-Grow*" associative strategy that first globally locates query-relevant cues and then recursively explores the memory structure to gather supporting information.
+
+**Results:** The authors evaluate CAM on several long-text reading comprehension benchmarks, including question answering (NovelQA, MultiHop-RAG), query-based summarization (QMSum, ODSum), and claim verification (FABLES). The results demonstrate that CAM consistently outperforms a range of strong baselines (including MemGPT, ReadAgent, RAPTOR, GraphRAG, and MemTree) across all datasets and metrics (e.g., ROUGE, LLM-as-a-judge accuracy, F1 score). A key advantage is its efficiency in online settings; CAM can integrate new text in batches and is over 4x faster than offline methods like RAPTOR, while maintaining stable performance. Ablation studies confirm the importance of its hierarchical structure and flexible assimilation. The paper concludes that adhering to the constructivist design principle leads to a memory system with superior performance and efficiency for LLM-based reading agents.
+
+## Critique
+
+### Overall Assessment
+This paper presents CAM (Constructivist Agentic Memory), a novel framework for enhancing LLMs' long-text reading comprehension by drawing inspiration from Jean Piaget's Constructivist Theory. The paper is well-structured, methodologically sound, and demonstrates significant empirical improvements over existing approaches. Below, I outline its strengths and weaknesses.
 
 ---
 
 ### Strengths
 
-1.  **High Novelty in Core Approach:** The paper's primary contribution, "in-the-flow" optimization, is genuinely novel. The distinction between training a monolithic policy (the standard approach) and training a single planner module within a dynamic, multi-agent system is clear and well-motivated. The proposed **AgentFlow** framework itself, with its four specialized modules (Planner, Executor, Verifier, Generator) coordinated by an evolving memory, is a well-structured and logical design.
+1. **Novelty and Theoretical Foundation**:
+   - **Novelty**: The paper introduces a principled approach to agentic memory design, grounded in cognitive science (Piaget's Constructivist Theory). This contrasts with heuristic-based methods in prior work and provides a clear blueprint for memory traits: *structured schemata*, *flexible assimilation*, and *dynamic accommodation*.
+   - **Theoretical Rigor**: The integration of constructivist principles (e.g., assimilation/accommodation) into a technical framework is innovative and elevates the discussion beyond ad-hoc engineering solutions.
 
-2.  **Innovative and Well-Motivated Algorithm (Flow-GRPO):** The **Flow-based Group Refined Policy Optimization (Flow-GRPO)** algorithm is a clever and pragmatic solution to the long-horizon, sparse-reward problem. The idea of "broadcasting" a single final-outcome reward to every turn in a trajectory, thereby converting a complex multi-turn RL problem into a series of tractable single-turn updates, is both simple and powerful. The theoretical analysis in the appendix (equivalence proof, convergence) adds rigor.
+2. **Technical Contributions**:
+   - **Prototype Implementation**: CAM’s incremental overlapping clustering algorithm and "Prune-and-Grow" retrieval strategy are technically sophisticated and directly embody the proposed design principles.
+   - **Efficiency and Dynamicity**: The framework supports batch-level online updates, a significant advantage over offline or sequential-update baselines. The empirical results show a **4× speedup** in processing time while maintaining performance stability.
 
-3.  **Extensive and Convincing Empirical Evaluation:** The paper is exceptionally strong on experiments.
-    *   **Benchmark Diversity:** Evaluation across ten benchmarks spanning search, agentic, mathematical, and scientific reasoning provides robust evidence of generalizability.
-    *   **Comprehensive Baselines:** The authors compare against a wide array of strong baselines, including base LLMs, proprietary models (GPT-4o), specialized tool-integrated RL models, and a leading training-free agentic system (AutoGen).
-    *   **Significant Results:** The results are not just incremental; they show substantial performance gains (e.g., +14.9% on search, surpassing GPT-4o with a 7B model). This demonstrates the significance of the proposed method.
-    *   **Thorough Analysis:** The paper goes beyond main results with insightful ablations (training strategies), efficiency analysis, scaling studies (model size, turn budget), and qualitative case studies. The finding that supervised fine-tuning (SFT) leads to "catastrophic performance collapse" is a powerful argument for the necessity of their on-policy RL approach.
+3. **Empirical Evaluation**:
+   - **Comprehensive Benchmarks**: The paper evaluates CAM on six diverse datasets spanning single- and multi-document tasks (e.g., QA, summarization, claim verification), demonstrating broad applicability.
+   - **Superior Performance**: CAM consistently outperforms strong baselines (e.g., RAPTOR, GraphRAG, MemTree) across all metrics, with an average gain of **3.0%** over the best competitors.
+   - **Ablation Studies**: Ablations validate the importance of hierarchy and flexibility, and analyses of retrieval strategies, embeddings, and LLM backbones provide practical insights.
 
-4.  **Clarity of Presentation:** The paper is generally well-written and structured. The figures (especially Figures 1, 2, and 4) are effective at illustrating the core concepts, the system architecture, and the optimization process. The tables are clear and support the narrative of superior performance.
+4. **Clarity and Presentation**:
+   - The paper is well-organized, with clear motivations, method descriptions, and visualizations (e.g., Figure 2). The limitations and future directions are thoughtfully discussed, adding depth to the work.
 
 ---
 
 ### Weaknesses
 
-1.  **Computational Cost and Complexity:** A significant weakness, which is only briefly mentioned, is the computational overhead. Running on-policy rollouts of a multi-module system for training is vastly more expensive than offline training or running a monolithic model. The requirement for 8 A100 GPUs and the synchronous execution of tools (with a 500s timeout) highlight this. A more detailed discussion of the training cost and scalability would be beneficial for practitioners.
+1. **Scalability and Practical Deployment**:
+   - **Computational Overhead**: While CAM is more efficient than offline baselines, its reliance on LLMs for summarization and clustering may still pose scalability challenges for real-time applications. The paper acknowledges this but does not propose lightweight alternatives.
+   - **Hallucination Risks**: The use of LLMs for hierarchical summarization introduces potential error propagation, which is noted but not empirically addressed.
 
-2.  **Limited Analysis of Module Interactions:** While the planner is successfully optimized, the other modules (Executor, Verifier, Generator) remain frozen. The paper does not explore whether performance could be further improved by jointly or alternatively fine-tuning these other components. The potential for co-adaptation between modules is an exciting but unexplored direction.
+2. **Generalization Beyond Reading Comprehension**:
+   - The focus on reading comprehension tasks limits the demonstrated scope of CAM. While the constructivist principle is general, its applicability to other domains (e.g., planning, multimodal reasoning) remains speculative.
 
-3.  **Ablation on the "Evolving Memory":** The evolving memory is a key component of the AgentFlow architecture, but its specific design and contribution are not deeply ablated. How crucial is its structured format? How does performance change with a simpler memory (e.g., just a concatenation of past turns)? A deeper dive into this component would strengthen the architectural claims.
+3. **Evaluation Gaps**:
+   - **Robustness to Noise/Inconsistencies**: The experiments assume internally consistent source texts. Real-world scenarios often involve contradictory information, which CAM does not explicitly handle.
+   - **Human Evaluation**: While LLM-based judges (e.g., GPT-4o) are used, human evaluations would strengthen the validity of results, especially for subjective tasks like summarization.
 
-4.  **Potential Overfitting to Benchmark-Specific Strategies:** The tool usage analysis (Figure 5) shows the planner learns very different strategies for different tasks (e.g., favoring Google Search for 2Wiki but Wikipedia for MedQA). While this demonstrates adaptability, it also raises the question of whether the planner is learning generalizable reasoning skills or just benchmark-specific heuristics. Testing on held-out or more open-ended tasks could address this.
-
-5.  **Reproducibility Concerns with Reliance on GPT-4o:** The final-outcome reward is provided by an "LLM-as-judge," specifically GPT-4o. This creates a dependency on a proprietary, non-deterministic model for training, which can be a barrier to reproduction and may introduce subtle biases. The authors should discuss the potential impact of this choice and whether a more transparent reward model could be used.
+4. **Theoretical-Practical Alignment**:
+   - While the constructivist analogy is compelling, the mapping between cognitive processes (e.g., assimilation) and technical mechanisms (e.g., overlapping clustering) could be further justified with cognitive plausibility arguments.
 
 ---
 
-### Summary of Novelty, Significance, and Clarity
+### Significance and Impact
+- **Significance**: CAM advances the field of agentic memory by providing a theoretically grounded, efficient, and high-performing framework. Its batch-level online capability addresses a critical gap in real-world long-text processing.
+- **Impact**: The work could influence future research on cognitive-inspired AI architectures and encourage interdisciplinary collaborations between cognitive science and NLP. The open-sourced code facilitates adoption and extension.
 
-*   **Novelty:** **High.** The core concepts of "in-the-flow" optimization of an agentic system and the Flow-GRPO algorithm for tackling long-horizon credit assignment are substantial and original contributions.
-*   **Significance:** **High.** The method demonstrably pushes the state-of-the-art for tool-augmented reasoning, enabling a relatively small 7B model to outperform much larger proprietary systems and specialized baselines across a wide range of complex tasks. It provides a viable path beyond static, training-free agentic systems.
-*   **Clarity:** **Good to Excellent.** The paper is clearly written and well-structured. The motivation, method, and results are communicated effectively through a combination of text, algorithms, and high-quality figures and tables.
+---
 
-In conclusion, this paper presents a compelling and impactful approach to a central problem in AI. Its weaknesses are primarily related to practical deployment (cost) and avenues for future work, rather than flaws in its core contributions. It is likely to influence subsequent research in agentic systems and tool-augmented LLMs.
+### Summary
+This paper makes a substantial contribution to LLM-based agentic memory systems. Its strengths lie in its novel theoretical foundation, strong empirical results, and clear presentation. Weaknesses primarily relate to scalability, generalization, and robustness, which are openly acknowledged and provide avenues for future work. The paper is likely to inspire further research in cognitively-inspired AI designs.
 
 ---
 
@@ -186,7 +320,7 @@ In conclusion, this paper presents a compelling and impactful approach to a cent
 
 Authors: Bohan Yao, Shiva Krishna Reddy Malay, Vikas Yadav
 
-Keywords: Influence Functions, Data Selection, Reasoning, Chain-of-Thought, Fine-tuning, Data Pruning, Math Reasoning, Large Language Models
+Keywords: Agentic Reasoning Modules, Multi-Agent Systems, Chain-of-Thought Reasoning, Evolutionary Search, Automated MAS Design, Reasoning Optimization
 
 Comments: 29 pages, 2 figures
 
@@ -198,160 +332,42 @@ Large Language Model (LLM)-powered Multi-agent systems (MAS) have achieved state
 
 ## Summary
 
-Based on the provided paper "Influence Functions for Efficient Data Selection in Reasoning," here is a summary of its key contributions, methods, and results.
-
-### Summary
-
-This paper tackles the problem of defining and selecting high-quality data for fine-tuning Large Language Models (LLMs) on reasoning tasks. While it is known that a small amount of high-quality Chain-of-Thought (CoT) data can outperform massive datasets, the definition of "quality" remains vague. The authors propose a novel method that uses **Influence Functions (IFs)** to directly measure the causal effect of individual training examples on a model's downstream reasoning accuracy.
-
-### Key Contributions
-
-1.  **A Causal Definition of Data Quality for Reasoning:** The core contribution is a principled, causal framework for defining data quality. Instead of relying on indirect heuristics like problem difficulty or CoT length, the authors define a training example's quality by its estimated influence on whether fine-tuning improves or degrades the model's correctness on a validation set.
-2.  **Influence-Based Pruning for Reasoning:** They introduce and evaluate several data pruning strategies based on IF scores:
-    *   **Correct Pruning:** Removes examples that contribute the least to correct completions.
-    *   **Incorrect Pruning:** Removes examples that most strongly push the model toward incorrect completions.
-    *   **Combined Pruning:** A hybrid of the two approaches.
-
-### Methods
-
-The methodology involves:
-1.  **Scoring:** After fine-tuning a base model (e.g., LLaMA-3-8B-Instruct) on the full LIMO dataset, the authors compute the influence of each training example on validation queries from the MATH500 benchmark. The validation queries are split into two sets: those where fine-tuning improved correctness (`C`) and those where it degraded correctness (`I`).
-2.  **Aggregation:** For each training example, they aggregate its influence scores across all queries in sets `C` and `I` to get final scores (`s_C`, `s_I`) and rank-based scores (`r_C`, `r_I`).
-3.  **Pruning:** Data is pruned by intersecting thresholds on these scores and ranks to remove either low-benefit or high-harm examples.
-
-### Key Results
-
-*   **Effective Within-Model Pruning:** When the same model used for pruning (LLaMA-3-8B-Instruct) is fine-tuned on the IF-selected subsets, the method consistently matches or outperforms strong baselines like Random pruning, Mid-PPL, and RDS+ across several math reasoning benchmarks (GSM8k, OlympiadBench, AMC23).
-*   **Limitation in Cross-Model Transfer:** The improvements did not consistently transfer when the data subsets selected using LLaMA-3-8B-Instruct were used to fine-tune a different model family (Qwen2.5-Math-7B-Instruct). This suggests that data quality, as defined by IFs, may be model-specific.
-*   **Robustness:** The method remained competitive even with more aggressive pruning (50% of data).
-
-In conclusion, this work successfully demonstrates that influence functions provide a powerful, causality-driven tool for data selection in reasoning tasks, though its generalizability across different model architectures remains an open challenge.
-
-## Critique
-
-Of course. Here is a critique of the paper "Influence Functions for Efficient Data Selection in Reasoning," focusing on its strengths and weaknesses.
-
-### Strengths
-
-1.  **Novelty and Conceptual Clarity:** The core idea of applying influence functions (IFs) to define and select "high-quality" reasoning data is genuinely novel and well-motivated. The paper correctly identifies a gap in the literature: while data quality is acknowledged as crucial for reasoning, existing heuristics (like CoT length or problem difficulty) are indirect proxies. The proposal to define quality based on the *causal impact* of a training example on downstream accuracy is a principled and compelling approach. The explanation of how they adapt IFs for this task—by measuring influence on subsets of validation data where fine-tuning improved (`C`) or degraded (`I`) performance—is clear and insightful.
-
-2.  **Rigorous Methodology:** The methodology is sound and thorough. The use of both raw influence scores and rank-based scores (`s(d)` and `r(d)`) to mitigate the effect of outliers is a sophisticated touch. The three distinct pruning strategies (*Correct*, *Incorrect*, *Combined*) allow for a nuanced exploration of what constitutes a "bad" datapoint (one that is unhelpful vs. one that is actively harmful).
-
-3.  **Significant and Honest Results:** The paper presents a significant, well-supported finding: **within the same model family, IF-based pruning consistently outperforms strong baselines like RDS+ and Mid-PPL.** The results in Table 1 are convincing and demonstrate the practical utility of the method for improving data efficiency in math reasoning fine-tuning. Crucially, the authors are transparent about the limitations, explicitly stating that the benefits do not reliably transfer across model families (Llama-3 to Qwen2.5), which is an important and honest contribution to the field.
-
-4.  **Excellent Presentation:** The paper is exceptionally well-written and structured. The abstract and introduction effectively set up the problem and the proposed solution. Figure 1 provides an intuitive visualization of the scoring mechanism, and the description of the long-tailed distributions of influence scores is a valuable observation. The limitations section is comprehensive and points to concrete directions for future work.
-
-### Weaknesses
-
-1.  **Limited Empirical Scope:** The most notable weakness is the relatively narrow experimental setup, which the authors openly acknowledge.
-    *   **Single Dataset:** The experiments are conducted solely on the LIMO dataset, which is itself a pre-curated, high-quality subset. This raises the question of how well the method would perform on a larger, noisier, and more diverse dataset (e.g., Open-R1), where the potential for pruning might be even greater.
-    *   **Limited Baselines:** While RDS+ and Mid-PPL are strong baselines, the paper does not compare against other recent reasoning-specific selection heuristics mentioned in the related work (e.g., Select2Reason). A broader comparison would better situate the performance of IFs within the existing landscape.
-    *   **Lack of Statistical Significance:** The results are from a single training run. Without multiple seeds and reported confidence intervals, it is difficult to gauge the statistical significance of the performance differences, some of which appear relatively small.
-
-2.  **The Cross-Model Family Transfer Failure:** While the honest reporting of this negative result is a strength, the failure of the method to transfer across model families (Llama-3 to Qwen2.5) is a significant practical weakness. It suggests that data quality, as defined by IFs, might be highly model-specific. This limits the general applicability and cost-effectiveness of the approach, as it implies one would need to run the computationally expensive IF calculation for each new model family.
-
-3.  **Computational Cost:** The paper mentions but does not deeply address the "elephant in the room": the high computational cost of calculating influence functions for large models and datasets. While approximations like EK-FAC are used, this process is still far more expensive than simple baselines like perplexity filtering or embedding similarity. The method's practicality hinges on future work developing more efficient approximations, as noted in the limitations.
-
-### Summary
-
-This is a strong paper that introduces a novel, principled approach to a important problem in LLM fine-tuning. Its core strength lies in its conceptual innovation and the clear, empirical demonstration that influence functions can effectively identify high-quality reasoning data *within a model family*. The primary weaknesses are related to the scope of its empirical validation and the practical limitations revealed by its inability to transfer across models and its high computational cost. Despite these, the work makes a valuable contribution by providing a new, causal perspective on data quality and setting a clear agenda for future research.
-
----
-
-# Code-Switching In-Context Learning for Cross-Lingual Transfer of Large Language Models
-
-Authors: Haneul Yoo, Jiho Jin, Kyunghyun Cho, Alice Oh
-
-Keywords: Agentic Reasoning Modules, Multi-Agent Systems, Chain-of-Thought Reasoning, Automated MAS Design, Evolutionary Search, Reasoning Optimization
-
-Comments: None
-
-Paper link: [http://arxiv.org/abs/2510.05678v1](http://arxiv.org/abs/2510.05678v1)
-
-## Abstract
-
-While large language models (LLMs) exhibit strong multilingual abilities, their reliance on English as latent representations creates a translation barrier, where reasoning implicitly depends on internal translation into English. When this process fails, performance in non-English languages deteriorates sharply, limiting the inclusiveness of LLM-based applications. Existing cross-lingual in-context learning (X-ICL) methods primarily leverage monolingual demonstrations, often failing to mitigate this barrier and instead reinforcing it. In this work, we introduce code-switching in-context learning (CSICL), a simple yet effective prompting strategy that progressively transitions from a target language to English within demonstrations and instruction to facilitate their latent reasoning in English. By explicitly scaffolding the reasoning process through controlled code-switching, CSICL acts as an implicit linguistic bridge that enhances cross-lingual alignment and reduces reliance on the translation barrier. We conduct extensive experiments across 4 LLMs, 6 datasets, and 10 languages, spanning both knowledge-intensive and reasoning-oriented domains. Our results demonstrate that CSICL consistently outperforms X-ICL baselines, achieving gains of 3.1%p and 1.9%p in both target and unseen languages, respectively. The improvement is even more pronounced in low-resource settings, with gains of 14.7% in target and 5.3% in unseen languages. These findings establish code-switching as a principled and robust approach for overcoming the translation barrier during inference, moving LLMs toward more equitable and effective multilingual systems.
-
-## Summary
-
-Based on the provided paper, here is a summary of its key contributions, methods, and results:
+Based on the paper "ARM: Discovering Agentic Reasoning Modules for Generalizable Multi-Agent Systems," here is a summary of its key contributions, methods, and results:
 
 **Key Contributions:**
-This paper introduces the Agentic Reasoning Module (ARM), a novel framework that enhances the traditional Chain-of-Thought (CoT) reasoning paradigm by replacing simple textual reasoning steps with specialized, agentic modules. The core contributions are: (1) presenting ARM as an evolved, enhanced version of CoT that significantly outperforms existing multi-agent systems (MAS); (2) demonstrating ARM's superior generalization across different foundation models and task domains without requiring re-optimization; and (3) providing rigorous justification for the proposed training objectives and discovery strategy.
+The paper introduces Agentic Reasoning Modules (ARM), a novel framework that enhances traditional Chain-of-Thought (CoT) reasoning by replacing simple textual reasoning steps with specialized, agentic modules. ARM addresses the limitations of complex Multi-Agent Systems (MAS), which often underperform simple CoT baselines despite their architectural sophistication. The key contributions include: (1) proposing ARM as a generalizable, evolved version of CoT that significantly outperforms existing MAS approaches; (2) demonstrating ARM's robustness across diverse tasks and foundation models without task-specific re-optimization; and (3) providing a rigorous methodology for discovering optimal reasoning modules and meta-policies through evolutionary search.
 
 **Methods:**
-The methodology involves a decomposable framework with two key components: a Step-Generator Module (m*) that executes individual reasoning steps, and a Meta-Policy (π*) that orchestrates these steps into a complete solution. ARM is discovered through a Reflection-Guided Evolutionary Search algorithm that performs tree search over program space, starting from a basic CoT module and evolving it using mutations informed by execution trace analysis. A crucial innovation is the use of scaffolded surrogate objectives - the step-generator is optimized within stable CoT contexts for better credit assignment, while the meta-policy is discovered using simple CoT as a computationally efficient surrogate before being transferred to work with the final ARM module.
+The ARM framework decomposes reasoning into two components: a *Step-Generator Module* (m∗), which executes granular reasoning steps using a self-contained MAS, and a *Meta-Policy* (π∗), which orchestrates these steps into a complete solution. To efficiently discover these components, the authors employ a Reflection-Guided Evolutionary Search algorithm. This method starts with a baseline CoT module and iteratively refines it through mutations informed by execution traces and reflection from a "Reviewer Agent" (comprising a Critic and Designer). A scaffolded surrogate objective is used to evaluate candidate modules within stable CoT contexts, enabling efficient credit assignment. The meta-policy is discovered separately using a cheap surrogate (mCoT) and transfers zero-shot to the optimized ARM module.
 
 **Results:**
-The paper demonstrates that ARM consistently outperforms both manually designed MAS (like Self-Refine and LLM-Debate) and automated MAS design methods (ADAS and AFlow) across multiple complex reasoning benchmarks including AIME, HMMT, GPQA, and LiveBench. Notably, the results show that simple CoT baselines often outperform complex MAS systems, while ARM further improves upon CoT performance. When combined with the discovered meta-policy (ARM + MP), the approach achieves state-of-the-art results, with particularly strong performance gains on challenging mathematical reasoning tasks (e.g., 23.4% on AIME vs 21.9% for CoT-SC using GPT-4.1-nano). The method also shows robust performance across different foundation models including GPT-4.1-nano, GPT-4o, and LLaMA-3.3-70B.
+Experiments on complex reasoning benchmarks (AIME, HMMT, GPQA, LiveBench) across multiple foundation models (GPT-4.1-nano, GPT-4o, LLaMA-3.3-70B) show that ARM consistently outperforms both handcrafted MAS (e.g., Self-Refine, LLM-Debate) and automated MAS design methods (e.g., ADAS, AFlow). For instance, ARM + Meta-Policy achieved an average performance of 47.8% on GPT-4.1-nano, surpassing CoT-SC (41.8%) and other baselines. ARM also demonstrated strong generalization, maintaining high performance across domains and models without re-optimization. Analyses confirmed that ARM reduces per-step error rates and successfully transfers meta-policies from simple surrogates to powerful ARM modules.
 
 ## Critique
 
-Of course. Here is a critique of the paper "ARM: Discovering Agentic Reasoning Modules for Generalizable Multi-Agent Systems," focusing on its strengths, weaknesses, novelty, and clarity.
-
-### Summary
-
-The paper proposes **ARM (Agentic Reasoning Module)**, a method to automatically discover a powerful, code-based reasoning module that acts as a single "step" in a Chain-of-Thought (CoT) process. The core idea is to evolve a simple CoT step into a sophisticated, self-contained multi-agent system through a reflection-guided evolutionary search. This discovered ARM can then be used recursively or orchestrated by a separately discovered "meta-policy" to solve complex reasoning tasks.
-
----
+Of course. Here is a critique of the paper "ARM: Discovering Agentic Reasoning Modules for Generalizable Multi-Agent Systems," focusing on its strengths and weaknesses.
 
 ### Strengths
 
-1.  **Novel and Insightful Core Premise:** The paper's foundational insight is powerful and timely. It correctly identifies that complex, handcrafted Multi-Agent Systems (MAS) are often outperformed by simple CoT, especially with stronger foundation models. Instead of adding more complexity to the orchestration layer, the authors pivot to improving the fundamental *reasoning unit* itself. This is a compelling and novel research direction.
+1.  **Novel and Well-Motivated Core Idea:** The paper's central thesis is powerful and timely. Instead of adding complexity by designing ever-larger and more intricate multi-agent systems (MAS), it proposes to "look under the hood" and improve the fundamental unit of reasoning itself—the individual step in a Chain-of-Thought (CoT). The observation that simple CoT often outperforms complex MAS is a compelling starting point, and the proposed solution—evolving a single, powerful, agentic reasoning module (ARM) to replace a simple LLM call—is both novel and elegant.
 
-2.  **Elegant and Pragmatic Methodology:** The proposed two-stage discovery process (Step-Generator `m*` and Meta-Policy `π*`) is well-designed.
-    *   The **scaffolded objective** for discovering the step-generator is clever. By evaluating a candidate module `m` by plugging it into a stable baseline CoT trace, it elegantly solves the credit assignment problem and constrains the search space, making the optimization tractable.
-    *   The use of a **surrogate objective** for the meta-policy (training it with the cheap `m_CoT` and deploying it with the powerful `m*`) is a practical and computationally efficient strategy, which the authors convincingly justify and validate empirically.
+2.  **Strong and Comprehensive Empirical Results:** The paper provides extensive evidence for its claims. The results across multiple benchmarks (AIME, HMMT, GPQA, LiveBench) and multiple foundational models (GPT-4.1-nano, GPT-4o, LLaMA-3.3-70B) are convincing. The fact that ARM consistently outperforms both handcrafted baselines (CoT, Self-Refine) and state-of-the-art automated MAS systems (ADAS, AFlow) is a significant result that validates the proposed approach.
 
-3.  **Strong and Comprehensive Empirical Results:** The results are a significant strength. ARM consistently outperforms a wide range of strong baselines, including simple operators (CoT, Self-Refine) and state-of-the-art automated MAS designers (ADAS, AFlow), across multiple benchmarks (AIME, HMMT, GPQA) and foundation models (GPT-4.1, GPT-4o, LLaMA). The fact that it achieves this with a single, domain-agnostically discovered module underscores its generalizability.
+3.  **Emphasis on Generalizability and Efficiency:** A key weakness of many automated MAS methods is their need for expensive, task-specific re-discovery. ARM directly addresses this by being trained on a generic dataset and then applied zero-shot across diverse tasks and models. This makes the approach far more practical and scalable. The decoupled training strategy (finding the meta-policy using a cheap CoT surrogate) is a clever and efficient design choice, which is empirically validated in the analysis section.
 
-4.  **Effective Ablation and Analysis:** The paper goes beyond just reporting scores. The analyses in Section 7 are crucial for validating the core assumptions of the method. Showing that the step-generator ranking correlates with lower per-step error and demonstrating the successful zero-shot transfer of the meta-policy provides strong evidence for the soundness of the approach.
+4.  **Rigorous Methodology and Analysis:** The paper is methodologically sound. The "scaffolded surrogate objective" for evolving the step-generator is a well-justified solution to the credit assignment problem. The reflection-guided evolutionary search provides a structured and explainable way to explore the program space. The analysis section (Sections 7.1 and 7.2) effectively deconstructs the sources of ARM's performance gains, providing strong empirical validation for the theoretical motivations.
 
 ### Weaknesses
 
-1.  **Significant Computational Cost:** While the surrogate training for the meta-policy saves cost, the core evolutionary search for the ARM module itself is undoubtedly computationally expensive. It involves iterative LLM calls for the "Reviewer Agent" (Critic and Designer) and repeated evaluation of candidate modules on a validation set. The paper does not quantify this cost (e.g., total GPU/API hours), which is a important practical consideration for replicating or building upon this work.
+1.  **Clarity and Accessibility of the Core Abstraction:** While the core idea is brilliant, its presentation could be more intuitive. The jump from a CoT "step" (a line of text) to an ARM "step" (a full, code-based multi-agent system) is conceptually large. The paper could benefit from a more gradual build-up or a more detailed, concrete example early on (perhaps in the introduction or methodology overview) to help the reader form a clear mental model of what an ARM "step" actually looks like in practice before delving into the formalisms.
 
-2.  **The "Black Box" Nature of the Discovered Module:** The best-performing ARM (`CriticChainOfThoughtV7`) and Meta-Policy are presented in an appendix, but the paper offers limited analysis of *what* these modules actually do and *why* they are effective. A deeper qualitative analysis of the evolutionary trajectory or the key "mutations" that led to performance gains would provide more interpretability and insight.
+2.  **Limited Insight into the Discovered Modules:** The paper convincingly shows *that* ARM works, but offers less insight into *what* the evolved modules actually do. Appendices C and D list the best-found modules, but their names (e.g., `CriticChainOfThoughtV7`) are opaque. A deeper qualitative analysis of one or two key mutations—what specific weakness the reviewer agent identified and what code change it implemented—would greatly enhance the paper, making the "reasoning about reasoning" process more tangible and inspiring for future work.
 
-3.  **Limited Discussion of Limitations:** The paper could more explicitly discuss the boundaries of its approach. For instance:
-    *   How does the performance scale with the complexity of the validation set used for discovery?
-    *   Are there types of reasoning problems (e.g., those requiring long-horizon planning or external tool use) where this approach might struggle?
-    *   The method relies on a high-quality "Reviewer Agent" LLM (`o4-mini-high`); how sensitive are the results to the capability of this designer model?
+3.  **Computational Cost of the Search Process:** Although the final system is efficient and generalizable, the initial discovery process for the ARM and meta-policy is likely very computationally expensive, involving numerous LLM calls for the reviewer agent and evaluations on a validation set. The paper does not quantify this cost or compare it directly to the training costs of baselines like ADAS and AFlow. A discussion of the computational budget required for discovery would provide a more complete picture of the method's practicality.
 
-4.  **Clarity of the "Agent" Terminology:** The term "agent" is used in two distinct ways, which could cause confusion. The ARM is a "module" that is itself a "multi-agent system." However, the agents within an ARM appear to be homogeneous, role-defined LLM calls, which is different from the heterogeneous, persona-driven agents in traditional MAS like CAMEL or AutoGen. This conceptual shift is central to the paper's contribution but could be articulated more sharply.
+4.  **Potential Overfitting to the Validation Set:** The ARM is discovered using a 1000-sample subset of the Open-R1-Mixture-of-Thoughts dataset. While the strong performance on held-out benchmarks like LiveBench is reassuring, there remains a possibility that the evolutionary search overfits to the specific patterns and styles of reasoning in this particular dataset. A more robust analysis or discussion of this risk would strengthen the claims of generalizability.
 
-### Assessment of Novelty, Significance, and Clarity
+### Summary
 
-*   **Novelty:** **High.** The concept of evolving the core CoT step into an agentic module via programmatic search is highly novel. It represents a paradigm shift from designing complex agent orchestrations to discovering a superior, general-purpose reasoning primitive.
-*   **Significance:** **High.** The results demonstrate a clear and substantial improvement over existing methods. If the computational cost can be managed, ARM provides a path toward more robust and generalizable reasoning systems, moving away from brittle, domain-specific MAS designs.
-*   **Clarity:** **Good.** The paper is generally well-structured and readable. The methodology is explained with formal notation and accompanied by a clear algorithm and diagram. The primary areas for improvement are a more thorough discussion of limitations and costs, and a deeper dive into the internals of the discovered modules to enhance interpretability.
-
-### Overall Conclusion
-
-This is a strong paper that makes a significant contribution to the field of reasoning with LLMs. It is built on a powerful insight and is backed by a clever methodology and compelling empirical results. While questions about computational cost and interpretability remain, the work successfully establishes a new and promising direction for building more capable and generalizable AI reasoning systems.
-
----
-
-# In-the-Flow Agentic System Optimization for Effective Planning and Tool Use
-
-Authors: Zhuofeng Li, Haoxiang Zhang, Seungju Han, Sheng Liu, Jianwen Xie, Yu Zhang, Yejin Choi, James Zou, Pan Lu
-
-Keywords: N/A
-
-Comments: 45 pages, 12 figures. Project website:
-  https://agentflow.stanford.edu/
-
-Paper link: [http://arxiv.org/abs/2510.05592v1](http://arxiv.org/abs/2510.05592v1)
-
-## Abstract
-
-Outcome-driven reinforcement learning has advanced reasoning in large language models (LLMs), but prevailing tool-augmented approaches train a single, monolithic policy that interleaves thoughts and tool calls under full context; this scales poorly with long horizons and diverse tools and generalizes weakly to new scenarios. Agentic systems offer a promising alternative by decomposing work across specialized modules, yet most remain training-free or rely on offline training decoupled from the live dynamics of multi-turn interaction. We introduce AgentFlow, a trainable, in-the-flow agentic framework that coordinates four modules (planner, executor, verifier, generator) through an evolving memory and directly optimizes its planner inside the multi-turn loop. To train on-policy in live environments, we propose Flow-based Group Refined Policy Optimization (Flow-GRPO), which tackles long-horizon, sparse-reward credit assignment by converting multi-turn optimization into a sequence of tractable single-turn policy updates. It broadcasts a single, verifiable trajectory-level outcome to every turn to align local planner decisions with global success and stabilizes learning with group-normalized advantages. Across ten benchmarks, AgentFlow with a 7B-scale backbone outperforms top-performing baselines with average accuracy gains of 14.9% on search, 14.0% on agentic, 14.5% on mathematical, and 4.1% on scientific tasks, even surpassing larger proprietary models like GPT-4o. Further analyses confirm the benefits of in-the-flow optimization, showing improved planning, enhanced tool-calling reliability, and positive scaling with model size and reasoning turns.
-
-## Summary
-
-N/A
-
-## Critique
-
-N/A
+This is a high-quality paper that makes a significant contribution to the field of reasoning with LLMs. Its core strength lies in its paradigm-shifting idea: to advance reasoning, we should focus on improving the fundamental reasoning step rather than just the high-level orchestration. The results are robust, the methodology is sound and well-validated, and the emphasis on generalizability is a major practical advantage. The main weaknesses are primarily presentational—a somewhat steep initial conceptual curve and a lack of qualitative insight into the evolved modules—and a need for more explicit discussion of computational cost. Overall, it presents a compelling and likely influential new direction for building efficient and powerful reasoning systems.
 
