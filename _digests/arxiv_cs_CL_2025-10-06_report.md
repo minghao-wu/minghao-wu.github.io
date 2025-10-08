@@ -1,10 +1,8 @@
 ---
 title: "ArXiv Daily Digest on 2025-10-06"
 collection: digests
-type: "ArXiv daily digest"
 permalink: /digests/arxiv_cs_CL_2025-10-06_report
 date: 2025-10-06
-location: "Online"
 ---
 
 Today's research landscape showcases exciting advancements in multi-agent systems and model optimization, with several papers exploring how Large Language Models (LLMs) can collaborate more effectively. The theme of multi-agent collaboration appears prominently across multiple studies, including frameworks like MARS (Multi-Agent System for Deep ReSearch) and MATPO (Multi-Agent Tool-Integrated Policy Optimization), which demonstrate how specialized agent roles can enhance complex reasoning tasks. Another significant trend involves improving training efficiency through innovative approaches to combining Supervised Fine-Tuning (SFT) and Reinforcement Learning (RL), with methods like MIFO (Mitigating Forgetting Between Supervised and Reinforcement Learning) showing remarkable data efficiency gains. In the multilingual domain, analysis of Mixture-of-Experts (MoE) architectures reveals fascinating routing patterns, while new benchmarks like LLM-Hanabi provide sophisticated ways to evaluate Theory-of-Mind (ToM) capabilities in collaborative settings. These developments collectively point toward more efficient, collaborative, and capable AI systems that better mimic human reasoning processes.
