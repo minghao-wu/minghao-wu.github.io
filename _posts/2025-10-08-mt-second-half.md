@@ -1,11 +1,11 @@
 ---
-title: 'On The Second Half of Machine Translation'
+title: 'On the Second Half of Machine Translation'
 date: 2025-10-08
 permalink: /posts/2025-10-08-mt-second-half
 tags:
-  - cool posts
-  - category1
-  - category2
+  - machine translation
+  - evaluation
+  - low-resource languages
 mathjax: true
 ---
 
