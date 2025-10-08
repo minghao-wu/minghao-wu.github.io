@@ -1,7 +1,7 @@
 ---
 title: "ArXiv Daily Digest on 2025-10-07"
 collection: digests
-type: "ArXiv daily digest"
+type: "post"
 permalink: /digests/arxiv_cs_CL_2025-10-07_report
 date: 2025-10-07
 location: "Online"
