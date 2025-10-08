@@ -23,6 +23,23 @@ More recently, large language models (LLMs) like GPT-4 have demonstrated impress
 
 ## The Second Half
 
-Current MT systems can even perform on par or better than human translators in certain scenarios. So, what is the next step? Where should MT research go from here?
+Current MT systems can even perform on par with or better than human translators in certain scenarios. So, what is the next step? Where should MT research go from here?
 
-I believe that the second half of machine translation should start from the evaluation perspective. Although some researches claim that their approaches outperform humans, are they really better than humans? In my opinion, the answer is no, even though one of my own papers made such a claim. The reason is that current evaluation metrics, such as BLEU, METEOR, and ROUGE, primarily focus on surface-level similarities between the generated translation and reference translations. These metrics often fail to capture deeper aspects of translation quality, such as fluency, adequacy, and cultural nuances.
+> "What gets measured gets improved" – Peter Drucker
+
+I believe that the second half of machine translation should start from the evaluation perspective. Although some researchers claim that their approaches outperform humans, are they really better than humans? In my opinion, the answer is no, even though one of my own papers made such a claim. The reason is that current MT evaluation methods are all flawed:
+
+* Lexical-based metrics like BLEU do not capture semantic meaning and context, leading to misleading evaluations. Every MT researcher knows that BLEU is not a good metric, yet every MT researcher still wants to see the BLEU score. 
+* Neural-based metrics like BERTScore and COMET, while more advanced, still struggle with understanding nuances and cultural context. These metrics lack transparency and interpretability, making it difficult to understand why a model receives a certain score. They are also likely to be biased towards certain languages, styles, or domains, leading to unfair evaluations.
+* LLM-based evaluations, such as GPT-4 scoring, are promising but still in their infancy. Their limitations are similar to those of neural-based metrics.
+* Human evaluations are commonly considered the gold standard. However, besides being time-consuming and expensive, they are also subjective and inconsistent. Different evaluators may have different criteria and preferences, leading to variability in scores.
+
+In my opinion, my bet is on LLM-based evaluation, as LLMs exhibit a higher level of evaluation consistency compared to human evaluators and are equipped with a better understanding of context and semantics. For example, when evaluating translations requiring historical or cultural knowledge, LLMs can leverage their extensive training data to provide more accurate assessments, while you cannot expect every human evaluator to possess such knowledge.
+
+## Low-Resource Languages?
+
+Another long-standing challenge in both MT and the broader NLP field is the issue of low-resource languages. Although I indeed advocate for more accessible and equitable MT systems and AI technologies, I am not optimistic about the future of low-resource language technologies. The reason is not technological but economic and social. Technology and economy are intertwined. Languages are not that different. English, Chinese, or Swahili are no different to a newborn baby. The technology likewise. If there is no economic incentive or social demand for a language, it is unlikely that significant resources will be allocated to develop technologies for that language. Currently, there are more than 7,000 languages spoken worldwide, but my most optimistic prediction is that in the next century, the number of living languages will shrink to around 100. The impact of post-colonialism, globalization, and the dominance of a few major languages will likely lead to the extinction of many minority languages, and language technologies like large language models are likely to accelerate this process.
+
+## Conclusion
+
+Well, what do you think? Is MT really dead? If not, what is the second half of MT? MT evaluation might not be the second half, but if we want to move into the second half of MT, we need to rethink how we evaluate MT systems.
