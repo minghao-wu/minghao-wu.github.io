@@ -18,6 +18,8 @@ My research interests mainly lie in the following areas:
 * **Multilinguality and Machine Translation**: I have conducted research on multilinguality and machine translation, including multilingual supervised fine-tuning for large language models ([Li et al., 2023](https://arxiv.org/abs/2305.15011)), activation steering for cross-lingual transfer in multilingual language models ([Wang et al., 2025](https://arxiv.org/abs/2410.12462), [Wang et al., 2025](https://arxiv.org/abs/2505.12313)), multilingual process reward modeling ([Wang et al., 2025](https://arxiv.org/abs/2502.12663)), document-level machine translation ([Wu et al., 2023](https://arxiv.org/abs/2302.08079), [Wu et al., 2024](https://arxiv.org/abs/2401.15360), [Wu et al., 2024](https://arxiv.org/abs/2401.06468)), and multilingual evaluation ([Wu et al., 2025](https://arxiv.org/abs/2504.15521)).
 * **Miscellaneous**: Additionally, I have contributed to various other topics, including large language model evaluation ([Wu and Aji, 2024](https://arxiv.org/abs/2307.03025)), multi-modal large language models ([Lyu et al., 2023](https://arxiv.org/abs/2306.09093), [Wang et al., 2024](https://arxiv.org/abs/2311.16511)), and recommender systems ([Zhang et al., 2024](https://arxiv.org/abs/2405.11441)).
 
+Feel free to reach out to me v
+
 
 My CV can be downloaded from <a href="https://minghao-wu.github.io/files/cv/Minghao_Wu_CV_EN.pdf"><u>here</u></a> and  <a href="https://minghao-wu.github.io/files/cv/Minghao_Wu_CV_ZH.pdf"><u>这里</u></a>.
 
