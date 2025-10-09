@@ -25,4 +25,9 @@ Second, maybe we can find a metric from the model internal states (e.g., confide
 
 !["Your LLM agent is dividing a by b" by [Andrej Karpathy](https://x.com/karpathy/status/1976082963382272334)](/images/posts/2025-10-09-test-time-works/overthinking.jpeg)
 
+<figure>
+  <img src="/images/posts/2025-10-09-test-time-works/overthinking.jpeg" />
+  <figcaption>"Your LLM agent is dividing a by b" by [Andrej Karpathy](https://x.com/karpathy/status/1976082963382272334).</figcaption>
+</figure>
+
 These thoughts are just my personal musings and may not be entirely accurate. I need to think more deeply about this topic and conduct more experiments to validate these hypotheses.
