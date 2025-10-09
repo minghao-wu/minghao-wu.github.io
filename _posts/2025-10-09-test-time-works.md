@@ -23,6 +23,6 @@ First, maybe we can use the effectiveness of TTS methods as a proxy to estimate 
 
 Second, maybe we can find a metric from the model internal states (e.g., confidence, entropy, etc.) that predicts the model confidence in its predictions. If we can identify such a metric, we can potentially use it to determine when TTS methods would be beneficial. For instance, if the model exhibits high confidence in its predictions, it may indicate that TTS methods are unnecessary. Conversely, if the model shows low confidence, it may suggest that TTS methods could help improve performance. If such a metric can be found, it would be a significant step towards more efficient and effective use of TTS methods in practice and would help avoid the "overthinking" problem in large reasoning models.
 
-![Claude is Overthinking in the divide calculation by [Andrej Karpathy](https://x.com/karpathy/status/1976082963382272334)](/images/posts/2025-10-09-test-time-works/overthinking.jpeg)
+!["Your LLM agent is dividing a by b" by [Andrej Karpathy](https://x.com/karpathy/status/1976082963382272334)](/images/posts/2025-10-09-test-time-works/overthinking.jpeg)
 
 These thoughts are just my personal musings and may not be entirely accurate. I need to think more deeply about this topic and conduct more experiments to validate these hypotheses.
