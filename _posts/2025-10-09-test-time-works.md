@@ -4,7 +4,8 @@ date: 2025-10-08
 permalink: /posts/2025-10-08-test-time-works
 tags:
   - test-time scaling
-  - large language models
+  - machine translation
+  - reasoning
 mathjax: true
 ---
 
