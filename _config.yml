@@ -185,6 +185,9 @@ collections:
   posts:
     output: true
     permalink: /:collection/:path/
+  thoughts:
+    output: true
+    permalink: /:collection/:path/
   digests:
     output: true
     permalink: /:collection/:path/
@@ -204,6 +207,17 @@ defaults:
       share: true
       related: true
   # _posts
+  - scope:
+      path: ""
+      type: thoughts
+    values:
+      layout: single
+      author_profile: true
+      read_time: true
+      comments: true
+      share: true
+      related: true
+  # _digests
   - scope:
       path: ""
       type: digests
