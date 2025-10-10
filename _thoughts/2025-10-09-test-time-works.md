@@ -15,7 +15,7 @@ Today, I encountered a machine translation paper claiming that TTS does not work
 
 Their findings align with my own experiences and intuitions. I think the relative effectiveness of TTS depends on two main factors: the model capability/performance and the task complexity/difficulty. As illustrated in the figure below, suppose the task complexity is properly defined. TTS methods are more likely to be effective when the model performance is moderate. Either when the model performance is very poor or very strong, TTS methods are less likely to be effective. Likewise, given a model with a certain capability, TTS methods are more likely to be effective when the task complexity is moderate. When the task complexity is very low or very high, TTS methods are less likely to be effective.
 
-![Relative effectiveness of Test-Time Scaling](/images/posts/2025-10-09-test-time-works/test-time-scaling-2025-10-09-1104.svg)
+![Relative effectiveness of Test-Time Scaling](/images/thoughts/2025-10-09-test-time-works/test-time-scaling-2025-10-09-1104.svg)
 
 If the intuition above holds, there are two possible directions for future research:
 
