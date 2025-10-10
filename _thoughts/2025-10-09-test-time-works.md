@@ -1,7 +1,7 @@
 ---
 title: 'When Test-Time Scaling Works'
 date: 2025-10-09
-permalink: /posts/2025-10-09-test-time-works
+permalink: /thoughts/2025-10-09-test-time-works
 tags:
   - test-time scaling
   - machine translation

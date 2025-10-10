@@ -1,7 +1,7 @@
 ---
 title: 'On the Second Half of Machine Translation'
 date: 2025-10-08
-permalink: /posts/2025-10-08-mt-second-half
+permalink: /thoughts/2025-10-08-mt-second-half
 tags:
   - machine translation
   - evaluation
