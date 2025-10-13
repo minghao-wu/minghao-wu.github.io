@@ -7,6 +7,8 @@ author_profile: true
 
 There are hundreds of papers uploaded to arXiv every day, making it challenging to read them all. To stay updated with the latest research, I use a large language model to filter out papers that align well with my research interests. Below are the daily digests of selected papers that my AI assistant has identified as noteworthy.
 
+If you found some dates missing, don't be surprised. It could be due to various reasons, such as no papers matching my interests on that day, failure to fetch the data, or other technical issues. I will try my best to keep this page updated.
+
 ### Change Log:
 * **2025-10-06**: Initial release.
 
