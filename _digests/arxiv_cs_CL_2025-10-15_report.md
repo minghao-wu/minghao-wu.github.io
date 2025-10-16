@@ -6,31 +6,249 @@ date: 2025-10-15
 location: "Online"
 ---
 
-Today's research landscape reveals a strong focus on enhancing the efficiency and reliability of large language models (LLMs), with several papers introducing novel optimization frameworks. A key trend is the move beyond simple correctness metrics towards more nuanced objectives like faithful reasoning in retrieval-augmented generation and robust preference optimization for machine translation. We see significant progress in parameter-efficient methods, including a new technique for sparse subnetwork enhancement to boost performance in underrepresented languages and a parameter-free approach called GatePro for improving expert selection diversity in Mixture-of-Experts (MoE) models. Concurrently, safety remains a priority, evidenced by DSCD (Detoxification with Self-Constrained Decoding), a lightweight decoding-time method for model detoxification. These works collectively highlight the field's push towards more specialized, trustworthy, and resource-conscious model development.
+Today's research landscape showcases significant advances in enhancing the reasoning and specialization of large language models (LLMs), with several papers focusing on structured reasoning frameworks like Chain-of-Thought (CoT) fine-tuning and Program-of-Thoughts (PoT). A notable trend is the use of evolutionary and multi-agent strategies to improve model performance: CoT-Evo applies evolutionary algorithms to distill high-quality reasoning traces for scientific domains, while EvoTest introduces a test-time learning framework where agents evolve their configurations across episodes. In parallel, methods like GatePro optimize Mixture-of-Experts (MoE) models by promoting expert diversity without additional parameters, and M²PO (Multi-Pair, Multi-Perspective Preference Optimization) refines preference learning for machine translation by integrating multi-perspective rewards. Industrial applications are also prominent, as seen in Meituan’s WOWService, which leverages multi-agent systems for scalable, real-world dialogue systems. Additionally, multilingual adaptation is advanced through sparse subnetwork fine-tuning, efficiently enhancing LLM capabilities for underrepresented languages.
 
 ## TL;DR
 
-Total papers: 69 , Selected papers: 5
+Total papers: 69 , Selected papers: 10
 
-Here's a TL;DR summary of the key themes and insights from these papers:
+Based on the provided arXiv papers, here is a TL;DR summary capturing the main themes and insights:
 
-**Main Themes:**
-- **Preference Optimization & Model Alignment**: Papers explore advanced preference optimization techniques for machine translation (M^2PO) and retrieval-augmented generation (VERITAS), moving beyond simple win-loss pairs to multi-perspective rewards and process supervision.
-- **Efficient Model Adaptation**: Several papers focus on parameter-efficient methods, including sparse subnetwork fine-tuning for low-resource languages and parameter-free expert selection in MoE models.
-- **Safety & Reliability**: Work on detoxification (DSCD) and faithful reasoning emphasizes building more trustworthy and transparent LLMs.
+### Core Theme: Enhancing Reasoning and Specialization in Language Models
+A dominant theme across these papers is the push to make Large Language Models (LLMs) more reliable, efficient, and specialized. This is achieved through novel frameworks that enhance their reasoning capabilities, optimize their internal structures, and adapt them for specific, complex tasks.
 
-**Key Insights:**
-- **M^2PO** (https://arxiv.org/abs/2510.13434) introduces multi-perspective rewards combining hallucination penalties with dynamic quality scoring, achieving SOTA in MT while addressing QE model limitations.
+**1. Improving Reasoning with Structured Frameworks**
+Several papers propose methods to move beyond simple chain-of-thought by incorporating more structured, human-like reasoning processes.
+*   **CoT Surveys & Frameworks:** A comprehensive survey (https://arxiv.org/abs/2510.13170) reframes Chain-of-Thought fine-tuning through the lens of the "Six Thinking Hats" model, advocating for a more systematic, human-cognition-inspired approach. Another paper, **D-SMART** (https://arxiv.org/abs/2510.13363), tackles dialogue consistency by building a dynamic knowledge graph of the conversation and using an explicit reasoning tree to traverse it, ensuring logical coherence over multiple turns.
+*   **Evolutionary Data Synthesis:** For challenging domains like scientific reasoning, **CoT-Evo** (https://arxiv.org/abs/2510.13166) uses an evolutionary algorithm to generate high-quality reasoning chains by recombining and mutating initial model outputs, creating superior training data for smaller models.
+*   **Program-aided Reasoning:** In finance, the **FINDER** framework (https://arxiv.org/abs/2510.13157) combines a generative retriever with a Program-of-Thought approach that uses dynamically selected in-context examples, achieving new SOTA by improving the extraction and computational steps of numerical reasoning.
 
-- **GatePro** (https://arxiv.org/abs/2510.13079) provides parameter-free expert diversity optimization for MoE models, preventing redundant expert activation through localized competition mechanisms.
+**2. Promoting Efficiency and Specialization via Model Architecture**
+A key insight is that better performance doesn't always require full fine-tuning; it can be achieved by strategically activating or modifying small parts of a model.
+*   **Mixture-of-Experts (MoE) Optimization:** **GatePro** (https://arxiv.org/abs/2510.13079) is a parameter-free method that increases expert diversity in MoE models by identifying and forcing competition between the most similar experts, preventing redundant computation and improving model capacity without adding parameters.
+*   **Sparse Subnetwork Fine-tuning:** For adapting models to underrepresented languages, one paper (https://arxiv.org/abs/2510.13580) fine-tunes only the identified language-specific neurons (a tiny fraction of parameters), efficiently boosting monolingual performance while preserving general capabilities.
 
-- **DSCD** (https://arxiv.org/abs/2510.13183) offers plug-and-play detoxification by manipulating internal layer distributions during decoding, maintaining fluency while reducing toxicity.
+**3. Enabling Adaptive and Strategic Behavior**
+Another theme focuses on creating agents that can learn, adapt, and persuade in dynamic environments.
+*   **Test-Time Learning:** **EvoTest** (https://arxiv.org/abs/2510.13220) introduces a benchmark and a gradient-free framework where an "Evolver" agent analyzes game transcripts to evolve the entire configuration (prompt, memory, tools) of an "Actor" agent between episodes, enabling significant on-the-fly improvement.
+*   **Strategic Communication:** A paper on **Bayesian Persuasion** (https://arxiv.org/abs/2510.13387) grounds this game-theoretic concept in natural dialogue by having the persuader narrate their potential types (e.g., honest/dishonest), guiding the persuadee's belief update without relying on unrealistic pre-commitment.
 
-- **VERITAS** (https://arxiv.org/abs/2510.13272) introduces process-based rewards for faithful reasoning in RAG systems, significantly improving reasoning transparency without sacrificing performance.
+**4. Industrial Application & Multi-Agent Systems**
+The application of these advanced techniques in real-world, large-scale systems is demonstrated.
+*   **Preference Optimization for MT:** **M²PO** (https://arxiv.org/abs/2510.13434) enhances machine translation by using a multi-perspective reward (factuality + quality) and constructing multiple preference pairs from all candidates, leading to more robust and faithful translations.
+*   **Large-Scale Deployment:** The Meituan technical report on **WOWService** (https://arxiv.org/abs/2510.13291) showcases a full-stack, multi-agent intelligent interaction system that uses a self-refinement training loop and a multi-stage training pipeline to achieve major gains in user satisfaction and cost efficiency.
 
-- **Sparse Subnetwork** (https://arxiv.org/abs/2510.13580) enhances low-resource language performance by fine-tuning only language-specific neurons (0.2-1% parameters), preserving general capabilities while improving cross-lingual alignment.
+**Overall Insight:** The frontier of LLM research is shifting from simply scaling models to designing sophisticated frameworks that guide, constrain, and specialize model behavior. The emphasis is on data efficiency, architectural optimization, strategic reasoning, and building complex, reliable systems for real-world deployment.
 
-These papers collectively advance efficient, safe, and multilingual LLM deployment through innovative optimization strategies and targeted architectural interventions.
+---
+
+# Putting on the Thinking Hats: A Survey on Chain of Thought Fine-tuning from the Perspective of Human Reasoning Mechanism
+
+Authors: Xiaoshu Chen, Sihang Zhou, Ke Liang, Duanyang Yuan, Haoyuan Chen, Xiaoyu Sun, Linyuan Meng, Xinwang Liu
+
+Keywords: Chain-of-Thought Fine-tuning, Large Language Models, Reasoning Mechanisms, Six Thinking Hats, Human-like Reasoning, Supervised Fine-tuning, Reinforced Fine-tuning, Planning, Divergent Thinking, Reflective Capabilities
+
+Comments: None
+
+Paper link: [http://arxiv.org/abs/2510.13170v1](http://arxiv.org/abs/2510.13170v1)
+
+## Abstract
+
+Chain of thought (CoT) fine-tuning aims to endow large language models (LLMs) with reasoning capabilities by training them on curated reasoning traces. It leverages both supervised and reinforced fine-tuning to cultivate human-like reasoning skills in LLMs, including detailed planning, divergent thinking, intuitive judgment, timely reflection, internal thinking, and fact perception, etc. As CoT fine-tuning has advanced, LLMs have demonstrated substantial improvements in tasks such as mathematical reasoning and code generation. However, existing surveys about CoT fine-tuning primarily focus on technical aspects and overlook a systematic analysis from the perspective of human reasoning mechanisms. Given that the ultimate goal of CoT fine-tuning is to enable LLMs to reason like humans, it is crucial to investigate this technique through the lens of human cognition. To fill this gap, we present the first comprehensive survey of CoT fine-tuning grounded in human reasoning theory. Specifically, inspired by the well-known Six Thinking Hats framework, which systematically characterizes common human thinking modes using six metaphorical hats, we classify and examine CoT fine-tuning methods through this lens. Furthermore, building upon this theory, we outline potential directions for future research in CoT fine-tuning. In addition, we compile a comprehensive overview of existing datasets and model performances, and a real-time GitHub repository \footnote{https://github.com/AI-Chen/Awesome-CoT-Finetuning} that continuously tracks recent advances in this area is maintained. We hope this survey will serve as a valuable resource to inspire innovation and foster progress in this rapidly evolving field.
+
+## Summary
+
+This survey paper, "Putting on the Thinking Hats: A Survey on Chain of Thought Fine-tuning from the Perspective of Human Reasoning Mechanism," offers a novel and systematic review of Chain of Thought (CoT) fine-tuning for Large Language Models (LLMs) by framing it through the lens of the "Six Thinking Hats" framework—a classic model of human reasoning. The authors argue that while existing surveys focus on the technical aspects of CoT fine-tuning, they overlook a systematic analysis grounded in human cognition, which is the ultimate goal of enabling LLMs to reason like humans.
+
+The paper's key contribution is a bi-level taxonomy that classifies CoT fine-tuning methods according to the six human reasoning modes represented by the Thinking Hats: Blue (Planning), Green (Divergent Thinking), Red (Intuitive Judgment), Black (Timely Reflection), Yellow (Internal Thinking), and White (Fact Perception). For each "hat," the survey comprehensively reviews corresponding techniques. For instance, methods under the Blue Hat focus on enhancing planning capabilities (e.g., self-planning or using external planners), while those under the Green Hat aim to foster diverse thinking through architectural changes like Mixture-of-Experts or test-time augmentation strategies. The survey also traces the evolution of CoT fine-tuning through three stages: the Reflex Model (direct answer generation), the Thinking Model (explicit CoT supervision via SFT and RFT), and the advanced Insight Model (equipped with human-like reasoning abilities).
+
+In addition to this novel taxonomy and comprehensive review, the paper provides a curated overview of evaluation benchmarks across various reasoning tasks (mathematics, coding, commonsense, etc.) and presents performance comparisons of representative methods. It also identifies key challenges and future research directions for each "thinking hat," such as developing meta-planning capabilities (Blue), achieving robust preference learning (Red), and preventing overthinking (Black). The authors maintain an open-source GitHub repository to track ongoing advances in the field, serving as a valuable resource for researchers. By connecting technical developments in CoT fine-tuning with established human reasoning theories, this survey aims to inspire innovation and foster progress toward building more human-like, reliable, and capable reasoning systems in LLMs.
+
+## Critique
+
+Of course. Here is a critical assessment of the strengths and weaknesses of the paper "Putting on the Thinking Hats: A Survey on Chain of Thought Fine-tuning from the Perspective of Human Reasoning Mechanism."
+
+### **Strengths**
+
+1.  **High Novelty and Conceptual Framing:** The paper's primary strength is its innovative conceptual framework. While numerous surveys on Chain-of-Thought (CoT) exist, this is the first to systematically organize the entire field through the lens of Edward de Bono's "Six Thinking Hats." This human-centric perspective is not just a catchy gimmick; it provides a powerful, intuitive, and structured taxonomy that helps make sense of a vast and rapidly evolving research area. It shifts the focus from purely technical details to the *cognitive capabilities* the techniques aim to instill.
+
+2.  **Comprehensive Scope and Systematic Organization:** The survey is exceptionally thorough. It covers the full trajectory of CoT fine-tuning, from foundational "Thinking Models" (SFT, RFT) to advanced "Insight Models," and does so systematically using the six-hat taxonomy (Blue/Planning, Green/Divergent, Red/Intuitive, Black/Reflective, Yellow/Internal, White/Factual). The bi-level taxonomy (top-level reasoning ability, base-level techniques) and the summary figures (e.g., Figures 2, 5-10) are excellent for navigation and understanding the landscape. The inclusion of a dedicated evaluation section (Sec. V) and a maintained GitHub repository adds significant practical value.
+
+3.  **Clarity of Presentation and Effective Use of Visuals:** The paper is well-structured and clearly written. The use of tables (e.g., Table I comparing surveys, Table II comparing SFT paradigms) and figures is strategic and effective. They distill complex comparisons and methodological pipelines into easily digestible formats, greatly enhancing the reader's comprehension.
+
+4.  **Forward-Looking Analysis:** Section VI, "Challenges & Future Directions," is a major contribution. It doesn't just summarize the past but critically analyzes the limitations of current approaches within the established framework (e.g., "Meta planning," "From surface to internal," "Clash of Caps"). This provides a valuable roadmap for researchers and identifies fertile ground for future work, moving the field beyond incremental improvements.
+
+### **Weaknesses**
+
+1.  **Lack of Critical Depth in Technical Analysis:** While the survey is comprehensive in its *coverage*, it is sometimes less deep in its *critical analysis* of the individual methods. The descriptions are often summative, explaining *what* a method does, but could more frequently include a critique of *how well* it works, its computational costs, its scalability, or its potential pitfalls (e.g., reward hacking in PRM is mentioned, but similar critiques for other methods are sparse). The performance table (Table IV) is useful but would be strengthened by a narrative that synthesizes these results, explaining *why* certain hat-oriented methods excel in specific domains.
+
+2.  **Ambiguity in the "Insight Model" Categorization:** The distinction between a "Thinking Model" and an "Insight Model" is central to the paper's narrative, but the boundary can feel somewhat blurred. Many techniques placed in the "Insight Model" section (Sec. IV), such as some planning or diversity methods, seem like natural extensions of the SFT/RFT paradigms described in the "Thinking Model" section (Sec. III). A clearer, more explicit set of criteria for what elevates a method from a "Thinker" to an "Insightful" model would strengthen this conceptual division.
+
+3.  **Presentation as a "Survey" vs. a "Framework Paper":** The paper positions itself as a survey, but its most significant contribution is arguably the novel taxonomic framework itself. While it reviews many papers, the "Six Thinking Hats" lens is a strong editorial filter that necessarily shapes the narrative. Acknowledging this more explicitly—perhaps framing the work as "a survey and a new organizing framework"—would be more precise. The risk is that some relevant work might be omitted or forced to fit into the hat taxonomy where it doesn't perfectly belong.
+
+4.  **Underdeveloped "Clash of Caps" Discussion:** The identified challenge of "Clash of Caps" (Sec. VI-G) is a profound and critical insight—reasoning traits often conflict. However, the discussion of this challenge is relatively brief compared to its importance. This topic deserves a more in-depth analysis, perhaps exploring initial research that attempts to manage these conflicts (e.g., dynamic routing, meta-reasoning) and outlining more concrete research avenues for achieving a balance.
+
+### **Overall Significance**
+
+This is a highly valuable and timely contribution to the field. Its novelty lies not in presenting new empirical results but in providing a sophisticated, human-inspired intellectual framework that organizes and interprets a complex research domain. The paper successfully reframes the conversation around CoT fine-tuning from "how" to "why"—what human reasoning ability are we trying to emulate? Its weaknesses are primarily related to the depth of critical analysis and the clarity of its highest-level definitions, but they do not significantly detract from its utility as an essential reference and a source of inspiration for future research. It is likely to become a key citation for anyone working on reasoning in large language models.
+
+---
+
+# EvoTest: Evolutionary Test-Time Learning for Self-Improving Agentic Systems
+
+Authors: Yufei He, Juncheng Liu, Yue Liu, Yibo Li, Tri Cao, Zhiyuan Hu, Xinxing Xu, Bryan Hooi
+
+Keywords: Test-time learning, Evolutionary algorithms, Self-improving agents, Multi-agent systems, Agentic systems, Gradient-free optimization, Interactive fiction, Jericho benchmark
+
+Comments: None
+
+Paper link: [http://arxiv.org/abs/2510.13220v1](http://arxiv.org/abs/2510.13220v1)
+
+## Abstract
+
+A fundamental limitation of current AI agents is their inability to learn complex skills on the fly at test time, often behaving like "clever but clueless interns" in novel environments. This severely limits their practical utility. To systematically measure and drive progress on this challenge, we first introduce the Jericho Test-Time Learning (J-TTL) benchmark. J-TTL is a new evaluation setup where an agent must play the same game for several consecutive episodes, attempting to improve its performance from one episode to the next. On J-TTL, we find that existing adaptation methods like reflection, memory, or reinforcement learning struggle. To address the challenges posed by our benchmark, we present EvoTest, an evolutionary test-time learning framework that improves an agent without any fine-tuning or gradients-by evolving the entire agentic system after every episode. EvoTest has two roles: the Actor Agent, which plays the game, and the Evolver Agent, which analyzes the episode transcript to propose a revised configuration for the next run. This configuration rewrites the prompt, updates memory by logging effective state-action choices, tunes hyperparameters, and learns the tool-use routines. On our J-TTL benchmark, EvoTest consistently increases performance, outperforming not only reflection and memory-only baselines but also more complex online fine-tuning methods. Notably, our method is the only one capable of winning two games (Detective and Library), while all baselines fail to win any.
+
+## Summary
+
+This paper introduces **EvoTest**, an evolutionary test-time learning framework for self-improving agentic systems, along with a new benchmark called **Jericho Test-Time Learning (J-TTL)** to evaluate such capabilities.
+
+**Key Contributions:**
+1. **J-TTL Benchmark**: A novel evaluation framework using Jericho text-based adventure games where agents must play the same game across multiple episodes and improve their performance through learning within a single session. This systematically measures an agent's ability to learn "on the fly" from experience.
+2. **EvoTest Framework**: A gradient-free evolutionary learning method that evolves entire agent configurations between episodes without fine-tuning. The framework employs a two-agent system: an **Actor Agent** that plays the game and an **Evolver Agent** that analyzes episode transcripts to propose improved configurations for the next attempt.
+
+**Methodology:**
+EvoTest performs **whole-system evolution** by modifying four key components:
+- **Policy prompts**: Rewriting strategic guidance based on past successes/failures
+- **Deployment-time memory**: Structured databases logging effective state-action pairs
+- **Hyperparameters**: Tuning decision-making parameters like temperature and exploration
+- **Tool-use routines**: Refining how the agent accesses memory and abstracts game states
+
+The system uses **Upper Confidence Bound (UCB)** selection to balance exploration of new configurations with exploitation of proven ones, preventing performance collapse from poor mutations.
+
+**Key Results:**
+- EvoTest significantly outperforms all baselines, achieving **38% improvement** over the strongest prompt-evolution baseline and **57% improvement** over online reinforcement learning
+- It was the **only method capable of winning** two challenging games (Detective and Library) where all baselines failed
+- The framework demonstrates superior **data efficiency** compared to gradient-based methods, leveraging rich narrative feedback from transcripts rather than sparse scalar rewards
+- Ablation studies confirm that all components contribute to performance, with prompt evolution being the most critical and UCB selection crucial for stable learning
+
+The work represents a significant step toward building truly autonomous agents that can learn and self-improve from experience without requiring extensive retraining or fine-tuning.
+
+## Critique
+
+Of course. Here is a critique of the paper "EvoTest: Evolutionary Test-Time Learning for Self-Improving Agentic Systems," focusing on its strengths and weaknesses.
+
+### **Strengths**
+
+1.  **Novel Benchmark (J-TTL):** The introduction of the Jericho Test-Time Learning (J-TTL) benchmark is a significant contribution. It cleanly isolates and formalizes the problem of "on-the-fly" learning, a critical capability for autonomous agents that is often discussed but rarely measured systematically. The protocol of consecutive episodes on the same game with a full reset is a simple yet powerful way to evaluate an agent's ability to learn from its own experience without external guidance.
+
+2.  **Holistic and Novel Approach:** The core idea of "whole-system evolution" is compelling and a step beyond existing methods. Instead of just optimizing the prompt (like EvoPrompt) or adding memory (like MemGPT), EvoTest concurrently evolves the prompt, memory structure, hyperparameters, and tool-use routines. This multi-faceted approach addresses the limitation that a perfect strategy (prompt) can fail due to poor execution (e.g., wrong temperature, inefficient memory access). The use of a separate "Evolver Agent" to analyze transcripts is a clever way to perform credit assignment using rich narrative feedback instead of sparse rewards.
+
+3.  **Strong and Comprehensive Empirical Results:** The experimental results are highly convincing. EvoTest demonstrates a substantial and consistent performance improvement over a wide array of strong baselines, including reflection-based (Reflexion), memory-based (RAG), prompt-optimization (TextGrad, EvoPrompt), and online fine-tuning methods (SFT, GRPO). The fact that it is the only method to win certain games is a powerful testament to its effectiveness. The ablation studies are thorough and effectively demonstrate the contribution of each component, with the UCB analysis providing a nuanced view of its role in ensuring stable learning.
+
+4.  **Clarity of Presentation:** The paper is generally well-structured and easy to follow. The problem is clearly motivated with the "clever but clueless interns" analogy. The framework is explained step-by-step, with Figure 1 providing a clear visual overview of the EvoTest loop. The distinction between the Actor and Evolver agents is well-defined.
+
+### **Weaknesses**
+
+1.  **Computational Cost and Practicality:** While the paper correctly notes that EvoTest is faster than online fine-tuning, it remains a relatively expensive method. Each learning step requires a call to a powerful (and likely costly) LLM like `o3-mini`. The 20-30 second update time, while better than 5-10 minutes, could still be a bottleneck for real-time applications requiring rapid adaptation. A deeper discussion of the trade-offs between performance gains and computational budget would be beneficial.
+
+2.  **Limited Scope of Evaluation:** The evaluation is exclusively conducted within the Jericho text-game environment. While this is a valid and complex testbed, it represents a specific domain. The generalizability of EvoTest's success to other domains—such as web navigation, robotics simulation, or real-world business workflows—remains an open question. The paper would be strengthened by a discussion of which aspects of the framework are domain-specific and which are generalizable.
+
+3.  **Dependence on a Powerful "Evolver" LLM:** The ablation study in Table 4 shows a clear correlation between the Evolver agent's LLM capability and overall performance. This raises a potential concern: is the performance driven by the innovative EvoTest framework, or is it largely a result of using a very powerful "meta-model" (o3) to guide a weaker actor model? While the framework still works with smaller models, the significant performance gap suggests that the approach may be sensitive to rapid advancements in base LLM capabilities.
+
+4.  **Definition of "Evolutionary":** The term "evolutionary" in the title and throughout the paper might be slightly overstated from a classical Evolutionary Algorithm (EA) perspective. The method maintains a very small "population" (essentially the parent and its immediate children) and uses a sophisticated LLM for directed mutation rather than random operators like crossover or blind mutation. It is more accurately described as a **LLM-guided, iterative system configuration optimizer**. This does not diminish its contribution but may set slightly different expectations for readers familiar with traditional EA literature.
+
+### **Overall Assessment**
+
+This is a high-quality paper with a strong contribution. The novel J-TTL benchmark fills an important gap in the field, and the proposed EvoTest framework presents a compelling, holistic solution to the problem of test-time learning. The empirical evidence is robust and clearly demonstrates state-of-the-art performance. The main weaknesses relate to the cost, domain-specificity of the evaluation, and the framing of the "evolutionary" aspect, but these do not detract from the paper's core significance. It represents a concrete and impactful step towards building more adaptive and autonomous AI agents.
+
+---
+
+# CoT-Evo: Evolutionary Distillation of Chain-of-Thought for Scientific Reasoning
+
+Authors: Kehua Feng, Keyan Ding, Zhihui Zhu, Lei Liang, Qiang Zhang, Huajun Chen
+
+Keywords: Chain-of-Thought Distillation, Evolutionary Algorithms, Scientific Reasoning, Knowledge Augmentation, Multi-agent Reasoning, Reasoning Trajectory Optimization
+
+Comments: 28 pages, 3 figures
+
+Paper link: [http://arxiv.org/abs/2510.13166v1](http://arxiv.org/abs/2510.13166v1)
+
+## Abstract
+
+While chain-of-thought (CoT) distillation from advanced large language models (LLMs) has proven effective in general reasoning tasks, it struggles in scientific domains where even advanced models often produce incorrect or superficial reasoning due to high complexity and specialized knowledge requirements. Directly distilling from such flawed outputs results in low-quality training data and limits the performance of smaller student models. To overcome this, we propose CoT-Evo, an evolutionary CoT distillation framework. It begins by constructing a diverse pool of reasoning trajectories from multiple LLM thinkers, enriches them with automatically retrieved domain knowledge, and iteratively refines the trajectories using novelty-driven selection, reflective recombination and mutation. The refinement is guided by a fitness function that evaluates answer correctness, coherence, and effective knowledge utilization. This results in a high-quality CoT dataset tailored for scientific reasoning. We employ this evolved dataset to fine-tune a compact model, which achieves state-of-the-art performance on scientific reasoning benchmarks. Our work establishes a scalable approach to synthesizing high-fidelity scientific reasoning data from diverse and fallible LLMs.
+
+## Summary
+
+Of course. Here is a summary of the paper "CoT-Evo: Evolutionary Distillation of Chain-of-Thought for Scientific Reasoning."
+
+### Summary
+
+**Key Problem:** Standard Chain-of-Thought (CoT) distillation from large language models (LLMs) struggles in scientific domains, where even advanced models often produce incorrect or superficial reasoning. Directly distilling these flawed outputs limits the performance of smaller student models.
+
+**Key Contribution:** The paper introduces **CoT-Evo**, a novel evolutionary framework for CoT distillation that performs **intra-chain aggregation**. Unlike prior methods that simply select the best reasoning path from multiple teachers, CoT-Evo dynamically integrates and refines reasoning steps *within* a single chain to synthesize a higher-quality trajectory.
+
+**Method:** CoT-Evo mimics a genetic algorithm with four core modules:
+1.  **Multi-thinker Initialization:** Generates a diverse pool of initial reasoning trajectories from multiple LLMs and prompting strategies, optionally augmented with automated knowledge retrieval.
+2.  **Fitness Function:** Evaluates candidates on answer correctness, reasoning-length appropriateness, and, crucially, the correctness of knowledge usage.
+3.  **Novelty-Driven Selection:** Employs a Pareto-based selection mechanism that rewards both high quality and behavioral diversity to avoid premature convergence.
+4.  **Reflective Recombination & Mutation:** Uses LLMs to perform fine-grained operations: *recombination* integrates useful steps from one CoT into another, while *mutation* revises logic by adding, deleting, or innovating on reasoning steps.
+
+This process runs in an iterative loop, evolving a compact set of high-fidelity CoTs for downstream fine-tuning.
+
+**Key Results:**
+*   On scientific reasoning benchmarks (BioProBench and ChemCoTBench), models fine-tuned with CoT-Evo data **consistently outperform** those trained with standard Single-Teacher (ST) and Multi-Teacher (MT) distillation baselines.
+*   The performance gains are shown to come from **higher-quality data**, not just more data, as CoT-Evo outperforms a "Best-of-K" sampling baseline with the same budget.
+*   Ablation studies confirm the necessity of both recombination and mutation modules, and the superiority of the novelty-driven selection strategy over greedy or random selection.
+*   In some cases, student models fine-tuned with CoT-Evo data even **rival the performance of the much larger teacher LLMs** used to generate the initial trajectories.
+
+In conclusion, CoT-Evo provides a scalable and effective method for synthesizing high-quality scientific reasoning data, enabling smaller models to achieve state-of-the-art performance in complex domains.
+
+## Critique
+
+Of course. Here is a critique of the paper "CoT-Evo: Evolutionary Distillation of Chain-of-Thought for Scientific Reasoning," focusing on its strengths and weaknesses.
+
+### Overall Assessment
+
+This is a strong and well-executed paper that introduces a novel and effective method for a clear and important problem: improving the quality of Chain-of-Thought (CoT) data for distilling reasoning capabilities into smaller models, specifically in challenging scientific domains. The approach is creative, the experimental validation is thorough, and the presentation is generally clear.
+
+---
+
+### Strengths
+
+1.  **High Novelty and Conceptual Elegance:** The core idea of applying an evolutionary algorithm (EA) framework to CoT distillation is highly novel. Moving beyond simple selection or filtering from multiple teachers to an intra-chain, fine-grained "recombination" and "mutation" of reasoning steps is a significant conceptual leap. This allows the method to potentially create reasoning paths that are *better* than any single output from the teacher models.
+
+2.  **Well-Defined and Comprehensive Methodology:** The paper does an excellent job of breaking down the EA metaphor into concrete, LLM-operable components:
+    *   **Multi-thinker Initialization:** Justifies the need for a diverse starting pool.
+    *   **Fitness Function:** Well-designed, combining answer correctness, length appropriateness, and a nuanced "knowledge usage correctness" evaluated by an LLM-judge.
+    *   **Novelty-Driven Selection (NSLC):** This is a sophisticated touch. It effectively addresses the common problem in EAs of premature convergence to a local optimum by explicitly rewarding behavioral diversity in the reasoning space.
+    *   **Reflective Operators:** The descriptions of recombination (cross-chain) and mutation (additive, deletive, innovative) are detailed and grounded in the specific challenges of scientific reasoning (e.g., correcting erroneous logic, integrating external knowledge).
+
+3.  **Strong and Convincing Experimental Results:** The empirical evaluation is a major strength.
+    *   **Comprehensive Baselines:** The authors compare against all relevant baselines: original models, Single Teacher (ST), Multi Teacher (MT), and a strong Best-of-K (BoK) baseline that accounts for the increased sampling budget.
+    *   **Significant Performance Gains:** The results show consistent and often substantial improvements over all baselines across multiple models and two distinct, complex scientific benchmarks (BioProBench and ChemCoTBench). The fact that CoT-Evo sometimes rivals or even surpasses the performance of the much larger teacher models is a powerful testament to its effectiveness.
+    *   **Ablation Studies:** The ablations are critical and well-chosen. They successfully demonstrate the necessity of both recombination and mutation and the superiority of the novelty-driven selection over greedy or random strategies. The analysis of scalability (budget and population size) is also valuable for practical application.
+
+4.  **Clarity and Reproducibility:** The paper is generally well-structured and easy to follow. The inclusion of a high-level overview figure (Figure 1) is helpful. The authors have committed to releasing code and have provided extensive prompts in the appendix, which greatly enhances reproducibility.
+
+---
+
+### Weaknesses
+
+1.  **Computational Cost and Scalability:** This is the most significant weakness, which the authors explicitly acknowledge in the "Limitations" section. The process is inherently expensive, requiring multiple calls to large, proprietary models (GPT-5-mini, various API-based thinkers) for initialization, knowledge augmentation, fitness evaluation, and the evolutionary operators themselves. While the results are impressive, the practical applicability for very large-scale distillation or in resource-constrained environments is limited. A more detailed discussion of the actual cost (e.g., estimated API call count or cost per datapoint) would have been useful.
+
+2.  **Dependence on LLM-Judges:** The fitness function relies heavily on an LLM-as-a-Judge for the "knowledge usage correctness" component. While this is a common practice, it introduces a potential source of bias and error. The judges themselves may not be perfectly reliable, especially on highly specialized scientific content. The paper could be strengthened by a deeper analysis of the judge's agreement with human experts or by exploring more verifiable, rule-based metrics for certain tasks.
+
+3.  **Limited Exploration of Generalization:** The paper focuses exclusively on scientific reasoning. While this is a valid and important domain, it leaves open the question of how well CoT-Evo would perform on other types of reasoning (e.g., commonsense, mathematical, or strategic reasoning). A small experiment on a non-scientific benchmark would have significantly bolstered the claim of a "generalizable CoT distillation framework."
+
+4.  **Minor Presentational Issues:**
+    *   The figures (2, 3, etc.) are referenced by captions like "Refer to caption" and "Effectiveness of Selection Strategy," but the actual figures are not embedded in the provided text, which slightly hinders the reading flow.
+    *   While the methodology is well-explained, the technical depth of the evolutionary algorithm concepts (Pareto front, NSLC) might pose a slight barrier to readers unfamiliar with the field. A little more high-level intuition in the main text could help.
+
+---
+
+### Conclusion
+
+**CoT-Evo** is a highly novel, thoroughly researched, and empirically validated contribution to the field of reasoning distillation. Its strength lies in its creative application of evolutionary principles to synthesize high-quality reasoning data, demonstrated by significant performance gains on challenging scientific tasks. The primary weaknesses relate to its computational cost and a degree of dependence on LLM-based evaluation, which are common challenges in the field. Overall, this paper presents a compelling and impactful advance that is likely to inspire future work in data synthesis and model distillation.
 
 ---
 
@@ -38,7 +256,7 @@ These papers collectively advance efficient, safe, and multilingual LLM deployme
 
 Authors: Hao Wang, Linlong Xu, Heng Liu, Yangyang Liu, Xiaohu Zhao, Bo Zeng, Liangying Shao, Longyue Wang, Weihua Luo, Kaifu Zhang
 
-Keywords: Preference Optimization, Machine Translation, Multi-Perspective Reward, Multi-Pair Construction, Hallucination Mitigation, Direct Preference Optimization
+Keywords: Preference Optimization, Machine Translation, Multi-Perspective Reward, Multi-Pair Learning, Hallucination Mitigation, Direct Preference Optimization
 
 Comments: None
 
@@ -50,55 +268,50 @@ Direct Preference Optimization (DPO) is a powerful paradigm for aligning Large L
 
 ## Summary
 
-This paper introduces **M2PO (Multi-Pair, Multi-Perspective Preference Optimization)**, a novel framework designed to address two fundamental limitations in current preference optimization methods for machine translation: (1) unreliable reward signals from Quality Estimation (QE) models that often overlook critical errors like translation hallucinations, and (2) inefficient data utilization where methods typically select only a single win-loss pair, discarding valuable learning signals.
+Based on the provided paper, here is a summary of "Beyond Single-Reward: Multi-Pair, Multi-Perspective Preference Optimization for Machine Translation":
 
-The key contributions are threefold. First, the authors identify and analyze the weaknesses of QE-based rewards, demonstrating through empirical analysis that standard QE metrics struggle with partial hallucinations and exhibit scoring instability for nuanced translation errors. Second, they propose M2PO's integrated innovations: a **multi-perspective reward engine** that combines a dedicated hallucination penalty with an innovative dynamic scoring curriculum, and a **multi-pair optimization strategy** that systematically creates comprehensive preference pairs from the entire candidate pool. Third, the framework employs a **multi-component optimization objective** consisting of dynamic multi-pair DPO loss, listwise ranking loss, and behavior cloning loss to ensure robust learning while maintaining generative quality.
+**Key Contributions:** This paper introduces M2PO, a novel framework designed to overcome two major limitations in applying Direct Preference Optimization (DPO) to Machine Translation (MT): (1) the unreliability of Quality Estimation (QE) models as reward signals, particularly their failure to properly penalize nuanced errors like partial translation hallucinations, and (2) the inefficient use of data in standard methods that typically select only a single "win-loss" pair from multiple translation candidates, discarding valuable learning signals.
 
-Experiments on WMT21-22 benchmarks show that M2PO substantially outperforms existing preference optimization methods (including standard DPO and CPO) and demonstrates highly competitive performance against leading proprietary LLMs like GPT-4o. The 7B model enhanced with M2PO even surpasses GPT-4o-mini (one of its data sources) while maintaining comparable faithfulness, achieving a "student-surpasses-teacher" outcome. Additional analyses confirm M2PO's generalization across various DPO-like algorithms and the importance of its core components through comprehensive ablation studies.
+**Methods:** The M2PO framework is built on two synergistic innovations. First, it features a **Multi-Perspective Reward Engine** that creates a more robust reward signal. This is achieved by combining a standard QE score with a dedicated "hallucination penalty" (using a tool like WSPAlign) to ensure factual accuracy, and an innovative **dynamic scoring curriculum** that fuses this static, external evaluation with the model's own online judgments, allowing the reward signal to evolve during training. Second, it employs a **Multi-Pair Optimization Strategy**. Instead of using one best-worst pair, it uses the nuanced reward scores to rank all candidate translations and systematically constructs multiple preference pairs (e.g., best-vs-worst, second-best-vs-second-worst), maximizing data utilization. The final model is trained with a composite loss function that includes the multi-pair DPO loss, a ranking loss for global stability, and a behavior cloning loss to safeguard generative quality.
+
+**Results:** Extensive experiments on WMT21-22 benchmarks across 10 translation directions demonstrate that M2PO substantially outperforms existing preference optimization methods (like standard DPO and CPO) and the base SFT model. Notably, it elevates a 7B parameter open-source model (ALMA-7B) to a performance level highly competitive with leading proprietary LLMs like GPT-4o, and even surpasses GPT-4o-mini (one of its data sources). Furthermore, M2PO shows simultaneous improvements in both overall translation quality (measured by COMET22 and XCOMET) and faithfulness (measured by a factuality-focused "Coverage Score"), effectively addressing the hallucination issue. Ablation studies confirm the importance of all its core components, and it is shown to be a versatile framework that can enhance various DPO-like algorithms.
 
 ## Critique
 
-Of course. Here is a commentary on the strengths and weaknesses of the paper "Beyond Single-Reward: Multi-Pair, Multi-Perspective Preference Optimization for Machine Translation."
+Of course. Here is a critique of the paper "Beyond Single-Reward: Multi-Pair, Multi-Perspective Preference Optimization for Machine Translation," focusing on its strengths and weaknesses.
 
 ### **Strengths**
 
-1.  **Clear Problem Identification and Motivation:** The paper excels at diagnosing two specific, well-known pain points in applying preference optimization to Machine Translation (MT):
-    *   The unreliability of Quality Estimation (QE) models, particularly their blindness to nuanced errors like partial hallucinations.
-    *   The data inefficiency of using only a single (win, lose) pair from a larger candidate pool.
-    The analysis in Section 3, including the correlation study on the HalOmi benchmark and the volatility plot, provides strong, empirical motivation for the work.
+1.  **Clear Problem Identification and Motivation:** The paper excels at diagnosing two concrete and significant bottlenecks in the current application of preference optimization (like DPO) to Machine Translation (MT): the unreliability of Quality Estimation (QE) models for nuanced errors (especially partial hallucinations) and the inefficiency of single-pair data utilization. The analysis in Section 3, including Table 1 and Figure 1, provides strong, data-driven evidence for these problems, making the need for their solution compelling.
 
-2.  **Novel and Well-Integrated Framework (M2PO):** The proposed M2PO framework is not just an incremental improvement but a holistic system that elegantly addresses the identified problems.
-    *   **Multi-Perspective Reward:** The combination of a standard QE score with a dedicated, word-alignment-based "factuality bonus" is a direct and clever solution to the hallucination problem. The "Dynamic Preference Modeling" that fuses this static score with the model's own evolving judgment is a sophisticated curriculum learning approach that prevents reward hacking.
-    *   **Multi-Pair Construction:** The "head-to-tail" pairing strategy is a simple yet effective way to maximize the utility of the candidate set, ensuring the model learns from a wider spectrum of quality differences.
+2.  **Novel and Well-Motivated Approach:** The proposed M2PO framework is a comprehensive and logically sound response to the identified problems.
+    *   **Multi-Perspective Reward:** The idea of augmenting a standard QE score with a dedicated "hallucination penalty" (using a tool like WSPAlign) directly targets the weakness of QE models. The "dynamic scoring" mechanism, which fuses a static external score with the model's own online judgment, is a clever curriculum-learning strategy to prevent reward hacking and adapt the signal as the model improves.
+    *   **Multi-Pair Construction:** Moving beyond a single (chosen, rejected) pair to a head-to-tail pairing of all candidates is a simple yet powerful idea for data efficiency. It ensures the model learns from a wider spectrum of quality gradients.
 
-3.  **Comprehensive and Significant Results:** The experimental section is thorough and convincing.
-    *   The model achieves state-of-the-art results among open-source models and demonstrates highly competitive performance against top-tier proprietary models like GPT-4o, which is a significant accomplishment for a 7B parameter model.
-    *   The evaluation is multi-faceted, using both reference-based (COMET-22) and reference-free (XCOMET) metrics, and crucially, a separate "Coverage Score" to explicitly measure faithfulness, directly addressing the paper's core motivation.
-    *   The "student-surpasses-teacher" result (beating GPT-4o-mini, a source of its training data) is a powerful testament to the effectiveness of the distillation and optimization process.
+3.  **Comprehensive and Significant Experimental Results:** The empirical evaluation is thorough and convincing.
+    *   The model achieves state-of-the-art results among open-source models on the challenging WMT21-22 benchmarks, demonstrating the effectiveness of the proposed method.
+    *   A key and impressive result is that their 7B parameter model becomes highly competitive with, and in some cases surpasses, powerful proprietary models like GPT-4o-mini. This "student surpassing the teacher" outcome strongly validates the framework's ability to distill a superior model from its data sources.
+    *   The analysis in Figure 3, showing a simultaneous improvement in both translation quality (XCOMET) and faithfulness (Coverage Score), directly addresses the core motivation and proves M2PO successfully mitigates the hallucination problem.
 
-4.  **Excellent Analysis and Ablations:** The paper goes beyond main results to provide deep insights.
-    *   The demonstration that M2PO's benefits generalize across different DPO-like algorithms (DPO, KTO, SimPO, etc.) positions it as a versatile, algorithm-agnostic *framework* rather than just a new algorithm, significantly increasing its impact.
-    *   The ablation studies are critical and clearly show the contribution of each component, with the catastrophic drop from removing the Behavior Cloning loss (`L_BC`) being a particularly stark illustration of the challenges of preference optimization.
+4.  **Excellent Ablation and Analysis:** The paper goes beyond just presenting main results. The ablation studies (Table 6) effectively quantify the contribution of each component, showing that the composite loss and the core innovations (multi-pair, dynamic score) are all crucial. The experiments demonstrating M2PO's generalization to other DPO-like algorithms (Table 4) strengthen the claim that it is a versatile, data-centric framework rather than a niche algorithm.
 
 ### **Weaknesses**
 
-1.  **Complexity and Computational Cost:** The framework introduces significant complexity and computational overhead, which is not deeply discussed as a limitation. The pipeline requires:
-    *   Generating a large candidate set from multiple models (including API calls to proprietary models).
-    *   Running two offline scoring models per candidate (a QE model and a word-aligner for the factuality bonus).
-    *   Performing dynamic score calculation and multi-pair construction during training.
-    While the results justify the cost, a discussion of the trade-offs and the feasibility for researchers with limited resources would have been valuable.
+1.  **Complexity and Computational Cost:** The framework introduces significant complexity and computational overhead compared to standard DPO. The pipeline requires:
+    *   Generating a large, diverse candidate set for each source sentence.
+    *   Running multiple external models for scoring: a QE model (KIWI-XXL) and an alignment tool (WSPAlign) for the static score.
+    *   A dynamic scoring mechanism that requires online calculation during training.
+    While the results justify the cost, the paper does not discuss the practical implications of this overhead or how it might scale to even larger datasets or model sizes.
 
-2.  **Hyperparameter Sensitivity:** The method relies on a non-trivial number of new hyperparameters (`λ_f`, `α_t` scheduler, `β`, `τ_s`, `τ_w`, and the three loss weights `λ_pref`, `λ_rank`, `λ_bc`). The paper states the values used but does not discuss how sensitive the performance is to these choices or the effort required to tune them. This could be a barrier to adoption.
+2.  **Heavy Reliance on External Models:** The performance of M2PO is inherently tied to the quality of its external components: the QE model (KIWI-XXL) and the alignment tool (WSPAlign). The paper does not explore how sensitive the results are to the choice of these models. If a poorer QE model or alignment tool were used, it's unclear how much performance would degrade, which is a potential point of fragility.
 
-3.  **Clarity and Presentation:**
-    *   **Figure 2:** The central workflow figure is informative but very dense. The connection between the "Dynamic Multi-Perspective Evaluator" and the "Static Score (r_s)" could be clearer, as the figure might lead a reader to think the dynamic fusion happens during the offline scoring stage, not during training.
-    *   **Repetitive Text:** The paper has some instances of repetitive phrasing, particularly in the introduction and conclusion, where the contributions and results are restated multiple times in very similar language. A more concise presentation would improve readability.
+3.  **Limited Discussion on the "Dynamic" Component:** While the dynamic score is a key innovation, its analysis is somewhat brief. The paper uses a simple linear scheduler for `α_t`. A more in-depth analysis of how this dynamic fusion evolves and why this specific schedule is optimal (e.g., with learning curves showing performance at different `α_t` values) would have strengthened this part of the methodology.
 
-4.  **Novelty of Components:** While the *integration* is novel and powerful, the individual components are built on established ideas: multi-pair learning resembles techniques from learning-to-rank, dynamic weighting is a form of curriculum learning, and the composite loss is a common regularization strategy. The paper could more explicitly delineate its conceptual innovations from the prior art it builds upon.
+4.  **Clarity of Presentation (Minor):** While the overall structure is logical, the description of the loss functions in Section 4.4 is dense and could be challenging for a reader not deeply familiar with the referenced methods (DPO, ListNet). A more gradual, intuitive explanation of each loss term's role before presenting the equations might improve accessibility.
 
 ### **Overall Assessment**
 
-This is a strong, high-impact paper that makes a significant contribution to the field of Machine Translation and preference learning. It identifies critical, unsolved problems and proposes a sophisticated, well-motivated, and empirically validated framework that delivers state-of-the-art results. The main weaknesses relate to the practical complexities of the method and minor issues in presentation, but they do not detract from the core significance of the work. M2PO represents a substantial step forward in building more reliable and data-efficient preference-optimized translation models.
+This is a strong paper that makes a significant contribution to the field of preference optimization for machine translation. It identifies clear and important limitations in the current paradigm and proposes a novel, well-motivated, and comprehensive framework (M2PO) to address them. The experimental results are impressive, demonstrating state-of-the-art performance and closing the gap with powerful proprietary models. The main weaknesses lie in the framework's inherent complexity and reliance on external models, which are trade-offs for the performance gains. The core ideas—multi-perspective rewards and multi-pair optimization—are likely to influence future work in this area.
 
 ---
 
@@ -106,7 +319,7 @@ This is a strong, high-impact paper that makes a significant contribution to the
 
 Authors: Chen Zheng, Yuhang Cai, Deyi Liu, Jin Ma, Yiyuan Ma, Yuan Yang, Jing Liu, Yutao Zeng, Xun Zhou, Siyuan Qiao
 
-Keywords: Mixture-of-Experts, Expert Selection Diversity, Parameter-Free Optimization, Sparse Activation, Gating Mechanism, Competitive Propagation, Load Balancing, Expert Utilization
+Keywords: Mixture-of-Experts, Expert Selection Diversity, Parameter-Free Optimization, Localized Competition, Load Balancing, Sparse Activation, Gating Mechanism
 
 Comments: None
 
@@ -118,194 +331,212 @@ Modern large language models leverage Mixture-of-Experts (MoE) architectures for
 
 ## Summary
 
-Based on the provided paper, here is a summary of "GatePro: Parameter-Free Expert Selection Optimization for Mixture-of-Experts Models."
+Based on the provided paper, here is a summary focusing on its key contributions, methods, and results.
 
-**Key Problem & Contribution:** Modern large language models (LLMs) increasingly use Mixture-of-Experts (MoE) architectures for efficient scaling. A critical, overlooked challenge in these models is the lack of **expert selection diversity**, where functionally similar experts are often activated simultaneously. This leads to redundant computation and limits the model's effective capacity. While existing methods use auxiliary balance losses to ensure tokens are distributed evenly across experts, they fail to address this underlying issue of functional redundancy. The key contribution of this paper is **GatePro**, a novel, **parameter-free** method that directly promotes expert selection diversity by preventing similar experts from being co-activated.
+### Key Contributions
+This paper introduces **GatePro**, a novel, parameter-free method designed to improve **Mixture-of-Experts (MoE)** models by addressing a critical limitation: **expert selection diversity**. The authors identify that existing methods, which primarily rely on auxiliary balance losses, successfully distribute tokens evenly across experts but fail to prevent the co-activation of functionally similar experts. This leads to redundant computation and limits the model's effective capacity. GatePro's main contribution is a mechanism that directly promotes diversity in expert selection without introducing any new learnable parameters, making it a simple yet effective "hot-swappable" component that can be integrated at any training stage.
 
-**Method:** GatePro operates by introducing a localized competition mechanism. Its process is as follows:
-1.  **Gate Similarity Computation:** It first computes a cosine similarity matrix based on the gating weight vectors to identify the most similar pairs of experts.
-2.  **Localized Competition:** For each input token, and for every pair of highly similar experts, GatePro allows them to "compete." It compares their gating logits for the current token and applies a constant negative penalty to the logit of the "losing" expert. This effectively suppresses it from being selected, forcing the routing mechanism to choose more diverse, functionally distinct experts.
-A major advantage is that GatePro is **hot-swappable**—it can be enabled or disabled during any phase of training without introducing new learnable parameters or requiring retuning.
+### Methods
+The core of the GatePro method involves two main steps:
+1.  **Gate Similarity Computation:** It first computes a cosine similarity matrix between the gating weights of all experts to identify the most functionally similar expert pairs.
+2.  **Localized Competition Mechanism:** For each input token, it initiates a competition between the most similar expert pairs. The expert with the lower gating logit for that specific token is penalized (its logit is reduced by a constant value), making it less likely to be selected. This forces the routing mechanism to choose between similar experts, thereby encouraging the activation of a more diverse and complementary set of experts for any given input.
 
-**Key Results:** The authors conduct extensive experiments on various model scales (e.g., 0.7B/7B and 1.3B/13B parameters) and benchmarks (MMLU-Pro, GSM8K, BBH, etc.).
-*   **Performance:** GatePro consistently outperforms baseline MoE models across all stages of training (from early pre-training to continuous training) and on nearly all evaluated tasks. The improvements are particularly notable in reasoning-intensive tasks like arithmetic (GSM8K) and code generation (MBPP).
-*   **Generalizability:** The method's effectiveness is also demonstrated on the open-source OLMoE architecture, confirming it is not limited to a single model implementation.
-*   **Mechanistic Analysis:** Analysis shows that GatePro accelerates expert activation during training, reduces the cosine similarity between expert gating weights, and increases selection entropy. This confirms that experts under GatePro develop more distinct and complementary specializations, especially in deeper layers of the network where specialization is most critical.
+### Key Results
+The paper presents extensive experiments demonstrating GatePro's effectiveness:
+*   **Consistent Performance Gains:** GatePro consistently outperforms baseline MoE models across multiple scales (e.g., 0.7B/7B and 1.3B/13B models) and various benchmarks (MMLU-Pro, BBH, GSM8K, MBPP), showing improvements from early to advanced training stages.
+*   **Enhanced Expert Utilization:** Analysis shows that GatePro significantly accelerates expert activation, especially in deeper layers, reducing the number of "unused" experts much faster than baselines.
+*   **Improved Expert Diversity:** Metrics like lower average cosine similarity and higher spectral entropy confirm that experts under GatePro develop more distinct and specialized functionalities, reducing redundancy.
+*   **Generalizability:** The method's effectiveness is also validated on the open-source OLMoE architecture, confirming it is not limited to a specific MoE implementation.
+
+In summary, GatePro provides a practical and powerful solution to enhance MoE models by ensuring that the expanded model capacity is used effectively through diverse and non-redundant expert specialization.
 
 ## Critique
 
 Of course. Here is a critique of the paper "GatePro: Parameter-Free Expert Selection Optimization for Mixture-of-Experts Models".
 
-### Strengths
+### Summary of Strengths
 
-1.  **Novelty and Problem Identification:** The paper's core strength is its clear identification of a problem often overlooked in MoE research: **functional redundancy among co-activated experts**. While previous work focused on load balancing (ensuring experts get a similar number of tokens), this paper correctly argues that this does not guarantee the *selected set* of experts for a given token is diverse. The concept of promoting "expert selection diversity" is a fresh and valuable perspective.
+1.  **Novel and Well-Motivated Problem Formulation:** The paper identifies a clear and important problem in Mixture-of-Experts (MoE) models that goes beyond simple load balancing: **functional redundancy** among co-activated experts. The argument that existing balance losses fail to address this underlying issue is compelling and establishes a strong motivation for the work.
 
-2.  **Elegant and Parameter-Free Solution:** The proposed method, GatePro, is conceptually elegant and technically simple. By computing pairwise expert similarities from the gating weights and applying a localized competition penalty, it directly tackles the identified problem. Crucially, its "parameter-free" and "hot-swappable" nature is a significant practical advantage, as it can be inserted into existing training pipelines without adding learnable parameters or destabilizing training, making adoption very easy.
+2.  **Elegant and Simple Solution:** The proposed method, GatePro, is conceptually elegant and simple. The idea of using the cosine similarity of gating weights to identify redundant expert pairs and then imposing a localized, token-level competition is intuitive and requires no additional learnable parameters. Its "hot-swappable" nature is a significant practical advantage.
 
-3.  **Comprehensive and Convincing Evaluation:** The experimental section is thorough and well-designed. The authors evaluate across:
-    *   **Multiple model scales** (0.7B/7B and 1.3B/13B).
-    *   **Multiple training stages** (from early pre-training to continued training).
-    *   **Multiple benchmarks** covering reasoning, knowledge, and coding.
-    *   **Multiple architectures** (their internal Seed-MoE and the open-source OLMoE).
-    This multi-faceted approach strongly supports the claim that GatePro is a robust and generally applicable method.
+3.  **Comprehensive and Convincing Experimental Setup:** The evaluation is thorough. The authors test across multiple model scales (0.7B/7B, 1.3B/13B), training stages (from scratch and CT), and even on a different open-source architecture (OLMoE). Tracking performance from early to late training provides strong evidence for the method's consistent benefits.
 
-4.  **Strong and Consistent Results:** The performance improvements, while not massive, are **consistent and statistically significant** across almost all tasks and scales. The gains in arithmetic (GSM8K) and coding (MBPP) are particularly notable, suggesting that tasks requiring precise computation benefit more from diverse expert selection. The fact that improvements are shown from the very early stages of training is a powerful argument for its efficacy.
+4.  **Strong and Consistent Results:** The performance improvements, while not always massive in absolute terms, are consistent and statistically significant across a wide range of benchmarks (MMLU-Pro, GSM8K, BBH, MBPP, etc.). The fact that reasoning-heavy tasks like GSM8K and code generation (MBPP) show the largest gains is a powerful point, suggesting the method genuinely improves model capability.
 
-5.  **Excellent Mechanistic Analysis:** The paper goes beyond mere performance metrics to provide a deep dive into *how* GatePro works. The analysis of zero-token counts, cosine similarity, angular separation, and spectral entropy provides compelling evidence that the method successfully accelerates expert utilization and enforces functional diversity, especially in the critical deeper layers of the network.
+5.  **Excellent Mechanistic Analysis:** The paper goes beyond mere performance metrics. The expert utilization analysis (zero token counts) and the gating similarity analysis (cosine similarity, angles, entropy) provide clear, data-driven insights into *how* and *why* GatePro works, validating its core claims about accelerating expert activation and promoting diversity.
 
-### Weaknesses
+### Summary of Weaknesses
 
-1.  **Limited Ablation and Hyperparameter Sensitivity:** The paper lacks a thorough ablation study. A key hyperparameter is the penalty value `λ`, which is set to `10^-4` with little justification. It is unclear how sensitive the method is to this value. Furthermore, while the localized competition is applied to the *most similar* pair, the impact of competing with the top-*k* most similar experts is not explored. Understanding these design choices is important for future work.
+1.  **Limited Ablation and Hyperparameter Sensitivity:** The paper lacks a thorough ablation study. The most critical hyperparameter is the penalty `λ`, which is set to `10^-4` with little justification or exploration. How sensitive are the results to this value? Furthermore, while the combination with balance loss is tested, a deeper analysis of how GatePro interacts with different *types* of balance losses (e.g., from GShard, ST-MoE) would be valuable.
 
-2.  **Computational Overhead Omitted:** The authors correctly note that the cosine similarity computation has `O(N²d)` complexity but then dismiss the overhead as "minimal." For models with a large number of experts `N` (e.g., 256 or more) and high dimensionality `d`, this quadratic cost could become non-trivial, especially if the similarity matrix is recomputed frequently. A more honest discussion of this cost and potential optimizations (e.g., how often `S` is recalculated) would be beneficial.
+2.  **Theoretical Grounding is Somewhat Light:** The concept of "competitive propagation" is introduced but not deeply formalized or connected to existing literature on competition in neural networks (e.g., winner-take-all mechanisms). A more rigorous theoretical justification for why penalizing the "loser" in a similar pair is optimal, as opposed to other interventions, would strengthen the contribution.
 
-3.  **Clarity of Presentation (Minor):** While the overall presentation is clear, the writing can be slightly repetitive in places, particularly in the results section where the same pattern of improvement is described for multiple benchmarks. The paper could be more concise. Additionally, the term "competitive propagation" is introduced but not fully fleshed out; it essentially describes the chain reaction of one expert's suppression affecting the selection of others, but this could be explained more intuitively.
+3.  **Scalability of Similarity Computation:** While the authors correctly note the `O(N^2 d)` complexity of computing the similarity matrix is minimal compared to the overall model cost, this could become a non-trivial overhead for future models with thousands of experts. A discussion of potential approximations for very large `N` would be prudent.
 
-4.  **Theoretical Grounding:** The method is largely empirical and heuristic. While the results are convincing, a more rigorous theoretical justification for why penalizing the most similar pair is the optimal strategy, or how this relates to concepts like the capacity of the expert pool, would strengthen the paper's foundation.
+4.  **Clarity of Presentation (Minor):**
+    *   The writing is generally clear but occasionally dense and could benefit from more concise phrasing in the introduction and approach sections.
+    *   The figures, while informative, are sometimes difficult to read (e.g., small text in Figure 4). More detailed captions or higher-resolution images would help.
+    *   The relationship between "competitive propagation" and the actual algorithm could be explained more clearly. The algorithm itself is straightforward, but the "propagation" terminology feels slightly over-engineered for what is essentially a pairwise suppression mechanism.
 
 ### Overall Assessment
 
-This is a **strong, high-quality paper** that makes a meaningful contribution to the field of MoE models. It identifies a genuine limitation in current approaches and provides a simple, effective, and practical solution. The novelty of focusing on "selection diversity" rather than just "load balance" is significant. The comprehensive evaluation and insightful mechanistic analysis make the results highly convincing. While it has minor weaknesses regarding ablations and computational discussion, its strengths far outweigh them. This paper is likely to influence future MoE research and could see rapid adoption in practice due to its parameter-free, hot-swappable design.
+This is a **strong and impactful paper**. It identifies a genuine limitation in a popular and important architecture (MoE) and proposes a simple, effective, and parameter-free solution. The novelty lies in shifting the focus from load balance to functional diversity. The experimental evidence is comprehensive and convincing, demonstrating consistent performance gains backed by insightful mechanistic analysis.
+
+The main weaknesses are relatively minor and relate more to depth of analysis (ablation studies, theoretical grounding) than to the core contribution. The strengths significantly outweigh the weaknesses. The method is likely to be adopted by other researchers and practitioners due to its simplicity, effectiveness, and non-intrusive nature.
 
 ---
 
-# DSCD: Large Language Model Detoxification with Self-Constrained Decoding
+# Program of Thoughts for Financial Reasoning: Leveraging Dynamic In-Context Examples and Generative Retrieval
 
-Authors: Ming Dong, Jinkui Zhang, Bolong Zheng, Xinhui Tu, Po Hu, Tingting He
+Authors: Subhendu Khatuya, Shashwat Naidu, Pawan Goyal, Niloy Ganguly
 
-Keywords: Large Language Model Detoxification, Self-Constrained Decoding, Toxic Layer Localization, Safe Text Generation, Inference-time Safety Enhancement
+Keywords: Financial Reasoning, Numerical Reasoning, Program of Thoughts, In-Context Learning, Generative Retrieval, Dynamic Prompting, Large Language Models
 
-Comments: Accepted at EMNLP 2025 MainConference
+Comments: This work has been accepted for publication in the Main Conference of
+  the Empirical Methods in Natural Language Processing (EMNLP) 2025
 
-Paper link: [http://arxiv.org/abs/2510.13183v1](http://arxiv.org/abs/2510.13183v1)
+Paper link: [http://arxiv.org/abs/2510.13157v1](http://arxiv.org/abs/2510.13157v1)
 
 ## Abstract
 
-Detoxification in large language models (LLMs) remains a significant research challenge. Existing decoding detoxification methods are all based on external constraints, which require additional resource overhead and lose generation fluency. This work proposes Detoxification with Self-Constrained Decoding (DSCD), a novel method for LLM detoxification without parameter fine-tuning. DSCD strengthens the inner next-token distribution of the safety layer while weakening that of hallucination and toxic layers during output generation. This effectively diminishes toxicity and enhances output safety. DSCD offers lightweight, high compatibility, and plug-and-play capabilities, readily integrating with existing detoxification methods for further performance improvement. Extensive experiments on representative open-source LLMs and public datasets validate DSCD's effectiveness, demonstrating state-of-the-art (SOTA) performance in both detoxification and generation fluency, with superior efficiency compared to existing methods. These results highlight DSCD's potential as a practical and scalable solution for safer LLM deployments.
+Despite continuous advancements in the capabilities of large language models (LLMs), numerical reasoning remains a challenging area. Techniques like chain-of-thought prompting, tree-of-thought prompting, and program-of-thought prompting guide LLMs through intermediate reasoning steps. Although in-context learning with few-shot prompting has improved performance, LLMs still lag behind state-of-the-art models on financial numerical reasoning datasets such as FinQA and ConvFinQA. In this work, we introduce FINDER, a novel two-step framework, to enhance LLMs' capabilities in financial numerical reasoning. The first step utilizes a generative retriever to extract relevant facts from unstructured data, including both text and tables. This is followed by context-aware Program of Thought prompting with dynamic selection of in-context examples. Our model FINDER achieves a new state-of-the-art performance on both the FinQA and ConvFinQA datasets, surpassing previous benchmarks with execution accuracy improvements of 5.98% and 4.05%, respectively.
 
 ## Summary
 
-Here is a summary of the paper "DSCD: Large Language Model Detoxification with Self-Constrained Decoding":
+Based on the provided paper, here is a concise summary focusing on its key contributions, methods, and results:
 
-**Key Contributions:**
-The paper introduces DSCD (Detoxification with Self-Constrained Decoding), a novel method for detoxifying large language models (LLMs) without parameter fine-tuning. DSCD's key contributions include: 1) A lightweight, plug-and-play approach that maintains high compatibility with existing methods; 2) Two operational modes - MODE-1 for precise toxic region localization and high performance, and MODE-2 for efficiency with static toxic layers; 3) State-of-the-art results in both detoxification effectiveness and generation fluency.
+This paper introduces **FINDER**, a novel two-step framework designed to enhance the performance of Large Language Models (LLMs) on complex financial numerical reasoning tasks. The core challenge addressed is that LLMs often struggle with multi-step numerical reasoning, which requires accurate fact extraction, logical inference, and mathematical computation, especially in domains like finance where errors in intermediate steps can lead to incorrect final answers.
 
-**Methods:**
-DSCD operates by adjusting the next-token distribution during decoding, strengthening safety layers while weakening toxic and hallucination layers. The method leverages early exit capabilities to access intermediate layer distributions and uses Jensen-Shannon divergence to identify toxic regions at the token level (unlike previous sequence-level approaches). MODE-1 dynamically locates toxic, safety, and hallucination layers for each token, while MODE-2 uses pre-identified static toxic layers for efficiency. The approach applies self-constraints by subtracting toxic region distributions from factual region distributions in the log domain.
+The key methodological contributions of FINDER are two-fold:
+1.  **Generative Fact Retriever:** Instead of traditional scoring-based retrieval, the authors instruction-tune a FLAN-T5-Large model using LoRA to act as a generative retriever. Given a financial context (text and tables) and a question, this module directly generates the relevant facts needed for reasoning. This approach is more flexible and context-aware than fixed-threshold methods and is highly parameter-efficient, requiring only 0.59 million trainable parameters.
+2.  **Dynamic In-Context Example Selection for Program-of-Thought (PoT):** For the answer computation step, the authors use PoT prompting, where an LLM (like GPT-4) generates executable Python code. Crucially, they enhance this by dynamically selecting the most relevant in-context examples for each query. This is done by adapting the PromptPG framework, incorporating a clustering step to ensure example diversity and refining the reward mechanism to evaluate examples based on the correctness of the executed code rather than the raw LLM output.
 
-**Results:**
-Extensive experiments on multiple datasets (SafeEdit, HarmfulQA, Advbench, etc.) and models (Llama2, Qwen2, Mistral) show that DSCD alone improves detoxification performance by an average of 11.78% over vanilla models. When integrated with existing methods like DINM and SafeDecoding, it provides additional improvements of 3.70-4.03%. Crucially, DSCD maintains or even improves generation fluency compared to baseline methods and achieves these results with minimal computational overhead - MODE-2 runtime is close to vanilla models and significantly faster than methods like DINM. The approach also shows consistent performance gains across different evaluation metrics and classifiers (RoBERTa and GPT-4o).
+The proposed FINDER framework was evaluated on two benchmark datasets for financial reasoning, FinQA and ConvFinQA. The results demonstrate its effectiveness:
+*   FINDER achieves new state-of-the-art execution accuracies of **75.32%** on the FinQA test set and **81.95%** on the ConvFinQA development set.
+*   This represents a significant improvement over the previous SOTA, APOLLO, with relative gains of **5.98%** on FinQA and **4.05%** on ConvFinQA.
+*   Ablation studies confirm the importance of both components—the generative retriever and the dynamic example selection—with each contributing to the overall performance gain over static or less targeted baselines.
+
+In summary, FINDER successfully bridges retriever-generator architectures with the flexibility of LLM-based PoT prompting, setting a new benchmark for financial numerical reasoning by combining a parameter-efficient, instruction-tuned retriever with a sophisticated, dynamically-prompted reasoning engine.
 
 ## Critique
 
-Of course. Here is a critique of the paper "DSCD: Large Language Model Detoxification with Self-Constrained Decoding," focusing on its strengths and weaknesses.
+Of course. Here is a critique of the paper "Program of Thoughts for Financial Reasoning: Leveraging Dynamic In-Context Examples and Generative Retrieval" (FINDER).
 
-### **Strengths**
+### Overall Assessment
 
-1.  **Novelty and Core Idea:** The paper's central premise is highly novel and compelling. The idea of performing "self-constrained decoding" by leveraging the model's own internal layers (toxic, safety, hallucination) for detoxification, without relying on external models or fine-tuning, is a significant departure from existing methods like SafeDecoding or DINM. This internal, "self-referential" approach is a clever and elegant contribution.
-
-2.  **Practicality and Efficiency:** The paper effectively addresses key limitations of prior work. By eliminating the need for external models or datasets (SafeDecoding) and avoiding parameter updates (DINM), DSCD is positioned as a lightweight, plug-and-play solution. The introduction of two modes (MODE-1 for performance, MODE-2 for efficiency) is a smart design choice that enhances its practical applicability, allowing users to trade off precision for speed.
-
-3.  **Comprehensive Evaluation:** The experimental section is thorough. The authors evaluate on multiple datasets (SafeEdit, AdvBench, AlpacaEval, etc.), use multiple base models (Llama2, Mistral, Qwen), and assess performance both as a standalone method and in combination with existing techniques (SFT, DPO, DINM). This provides strong evidence for the method's robustness and generalizability. The use of multiple metrics (DS, DG scores, Fluency, ASR, Harmful Score) and classifiers (RoBERTa, GPT-4o) adds credibility.
-
-4.  **Significance of Results:** The results are impressive and support the authors' claims of state-of-the-art (SOTA) or near-SOTA performance. The key finding is that DSCD can significantly improve detoxification (e.g., +11.78% for MODE-1 alone, +4.03% when integrated with DINM) while maintaining or even improving output fluency, a common trade-off in safety interventions. The fact that it also slightly improves performance on harmless datasets like TruthfulQA is a major strength, demonstrating that the method does not degrade general capabilities.
-
-### **Weaknesses**
-
-1.  **Clarity of Presentation and Motivation:**
-    *   **Intuition is Lacking:** The paper would be significantly stronger with a more intuitive, high-level explanation of *why* subtracting the safety layer and adding the hallucination layer from the toxic layer (Eq. 9) results in a "toxic region" distribution. The mathematical formulation is clear, but the conceptual reasoning is underdeveloped. A more detailed analogy or visualization of what each layer's distribution represents would help the reader grasp the core mechanism.
-    *   **Justification for Layer Combination:** The choice to use the combination `H - S + T` feels somewhat heuristic. While the results justify its effectiveness, the paper would benefit from a deeper theoretical or empirical justification for this specific operation over other possible combinations.
-
-2.  **Technical Depth and Analysis:**
-    *   **Ablation Study is Incomplete:** The ablation study (Section 4.7) is noted, but its details are relegated to the appendix. A more prominent and detailed analysis of the individual contribution of the Toxic (T), Safety (S), and Hallucination (H) layers is crucial. Understanding which component is most critical would provide deeper insights into the method's workings.
-    *   **Mechanism of "Toxic Layers":** The concept of a "toxic layer" is central but could be explored further. What kind of knowledge or processing is happening in these layers that makes them specifically responsible for toxicity? A qualitative analysis of the activations or attention patterns in these layers could provide fascinating insights.
-
-3.  **Experimental Limitations (Acknowledged by Authors):**
-    *   The authors correctly identify the limitations of not testing on a wider array of detoxification methods and newer model architectures (e.g., Llama 3). While understandable due to resource constraints, it does leave some questions about the method's universal applicability unanswered.
-
-4.  **Potential Overstatement:** Claiming SOTA performance should be nuanced. While DSCD achieves SOTA in specific metrics and combinations (e.g., DINM+DSCD), its standalone performance is not always the absolute best across all metrics and models (e.g., in Table 3, DINM alone has a higher DG-Avg on Mistral). The paper would be more precise by clearly stating it achieves SOTA *when combined with methods like DINM* and offers a superior performance/efficiency trade-off as a standalone method.
-
-### **Overall Assessment**
-
-This is a strong paper with a highly innovative core idea. The proposed DSCD method represents a meaningful advance in the field of LLM safety by offering an effective, efficient, and model-intrinsic alternative to existing detoxification techniques. The comprehensive evaluation provides compelling evidence for its utility.
-
-The main weaknesses lie in the presentation's clarity, specifically the intuitive explanation of the core algorithm, and a desire for a more in-depth ablation analysis within the main text. Despite these points, the significance of the results and the novelty of the approach make this a valuable contribution that is likely to influence future work in decoding-time safety interventions.
+This is a strong, well-executed paper that presents a novel and effective framework for a challenging task. It achieves a new state-of-the-art, provides thorough experimentation and ablation studies, and is clearly written. The work convincingly demonstrates the power of combining a parameter-efficient generative retriever with a dynamic prompting strategy for complex reasoning.
 
 ---
 
-# Beyond Correctness: Rewarding Faithful Reasoning in Retrieval-Augmented Generation
+### Strengths
 
-Authors: Zhichao Xu, Zongyu Wu, Yun Zhou, Aosong Feng, Kang Zhou, Sangmin Woo, Kiran Ramnath, Yijun Tian, Xuan Qi, Weikang Qiu, Lin Lee Cheong, Haibo Ding
+1.  **Novelty and Approach:** The core contribution is a clever integration and enhancement of existing ideas into a cohesive, high-performing framework.
+    *   **Generative Retriever:** Replacing a traditional scoring-based retriever with an instruction-tuned, generative model (FLAN-T5) is a significant and effective shift. It moves from "selecting" pre-defined facts to dynamically "generating" them, which is more flexible.
+    *   **Dynamic In-Context Learning:** The adaptation of PromptPG with key enhancements (clustering for candidate diversity and a PoT-based reward function) addresses a known weakness of static few-shot prompting. The clustering strategy to ensure example diversity is a simple yet impactful improvement.
+    *   **Synergy:** The two-step process is well-motivated. The retriever reduces grounding errors for the LLM, and the dynamic examples improve the LLM's reasoning, creating a synergistic effect.
 
-Keywords: Faithful Reasoning, Retrieval-Augmented Generation, Process Supervision, Reinforcement Learning, Agentic Search, Chain-of-Thought Faithfulness, VERITAS Framework
+2.  **Significance of Results:** The results are a primary strength of the paper.
+    *   **State-of-the-Art Performance:** Achieving a **5.98%** and **4.05%** absolute improvement over the previous SOTA (APOLLO) on FinQA and ConvFinQA, respectively, is a substantial and meaningful advancement.
+    *   **Parameter Efficiency:** The highlight of **0.59M trainable parameters** for the retriever (a 600:1 compression ratio compared to APOLLO's 355M) is a major practical contribution, making the approach more accessible.
+    *   **Comprehensive Ablation Studies:** The paper meticulously validates each component. The comparisons of different retrievers (FLAN-T5 vs. Mistral vs. APOLLO) and in-context selection strategies (static, random, hybrid) provide strong evidence for the authors' design choices.
+    *   **Generalizability:** Showing that the FINDER pipeline works with other LLM backbones (Gemini-2.0, GPT-3.5) strengthens the claim that the framework itself is robust and not reliant on a single model's quirks.
+
+3.  **Clarity and Presentation:**
+    *   The paper is well-structured and follows a standard, logical flow.
+    *   Figure 1 provides an excellent high-level overview of the entire framework.
+    *   The methodology section is detailed, with clear formalizations and explanations of the modifications made to existing techniques (PromptPG).
+    *   The error analysis (Section 8.5) is particularly valuable, as it categorizes failure modes and provides concrete examples, which is crucial for guiding future research.
+
+---
+
+### Weaknesses
+
+1.  **Comparative Baseline Execution:** While the paper compares against many baselines, there is a minor issue with the reproduction of the **PoT-GPT-4** baseline. The authors note they achieved 69.38% on FinQA, which is lower than the 74% reported for PoT-Codex in the original PoT paper. A more rigorous effort to match the original PoT setup (e.g., using the same exemplars or a similar selection strategy) would have made the 8.56% improvement over this baseline even more compelling. The provided justification in the appendix is helpful but doesn't fully resolve this discrepancy.
+
+2.  **Limited Discussion of Computational Cost:**
+    *   While parameter efficiency during *training* is highlighted, the inference-time cost is not deeply discussed. Training a policy network with PromptPG using GPT-4 as the engine for reward computation is likely to be very expensive. A discussion of the trade-off between performance and the computational cost of the dynamic example selection process would be valuable for practitioners.
+    *   The use of GPT-4 for the final answer generation also represents a significant ongoing operational cost compared to a fine-tuned, smaller model like APOLLO's generator.
+
+3.  **Technical Limitations:**
+    *   The decision not to evaluate on the **ConvFinQA test set** is a notable weakness, even if the justification (format incompatibility) is understandable. It slightly undermines the claim of SOTA on ConvFinQA, as results are only shown on the dev set. A stronger effort to format the outputs for the official test set would have been preferable.
+    *   The framework's performance on complex programs (>2 steps, programs with constants) remains relatively low (as low as 52.38%). This points to a fundamental challenge that the current approach only partially solves.
+
+4.  **Clarity on Clustering:** The choice of **50 clusters** is explained, but the process feels slightly arbitrary. A more systematic analysis (e.g., a graph showing performance vs. number of clusters) could have strengthened this design decision, though the use of the silhouette score is a good start.
+
+### Summary
+
+This paper presents FINDER, a novel and highly effective framework for financial numerical reasoning. Its primary strengths lie in its **novel integration of a generative retriever and dynamic in-context learning**, its **clear and significant SOTA results**, and its **excellent parameter efficiency**. The weaknesses are relatively minor, relating mostly to baseline comparisons and a deeper analysis of computational costs. Overall, it is a solid contribution that advances the state of the art in a meaningful way and provides a strong foundation for future work in complex reasoning tasks.
+
+---
+
+# Make an Offer They Can't Refuse: Grounding Bayesian Persuasion in Real-World Dialogues without Pre-Commitment
+
+Authors: Buwei He, Yang Liu, Zhaowei Zhang, Zixia Jia, Huijia Wu, Zhaofeng He, Zilong Zheng, Yipeng Kang
+
+Keywords: Bayesian Persuasion, Large Language Models, Strategic Communication, Information Design, Natural Language Dialogues, Persuasion Strategies
 
 Comments: None
 
-Paper link: [http://arxiv.org/abs/2510.13272v1](http://arxiv.org/abs/2510.13272v1)
+Paper link: [http://arxiv.org/abs/2510.13387v1](http://arxiv.org/abs/2510.13387v1)
 
 ## Abstract
 
-Inspired by the success of reinforcement learning (RL) in Large Language Model (LLM) training for domains like math and code, recent works have begun exploring how to train LLMs to use search engines more effectively as tools for retrieval-augmented generation. Although these methods achieve performance improvement across QA benchmarks, many prioritize final answer correctness while overlooking the quality of intermediate reasoning steps, which may lead to chain-of-thought unfaithfulness. In this paper, we first introduce a comprehensive evaluation framework for evaluating RL-based search agents, covering three distinct faithfulness metrics: information-think faithfulness, think-answer faithfulness, and think-search faithfulness. Our evaluations reveal that a prototypical RL-based search agent, Search-R1, has significant room for improvement in this regard. To foster faithful reasoning, we introduce VERITAS (Verifying Entailed Reasoning through Intermediate Traceability in Agentic Search), a novel framework that integrates fine-grained faithfulness rewards into the reinforcement learning process. Our experiments show that models trained with VERITAS not only significantly improve reasoning faithfulness, but also achieve comparable task performance across seven QA benchmarks.
+Persuasion, a fundamental social capability for humans, remains a challenge for AI systems such as large language models (LLMs). Current studies often overlook the strategic use of information asymmetry in message design or rely on strong assumptions regarding pre-commitment. In this work, we explore the application of Bayesian Persuasion (BP) in natural language within single-turn dialogue settings, to enhance the strategic persuasion capabilities of LLMs. Our framework incorporates a commitment-communication mechanism, where the persuader explicitly outlines an information schema by narrating their potential types (e.g., honest or dishonest), thereby guiding the persuadee in performing the intended Bayesian belief update. We evaluate two variants of our approach: Semi-Formal-Natural-Language (SFNL) BP and Fully-Natural-Language (FNL) BP, benchmarking them against both naive and strong non-BP (NBP) baselines within a comprehensive evaluation framework. This framework covers a diverse set of persuadees -- including LLM instances with varying prompts and fine-tuning and human participants -- across tasks ranging from specially designed persuasion scenarios to general everyday situations. Experimental results on LLM-based agents reveal three main findings: (1) LLMs guided by BP strategies consistently achieve higher persuasion success rates than NBP baselines; (2) SFNL exhibits greater credibility and logical coherence, while FNL shows stronger emotional resonance and robustness in naturalistic conversations; (3) with supervised fine-tuning, smaller models can attain BP performance comparable to that of larger models.
 
 ## Summary
 
-This paper, "Beyond Correctness: Rewarding Faithful Reasoning in Retrieval-Augmented Generation," addresses a critical limitation in RL-based search agents: while these models achieve strong performance on question-answering benchmarks, they prioritize final answer correctness at the expense of **faithful reasoning** in their intermediate steps. The authors identify this as "chain-of-thought unfaithfulness," where the reasoning process does not properly align with the retrieved evidence or the final answer, making the agent's decision-making process opaque and unreliable.
+This paper introduces a framework for implementing Bayesian Persuasion (BP) in natural language dialogues using large language models (LLMs), addressing the challenge of strategic persuasion under information asymmetry without relying on pre-commitment. The key contribution is a **type-induced commitment-communication mechanism**, where the persuader explicitly narrates their potential types (e.g., honest or dishonest) within the dialogue to convey the information schema, enabling the persuadee to perform Bayesian belief updates directly from the conversation.
 
-The key contributions are threefold. First, the authors propose a **novel evaluation framework** that formalizes faithfulness in agentic search along three dimensions: **Information-Think faithfulness** (does the agent's reasoning use the retrieved information?), **Think-Search faithfulness** (is the search query justified by the preceding reasoning?), and **Think-Answer faithfulness** (is the final answer grounded in the reasoning?). Applying this framework to a state-of-the-art model, Search-R1, reveals a significant gap between its high task accuracy and its poor reasoning faithfulness.
+The method is evaluated through two verbalization approaches: **Semi-Formal-Natural-Language (SFNL) BP**, which blends explicit calculations with narrative explanations, and **Fully-Natural-Language (FNL) BP**, which relies solely on fluent natural discourse. Experiments are conducted under two views: the *Explicit view*, where models are provided with the Bayesian setup, and the more challenging *Self-derived view*, where models infer the setup independently. The framework is tested across diverse persuadees (LLMs and humans) using scenarios from the CToMPersu dataset.
 
-Second, to bridge this gap, the authors introduce **VERITAS** (Verifying Entailed Reasoning through Intermediate Traceability in Agentic Search), a training framework that integrates these fine-grained faithfulness metrics as **process-based rewards** into the RL loop. Since using a powerful LLM-as-a-Judge for reward calculation is computationally expensive, they practically implement this by distilling a smaller, efficient **reward model** (based on Qwen2.5-14B-Instruct) to replicate the judgments, making the process scalable for RL training.
-
-The results demonstrate that models trained with VERITAS (**VERITAS-R1**) achieve a substantial improvement in reasoning faithfulness—most notably, **Information-Think faithfulness increased by 15.3%**—while maintaining comparable, and in some cases superior, task performance across seven QA benchmarks. Crucially, the work shows that optimizing for faithful reasoning does not trade off with performance but creates a positive synergy, leading to more robust and reliable agents.
+Key results demonstrate that: (1) **BP strategies consistently outperform non-BP (NBP) baselines** in persuasion success rates across both views (e.g., 0.82 SFNL and 0.77 FNL vs. 0.59 Naive in Explicit view); (2) **SFNL and FNL offer complementary strengths**—SFNL excels in credibility and logical coherence, particularly with BP-aware persuadees, while FNL shows stronger emotional resonance and robustness, especially in self-derived settings and with NBP persuadees; and (3) **supervised fine-tuning enables smaller models to match the BP performance of larger models**, highlighting the data efficiency and scalability of the approach. Human evaluations further validate that BP methods are perceived as more persuasive and credible than NBP strategies.
 
 ## Critique
 
-Of course. Here is a detailed commentary on the strengths and weaknesses of the paper "Beyond Correctness: Rewarding Faithful Reasoning in Retrieval-Augmented Generation."
+Of course. Here is a critique of the paper "Make an Offer They Can’t Refuse: Grounding Bayesian Persuasion in Real-World Dialogues without Pre-Commitment."
 
-### Overall Assessment
-This is a strong, well-executed paper that addresses a critical and timely issue in the development of AI agents. The work is compelling because it moves beyond the standard evaluation of final-answer correctness to focus on the trustworthiness and integrity of the reasoning process itself. The proposed framework, VERITAS, is a practical and effective solution, backed by rigorous experimentation.
+### **Overall Summary**
 
----
-
-### Strengths
-
-1.  **High Novelty and Timely Contribution:**
-    *   The paper identifies a clear and important gap in the literature: while RL-trained agentic search models are effective, they are often optimized for outcome-only rewards, which can lead to "reward hacking" and unfaithful reasoning chains. The focus on **process faithfulness** rather than just **outcome correctness** is a significant and forward-thinking contribution.
-    *   The formalization of faithfulness into three distinct, well-motivated dimensions (Information-Think, Think-Search, Think-Answer) provides a much-needed vocabulary and framework for the community to discuss and evaluate this problem systematically.
-
-2.  **Rigorous and Comprehensive Evaluation:**
-    *   The paper begins with a strong diagnostic evaluation of an existing state-of-the-art model (Search-R1), convincingly demonstrating the problem it aims to solve. The finding that improved task performance does not guarantee faithful reasoning is a powerful motivator.
-    *   The evaluation spans seven diverse QA benchmarks, covering both in-domain and out-of-domain settings, which lends strong credibility to the generalizability of the results.
-    *   The use of a combination of LLM-as-a-Judge for semantic faithfulness and regex-based metrics for factual grounding is a pragmatic and effective approach.
-
-3.  **Practical and Well-Engineered Solution:**
-    *   VERITAS is not just a theoretical concept but a practical training framework. The decision to distill a large LLM judge into a smaller, efficient reward model is a crucial engineering choice that makes the approach feasible for large-scale RL training.
-    *   The results are highly significant: VERITAS-R1 achieves **substantial improvements in faithfulness** (e.g., Info-Think faithfulness jumping from 0.467 to 0.842 on multi-hop QA) while **maintaining or even improving final answer accuracy**. This demonstrates a synergistic effect, showing that faithful reasoning is not a trade-off but a pathway to more robust performance.
-
-4.  **Clarity of Presentation:**
-    *   The paper is exceptionally well-structured and easy to follow. The introduction clearly outlines the problem, motivation, and contributions.
-    *   Figures 1 and 3 effectively visualize the core problem and the solution's success.
-    *   The writing is precise, and the pipeline (Figure 2) provides a clear overview of the VERITAS integration into the RL loop.
+This is a strong, well-executed paper that tackles a significant and timely problem: equipping Large Language Models (LLMs) with strategic persuasion capabilities grounded in game-theoretic principles. The core contribution—a "type-induced commitment-communication mechanism" to implement Bayesian Persuasion (BP) in single-turn dialogues without relying on pre-commitment—is novel and impactful. The experimental design is rigorous and comprehensive, and the results are compelling.
 
 ---
 
-### Weaknesses
+### **Strengths**
 
-1.  **Limitations of Evaluation Metrics:**
-    *   The paper correctly identifies this as a limitation. The reliance on an LLM-as-a-Judge, even a distilled one, inherits the potential biases and inconsistencies of the judge model. While the high inter-annotator agreement with human evaluation is reassuring, it's not a complete solution.
-    *   The regex-based method for Think-Answer faithfulness, while precise, is brittle. It would fail to capture valid paraphrasing or logical entailment that isn't a string match, potentially misclassifying faithful answers as unfaithful.
+1.  **High Novelty and Conceptual Contribution:** The paper's central idea is highly novel. Moving beyond the classic BP assumption of a pre-committed, common-knowledge signaling scheme is a crucial step towards practical application. The mechanism of having the persuader narrate their potential "types" (e.g., honest/dishonest) to implicitly communicate the information schema within the natural language message itself is an elegant and powerful solution. This successfully bridges a key gap between formal theory and real-world dialogue.
 
-2.  **Limited Exploration of the Think-Answer Reward:**
-    *   The results show that the Think-Answer reward (`R_think-answer`) was less effective and sometimes detrimental compared to the Information-Think reward. The paper notes this but provides only a brief, speculative explanation. A deeper analysis into *why* this reward component is unstable would have been valuable. Is the metric flawed, or is it a harder objective for the RL policy to optimize?
+2.  **Rigorous and Comprehensive Experimental Design:** The evaluation is a major strength. The authors thoughtfully design multiple experimental conditions:
+    *   **Two "Views":** The distinction between the "Explicit" view (with external Bayesian setup) and the more challenging "Self-derived" view (where the model must infer the setup) is excellent. It effectively tests the framework's robustness, moving from an idealized to a more realistic scenario.
+    *   **Method Variants:** Comparing Semi-Formal-Natural-Language (SFNL) and Fully-Natural-Language (FNL) provides nuanced insights into how BP reasoning can be verbalized.
+    *   **Diverse Evaluation:** Using a wide range of models (from 0.6B to frontier models), both as persuaders and persuadees, and including a human evaluation, makes the results highly convincing and generalizable.
 
-3.  **Narrow Domain of Validation:**
-    *   As acknowledged in the limitations, all experiments are conducted on open-domain QA tasks. The effectiveness of these specific faithfulness rewards in other domains like code generation, strategic planning, or creative writing is an open question. The reasoning patterns and what constitutes "faithfulness" might differ significantly.
+3.  **Significant and Actionable Results:** The findings are not just statistically significant but also practically insightful:
+    *   **BP Superiority:** Clear evidence that BP-guided strategies outperform non-BP (NBP) baselines.
+    *   **SFNL vs. FNL Trade-off:** The identification of a clear trade-off—SFNL excels in logical coherence and credibility, while FNL offers better emotional resonance and robustness—is a valuable finding for practitioners.
+    *   **Data Efficiency:** Demonstrating that supervised fine-tuning can enable small models to match the BP performance of much larger models is a highly significant result, highlighting the potential for efficient specialization.
 
-4.  **Ablation on Reward Model Scaling:**
-    *   While Appendix G touches on this, the main paper could have more explicitly discussed the cost-performance trade-off of the distilled reward model. How does the performance of VERITAS degrade if a smaller/lower-quality reward model is used? This is a key practical consideration for others looking to adopt this approach.
+4.  **Clarity of Presentation:** The paper is generally well-structured and easy to follow. The abstract and introduction clearly frame the problem and contribution. Figure 1 provides an excellent, intuitive illustration of the core concept, and Figure 2 effectively contrasts the different experimental settings with concrete examples.
 
-### Conclusion
+---
 
-This is a high-quality paper that makes a substantial contribution to the field of AI agents and reliable reasoning. Its strengths in identifying a critical problem, proposing a novel and practical framework, and demonstrating compelling results far outweigh its weaknesses. The work is likely to inspire further research into process-based supervision and the development of more transparent and trustworthy AI systems. The minor weaknesses primarily point to fruitful directions for future work rather than flaws in the current execution.
+### **Weaknesses and Areas for Improvement**
+
+1.  **Limited Discussion of Ethical Implications:** The paper briefly mentions "societal risks" in the related work but does not substantially engage with the significant ethical concerns of creating more persuasive AI. Given that the paper's goal is to create offers that "can't be refused," a dedicated discussion on the potential for misuse (e.g., in misinformation, manipulation, or scams) and possible mitigation strategies is a notable omission and should be addressed.
+
+2.  **Simplified "Type" Model:** The current framework uses a binary set of sender types (Honest/Dishonest). While this is a reasonable starting point for a proof-of-concept, human persuaders and more sophisticated strategies operate on a much more complex and continuous spectrum of truthfulness, bias, and intent. The paper would be strengthened by a discussion of how this model could be extended to handle more nuanced or continuous type spaces.
+
+3.  **Clarity on "Self-derived" Inference:** The process by which models in the "Self-derived" view infer the Bayesian setup (the persuadee's prior beliefs and utilities) from the scenario description alone is somewhat glossed over. A more detailed explanation or analysis of how accurately models perform this inference would add depth. Is the success in the Self-derived view due to correct inference of the setup, or to the robustness of the FNL approach even with imperfect inferences?
+
+4.  **Minor Presentational Issues:**
+    *   The captions for Figures 3 and 4 are overly verbose and could be more concise.
+    *   The use of acronyms like SFNL and FNL, while necessary, becomes dense. A summary table of acronyms upon first use could improve readability.
+
+---
+
+### **Conclusion**
+
+This paper makes a substantial contribution to the field of AI and multi-agent communication. It presents a novel, well-motivated framework for implementing Bayesian Persuasion in natural language dialogues and backs it up with exhaustive experimentation. The identified strengths far outweigh the weaknesses. The work convincingly demonstrates that LLMs can be guided to perform sophisticated, theory-grounded strategic persuasion, paving the way for more effective and rational AI communicators. The primary recommendations for improvement would be to include a discussion on ethics and to explore more complex models of sender types in future work.
 
 ---
 
@@ -313,7 +544,7 @@ This is a high-quality paper that makes a substantial contribution to the field 
 
 Authors: Daniil Gurgurov, Josef van Genabith, Simon Ostermann
 
-Keywords: Sparse Subnetwork Enhancement, Underrepresented Languages, Large Language Models, Multilinguality, Parameter-Efficient Fine-Tuning, Neuron Identification, Language Activation Probability Entropy, Cross-lingual Alignment
+Keywords: Sparse Subnetwork Enhancement, Underrepresented Languages, Large Language Models, Parameter-Efficient Fine-Tuning, Language-Specific Neurons, Cross-Lingual Alignment, Low-Resource Adaptation
 
 Comments: preprint
 
@@ -325,48 +556,205 @@ Large language models exhibit uneven performance across languages, with substant
 
 ## Summary
 
-This paper presents "Sparse Subnetwork Enhancement for Underrepresented Languages in Large Language Models," which addresses the performance disparity between high-resource and low-resource languages in LLMs. The key contribution is a parameter-efficient framework that identifies and fine-tunes language-specific subnetworks within FFN components, enabling substantial improvements in underrepresented languages while preserving general model capabilities.
+This paper introduces a framework for enhancing large language models' (LLMs) capabilities in underrepresented languages through sparse subnetwork fine-tuning. The key innovation lies in selectively identifying and fine-tuning only language-specific neurons within the feed-forward network (FFN) components, enabling efficient adaptation while preserving the model's general-purpose performance.
 
-The methodology involves two main steps: first, identifying language-sensitive neurons using Language Activation Probability Entropy (LAPE), which measures how selectively neurons activate for specific languages; second, fine-tuning only the weights associated with these identified neurons (typically 0.2-1% of total parameters) using target-language data. This approach contrasts with full fine-tuning, which often causes catastrophic forgetting, and adapter-based methods that may not fully exploit the model's existing multilingual structure.
+The methodology employs Language Activation Probability Entropy (LAPE) to identify neurons that exhibit strong language-specific activation patterns. These identified neurons form language-specific subnetworks, and only the weights associated with these neurons (typically 0.2-1% of total parameters) are fine-tuned on target-language data. This approach contrasts with full fine-tuning, which often causes catastrophic forgetting, and parameter-efficient methods like LoRA, which may not fully exploit the model's existing multilingual structure.
 
-Experimental results on Llama-3.1-8B and Mistral-Nemo-12B across 12 underrepresented languages demonstrate that the method consistently outperforms full fine-tuning, FFN-only fine-tuning, LoRA adaptation, and random subset fine-tuning baselines. Notably, the approach achieves improved target-language performance while maintaining general capabilities on benchmarks like MMLU and commonsense reasoning tasks. Additional analyses reveal enhanced cross-lingual alignment in representations and systematic weight update patterns, with the most significant changes occurring in the down-projection matrices of later FFN layers. The authors release language-specific neuron identifications for over 100 languages, providing a valuable resource for future low-resource language adaptation research.
+Experimental results on Llama-3.1-8B and Mistral-Nemo-12B across 12 mid- and low-resource languages demonstrate that this sparse fine-tuning approach consistently outperforms all baselines, including full fine-tuning, FFN-only fine-tuning, LoRA adaptation, and random subset fine-tuning. Beyond performance improvements, the method shows enhanced training dynamics, better cross-lingual representational alignment, and systematic weight update patterns, with the most significant changes occurring in the down-projection matrices of later FFN layers. The authors release language-specific neuron identifications for over 100 languages, providing a valuable resource for future research in low-resource language adaptation.
 
 ## Critique
 
-Of course. Here is a critique of the paper "Sparse Subnetwork Enhancement for Underrepresented Languages in Large Language Models."
+Of course. Here is a critique of the paper "Sparse Subnetwork Enhancement for Underrepresented Languages in Large Language Models," focusing on its strengths, weaknesses, novelty, and clarity.
+
+### Overall Summary
+
+This is a strong, well-executed paper that presents a clear, effective, and practical method for adapting Large Language Models (LLMs) to underrepresented languages. The approach is grounded in mechanistic interpretability and demonstrates significant empirical advantages over standard fine-tuning baselines.
+
+---
 
 ### Strengths
 
-1.  **Novelty and Focused Contribution:** The paper presents a clear and compelling idea: instead of fine-tuning the entire model or using generic parameter-efficient methods like LoRA, it identifies and fine-tunes a very sparse, *language-specific* subnetwork. This builds directly on recent mechanistic interpretability findings (like LAPE) and applies them to a pressing, practical problem—improving performance for underrepresented languages. The approach is a logical and creative next step beyond existing neuron-level adaptation work.
+1.  **Novelty and Conceptual Clarity:** The core idea—identifying language-specific neurons using LAPE and then fine-tuning *only the weights associated with those neurons*—is both novel and elegant. It moves beyond simply adding parameters (like LoRA) or fine-tuning entire components, offering a more surgically precise adaptation method. The distinction from prior work (e.g., Mondal et al., 2025) is clearly articulated.
 
-2.  **Comprehensive and Convincing Evaluation:**
-    *   **Robust Baselines:** The authors compare against a strong set of baselines, including full fine-tuning, FFN-only fine-tuning, LoRA, and a crucial **random subnetwork** baseline. This last comparison is essential for demonstrating that the *selection* of neurons (not just the sparsity) is key to the method's success.
-    *   **Multi-faceted Metrics:** Performance is evaluated not only on target-language tasks (translation, comprehension, classification) but also meticulously on a suite of general-knowledge benchmarks (MMLU, Hellaswag, etc.). This dual evaluation is critical for proving the core claim of preserving general capabilities.
-    *   **Scale and Reproducibility:** Experiments on two different model families (Llama and Mistral) across 12 languages lend weight to the findings. The commitment to releasing neuron identifications for over 100 languages and the adaptation pipeline is a significant contribution to the community.
+2.  **Comprehensive and Convincing Evaluation:** The experimental design is rigorous. The paper evaluates across:
+    *   **Multiple Models:** Llama-3.1-8B and Mistral-Nemo-12B.
+    *   **Multiple Languages:** 12 diverse underrepresented languages.
+    *   **Multiple Baselines:** Full FT, FFN-only FT, LoRA, and a critical **random-subset** baseline, which is essential for proving that the *selection* of neurons matters, not just the sparsity.
+    *   **Dual Objectives:** It meticulously measures both target-language performance gains and the preservation of general capabilities, a crucial trade-off often overlooked.
 
-3.  **Insightful Analysis:** The paper goes beyond simple performance metrics to provide valuable analysis:
-    *   **Training Dynamics:** Showing that their method converges faster and more stably than baselines adds another layer of practical advantage.
-    *   **Weight Change Analysis:** The finding that the `down_proj` weights in later layers undergo the most significant changes is a novel mechanistic insight that helps explain *how* the adaptation works within the model's architecture.
-    *   **Representation Analysis:** Demonstrating improved cross-lingual alignment after fine-tuning is a powerful result that connects the method to broader goals in multilingual NLP.
+3.  **Significant and Practical Results:** The results are impressive. The method consistently outperforms all baselines on target-language tasks while largely preserving performance on general benchmarks like MMLU, a common failure mode for full fine-tuning. The fact that this is achieved by updating <1% of parameters makes it highly efficient and accessible.
 
-4.  **Clarity of Presentation:** The paper is generally well-structured. The methodology section is clear, the figures are informative (e.g., Figure 1 effectively illustrates the core idea), and the results are presented in a logical flow from high-level averages to more granular analyses.
+4.  **In-Depth Analysis:** The paper goes beyond reporting scores. The analyses of training dynamics, the effect of data size, weight changes, and cross-lingual alignment provide valuable insights into *why and how* the method works, elevating it from an empirical finding to a more mechanistic understanding.
+
+5.  **Valuable Contribution to the Community:** Releasing the identified language-specific subnetworks for over 100 languages is a significant contribution that will lower the barrier to entry for future research and practical applications in low-resource NLP.
 
 ### Weaknesses
 
-1.  **Limited Exploration of Core Hyperparameter `K%`:** A significant weakness is the lack of an ablation study on the `K%` parameter, which controls the sparsity of the subnetwork. The paper uses a fixed value of 5%, justified by prior work, but this is a central hyperparameter of their method. It is unclear:
-    *   How was 5% chosen? Was it based on a validation set?
-    *   How does performance vary with different `K%` values? A smaller `K%` might be even more efficient, while a larger one might capture more language-specific knowledge.
-    *   Is the optimal `K%` consistent across languages? The observed variation in subnetwork sizes (Table 1) suggests it might not be.
+1.  **Limited Exploration of Subnetwork Size (K%):** A major limitation, acknowledged by the authors, is the use of a fixed `K=5%` for all languages. The variation in subnetwork size (Table 1) and performance gains (Figure 3) strongly suggests that an optimal `K` is language-dependent. A systematic exploration of how to set this hyperparameter per language would have strengthened the methodology.
 
-2.  **Ambiguity in "Language-Specific" Neurons:** The concept of a "language-specific" neuron is central, but the analysis shows these neurons are not exclusive. There is overlap between related languages (e.g., Slovak and Slovenian). The paper could more deeply discuss what it means for a neuron to be "specific" to a language if it is also activated by a related one. Is it capturing a language family feature? A typological characteristic?
+2.  **Scope of Languages and Extremely Low-Resource Settings:** While 12 languages provide good coverage, the method's effectiveness on *extremely* low-resource languages (e.g., with only millions of tokens available) or typologically very distant languages (e.g., from different script families not seen in pre-training) remains an open question. The paper focuses on "mid- and low-resource" languages, leaving the most challenging cases for future work.
 
-3.  **Speculative Explanations for Performance Variation:** The discussion of why some languages (e.g., Afrikaans) benefit more than others (e.g., Latvian) is somewhat speculative. The authors suggest it may be related to pre-training data overlap or language complexity, but they do not provide concrete evidence (e.g., by correlating improvement with the amount of pre-training data for each language). This remains an interesting open question.
+3.  **Focus on FFNs:** The methodology is exclusively applied to Feed-Forward Network (FFN) neurons, justified by prior work. However, the related work section itself mentions that attention heads can also encode language-specific information. A combined approach targeting both FFN neurons and attention heads could potentially yield even better results and is a natural next step.
 
-4.  **Clarity in Comparison to Prior Work:** While the paper does a good job distinguishing itself from Mondal et al. (2025), the comparison could be sharper. A more direct discussion of why their approach of fine-tuning the neurons *directly* works better than adding LoRA modules *on top* of them would strengthen the narrative.
+4.  **Computational Cost of Identification:** The neuron identification step, while a one-time cost, requires a non-trivial amount of computation (forward passes on 100MB of data per language). The paper does not quantify this cost, which could be a practical consideration for some users.
 
-### Overall Assessment
+### Clarity of Presentation
 
-This is a **strong and impactful paper**. It presents a novel, well-motivated, and practical method for language adaptation that is backed by extensive experiments and insightful analysis. The core strength is its elegant combination of mechanistic interpretability (LAPE) with a highly parameter-efficient fine-tuning strategy, yielding both performance gains and a preservation of general capabilities.
+The paper is exceptionally well-written and structured.
+*   **Abstract and Introduction** clearly state the problem, the proposed solution, and the contributions.
+*   **Methodology (Section 3)** is precise and easy to follow, with clear mathematical formulations and a helpful figure (Figure 1).
+*   **Results (Sections 5 & 6)** are presented logically, with well-designed tables and figures that effectively communicate the key findings. The use of the random-subset baseline is a particularly strong point for clarity, as it isolates the effect of the selection algorithm.
+*   **Limitations** are honestly and clearly stated, which builds credibility.
 
-The primary limitations lie in the unexplored aspects of its main hyperparameter and a somewhat surface-level discussion of the linguistic reasons for performance variation. Nonetheless, the significance of the results, the release of resources, and the clarity of the core contribution make this a valuable addition to the literature on multilingual NLP and efficient model adaptation.
+### Conclusion
+
+This paper makes a substantial contribution to the field of multilingual NLP and parameter-efficient fine-tuning. Its strengths—a novel and intuitive approach, rigorous and comprehensive evaluation, significant results, and valuable community release—far outweigh its weaknesses. The identified limitations are not flaws but rather clear and promising directions for future research. The paper is a model of clarity and effectively argues that targeted subnetwork enhancement is a powerful and efficient paradigm for adapting LLMs to a wider array of the world's languages.
+
+---
+
+# D-SMART: Enhancing LLM Dialogue Consistency via Dynamic Structured Memory And Reasoning Tree
+
+Authors: Xiang Lei, Qin Li, Min Zhang, Min Zhang
+
+Keywords: Dialogue Consistency, Dynamic Structured Memory, Reasoning Tree, Multi-turn Dialogue, Logical Coherence, Knowledge Graph, LLM Reasoning Frameworks
+
+Comments: 8 pages, 6 figures (main content); 25 pages, 18 figures (total)
+
+Paper link: [http://arxiv.org/abs/2510.13363v1](http://arxiv.org/abs/2510.13363v1)
+
+## Abstract
+
+Large Language Models (LLMs) often exhibit factual inconsistencies and logical decay in extended, multi-turn dialogues, a challenge stemming from their reliance on static, pre-trained knowledge and an inability to reason adaptively over the dialogue history. Prevailing mitigation strategies, such as Retrieval-Augmented Generation (RAG) and agentic working memories, improve information recall but still engage with fundamentally static knowledge sources and follow pre-defined single reasoning path. This hinders their ability to preserve factual and logical consistency of their responses in multi-turn dialogues while the context evolves over time. To address this issue, we propose D-SMART, a model-agnostic framework designed to maintain multi-turn dialogue consistency by enabling LLMs to build and reason over a dynamic, structured representation of the conversational context. This is achieved via two synergistic components: (1) a Dynamic Structured Memory (DSM), which incrementally constructs and maintains an authoritative, OWL-compliant knowledge graph of the conversation; and (2) a Reasoning Tree (RT), which executes inferences as an explicit and traceable multi-step search over the graph. As the popular-used quality score (judged by GPT-4) can overlook logical flaws, we introduce new NLI-based metrics to better measure multi-turn dialogue consistency. Comprehensive experiments on the MT-Bench-101 benchmark show that D-SMART significantly outperforms state-of-the-art baselines, elevating the dialogue consistency score by over 48\% for both proprietary and open-source models, and notably improves the quality score of the latter by up to 10.1\%.
+
+## Summary
+
+Here is a summary of the paper "D-SMART: Enhancing LLM Dialogue Consistency via Dynamic Structured Memory And Reasoning Tree":
+
+**Key Contributions:**
+The paper introduces D-SMART, a model-agnostic framework designed to address the challenge of maintaining logical and factual consistency in multi-turn dialogues with large language models (LLMs). The two main contributions are: (1) the D-SMART framework itself, which combines dynamic structured memory with explicit reasoning trees, and (2) new NLI-based evaluation metrics (Consistency Score and Dialogue Entailment Rate) that better measure dialogue consistency compared to holistic quality scores like GPT-4 ratings.
+
+**Methods:**
+D-SMART consists of two synergistic components. The Dynamic Structured Memory (DSM) incrementally constructs and maintains an OWL-compliant knowledge graph from the dialogue history, providing a structured representation of conversational facts with conflict resolution capabilities. The Reasoning Tree (RT) guides the LLM to perform explicit, multi-step reasoning over the DSM using symbolic operations like entity expansion and path finding, enabling traceable and deliberate reasoning. The framework reformulates response generation to incorporate both the structured memory and reasoning process, moving beyond traditional approaches that rely on unstructured dialogue history.
+
+**Results:**
+Comprehensive experiments on the MT-Bench-101 benchmark show that D-SMART significantly outperforms state-of-the-art baselines. When applied to GPT-4o, it elevates the Dialogue Entailment Rate from 20.94% to 38.51% (an 84% improvement) while also increasing GPT quality scores. For open-source models like Qwen-8B, D-SMART boosts GPT scores by 10.1% and improves consistency metrics by 48%. The framework demonstrates remarkable stability against performance decay in extended dialogues, maintaining high consistency scores where baseline models show sharp declines. Ablation studies confirm the synergistic relationship between the DSM and RT components, with the DSM providing the factual foundation and the RT ensuring faithful reasoning over that foundation.
+
+## Critique
+
+Of course. Here is a critique of the paper "D-SMART: Enhancing LLM Dialogue Consistency via Dynamic Structured Memory And Reasoning Tree."
+
+### Overall Summary
+
+This paper presents a well-motivated and thoroughly evaluated framework for addressing a critical weakness in modern LLMs: maintaining factual and logical consistency in multi-turn dialogues. The proposed D-SMART system, combining a Dynamic Structured Memory (DSM) and a Reasoning Tree (RT), demonstrates impressive results, significantly boosting both response quality and, more importantly, consistency metrics.
+
+---
+
+### Strengths
+
+1.  **Clear Problem Formulation and Motivation:** The paper effectively establishes the problem of "logical decay" in extended dialogues, providing a concrete example (Figure 1) that illustrates how even a high-quality, fluent response can be fundamentally flawed due to inconsistency. The critique of existing methods (RAG, working memory) as being static or single-path is well-argued.
+
+2.  **Novel and Synergistic Architecture:** The core contribution is a clever combination of two ideas:
+    *   **Dynamic Structured Memory (DSM):** Moving beyond a flat text history or a static knowledge graph to a dynamically built and updated OWL-compliant KG is a significant step. The conflict resolution mechanism is a crucial detail that directly addresses the problem of evolving dialogue facts.
+    *   **Reasoning Tree (RT):** Adapting the Tree-of-Thoughts paradigm to perform explicit, symbolic actions (like `Expand Entity`, `Find Path`) on the DSM is a powerful idea. It shifts the LLM's role from a generator to a "semantic orchestrator," making the reasoning process more transparent and grounded.
+
+3.  **Comprehensive and Rigorous Evaluation:**
+    *   The introduction of **NLI-based metrics (CS and DER)** is a major strength. It correctly identifies the limitation of holistic GPT-4 scoring and provides a more targeted, quantitative measure of logical consistency, which is the paper's central focus.
+    *   The comparison against strong, relevant baselines (including other memory systems like Mem0 and MemoryBank) on the challenging MT-Bench-101 benchmark is thorough.
+    *   The results are significant: **>48% improvement in DER** is a substantial claim that is well-supported by the data. The finding that D-SMART can elevate a smaller model (Qwen-8B) to near-GPT-4o performance is particularly compelling.
+
+4.  **Insightful Ablation Study:** The ablation study (RQ3) is not just a checklist but provides nuanced insights. The finding that for a powerful model like GPT-4o, the DSM is the primary driver of quality while the RT acts as a "regulator" for consistency, whereas for a smaller model like Qwen-8B, *both components are symbiotically essential*, is a sophisticated and valuable conclusion.
+
+5.  **Excellent Clarity and Structure:** The paper is very well-written. The two-phase process (Response and Memory Maintenance) is clearly explained in the framework overview (Figure 2). The formalizations (Equations 1-3) are helpful for precision. The extensive appendices suggest a commitment to reproducibility.
+
+---
+
+### Weaknesses and Potential Concerns
+
+1.  **Computational Cost and Latency:** The paper is upfront about the primary limitation: **increased computational overhead**. An inference time increase from 0.3s to 1.3s (for the RT) plus ~6s for memory maintenance is substantial. While the argument that this is a worthwhile trade-off for high-stakes applications is valid, it currently limits the framework's applicability to real-time, interactive systems. The promise of future work on "optimizing the RT’s search efficiency" is critical.
+
+2.  **Dependence on Underlying LLM Capabilities:** The framework's performance is inherently tied to the base LLM's ability to perform the sub-tasks reliably (e.g., semantic distillation for the DSM, proposing valid actions for the RT). The discussion section acknowledges this, but it remains a potential point of failure. Errors in the initial knowledge extraction or conflict resolution could propagate through the entire system.
+
+3.  **Scalability of the Knowledge Graph:** While not deeply explored, the continuous growth of the DSM across a very long dialogue (e.g., 100+ turns) could pose challenges for the efficiency of the graph traversal operations within the RT. The paper does not discuss any memory summarization or pruning strategies for the KG itself.
+
+4.  **Novelty of Individual Components:** While the *combination* is novel and powerful, the individual components are built upon established ideas: dynamic KG construction from text, and tree-based reasoning. The paper does a good job in the "Related Work" section of positioning itself, but a critic might argue that the core innovation is the integration rather than the invention of fundamentally new techniques.
+
+5.  **Qualitative Analysis:** While case studies are mentioned in the appendix, the main text would benefit from a more detailed qualitative analysis of *how* the RT navigates the DSM to avoid a specific inconsistency that a baseline model fails at. This would make the "traceable" nature of the reasoning more concrete for the reader.
+
+---
+
+### Conclusion
+
+This is a strong paper that makes a meaningful contribution to the field of reliable and consistent dialogue systems. Its strengths in problem formulation, novel architecture, and rigorous evaluation far outweigh its weaknesses. The significant results, especially the dramatic improvement in consistency metrics and the performance lift for smaller models, are compelling. The identified limitations (cost, latency) are clear avenues for future work rather than flaws in the core idea. It is a well-executed study that effectively demonstrates the power of combining structured knowledge representation with deliberate, multi-step reasoning to tackle a fundamental challenge in LLMs.
+
+---
+
+# Higher Satisfaction, Lower Cost: A Technical Report on How LLMs Revolutionize Meituan's Intelligent Interaction Systems
+
+Authors: Xuxin Cheng, Ke Zeng, Zhiquan Cao, Linyi Dai, Wenxuan Gao, Fei Han, Ai Jian, Feng Hong, Wenxing Hu, Zihe Huang, Dejian Kong, Jia Leng, Zhuoyuan Liao, Pei Liu, Jiaye Lin, Xing Ma, Jingqing Ruan, Jiaxing Song, Xiaoyu Tan, Ruixuan Xiao, Wenhui Yu, Wenyu Zhan, Haoxing Zhang, Chao Zhou, Hao Zhou, Shaodong Zheng, Ruinian Chen, Siyuan Chen, Ziyang Chen, Yiwen Dong, Yaoyou Fan, Yangyi Fang, Yang Gan, Shiguang Guo, Qi He, Chaowen Hu, Binghui Li, Dailin Li, Xiangyu Li, Yan Li, Chengjian Liu, Xiangfeng Liu, Jiahui Lv, Qiao Ma, Jiang Pan, Cong Qin, Chenxing Sun, Wen Sun, Zhonghui Wang, Abudukelimu Wuerkaixi, Xin Yang, Fangyi Yuan, Yawen Zhu, Tianyi Zhai, Jie Zhang, Runlai Zhang, Yao Xu, Yiran Zhao, Yifan Wang, Xunliang Cai, Yangen Hu, Cao Liu, Lu Pan, Xiaoli Wang, Bo Xiao, Wenyuan Yao, Qianlin Zhou, Benchang Zhu
+
+Keywords: Large Language Models, Intelligent Interaction Systems, Multi-Agent Architecture, Supervised Fine-Tuning, Preference Learning, Reinforcement Learning, Automated Evaluation, Business Applications
+
+Comments: 36 pages, 14 figures
+
+Paper link: [http://arxiv.org/abs/2510.13291v1](http://arxiv.org/abs/2510.13291v1)
+
+## Abstract
+
+Enhancing customer experience is essential for business success, particularly as service demands grow in scale and complexity. Generative artificial intelligence and Large Language Models (LLMs) have empowered intelligent interaction systems to deliver efficient, personalized, and 24/7 support. In practice, intelligent interaction systems encounter several challenges: (1) Constructing high-quality data for cold-start training is difficult, hindering self-evolution and raising labor costs. (2) Multi-turn dialogue performance remains suboptimal due to inadequate intent understanding, rule compliance, and solution extraction. (3) Frequent evolution of business rules affects system operability and transferability, constraining low-cost expansion and adaptability. (4) Reliance on a single LLM is insufficient in complex scenarios, where the absence of multi-agent frameworks and effective collaboration undermines process completeness and service quality. (5) The open-domain nature of multi-turn dialogues, lacking unified golden answers, hampers quantitative evaluation and continuous optimization. To address these challenges, we introduce WOWService, an intelligent interaction system tailored for industrial applications. With the integration of LLMs and multi-agent architectures, WOWService enables autonomous task management and collaborative problem-solving. Specifically, WOWService focuses on core modules including data construction, general capability enhancement, business scenario adaptation, multi-agent coordination, and automated evaluation. Currently, WOWService is deployed on the Meituan App, achieving significant gains in key metrics, e.g., User Satisfaction Metric 1 (USM 1) -27.53% and User Satisfaction Metric 2 (USM 2) +25.51%, demonstrating its effectiveness in capturing user needs and advancing personalized service.
+
+## Summary
+
+Based on the technical report "Higher Satisfaction, Lower Cost: A Technical Report on How LLMs Revolutionize Meituan’s Intelligent Interaction Systems," here is a summary of the key contributions, methods, and results.
+
+**Key Contributions:** This paper introduces WOWService, a comprehensive intelligent interaction framework deployed on the Meituan App. The system is designed to overcome common industrial challenges, such as the difficulty of constructing high-quality training data, suboptimal multi-turn dialogue performance, frequent business rule evolution, and the limitations of single-agent systems in complex scenarios. The primary contributions include a dual-driven (data and knowledge) strategy for building and refining training data, a multi-stage training pipeline, a scalable multi-agent architecture, and a thorough evaluation framework.
+
+**Methods:** The technical approach is built around several core components.
+1.  **Multi-Stage Training Pipeline:** The model undergoes a progressive training regimen consisting of Continual Pre-Training (CPT) on domain-specific data, Supervised Fine-Tuning (SFT) with a focus on lightweight, high-quality data, Direct Preference Optimization (DPO) to align outputs with human preferences, and Reinforcement Learning (RL) for reasoning enhancement and humanization.
+2.  **Self-Refinement Training (SRT):** A key innovation is the SRT framework, which automates model iteration by filtering online self-sampled data into "Good Cases" for SFT and "Bad Cases" for targeted optimization via DPO/RL.
+3.  **Hybrid Data-Knowledge Drive:** The system combines data-driven methods with knowledge-based techniques, using Retrieval-Augmented Generation (RAG) to inject business knowledge dynamically, reducing retraining needs.
+4.  **Multi-Agent Architecture:** WOWService employs a multi-agent system where a master agent orchestrates specialized sub-agents (e.g., for outbound calls, proactive collaboration, and multi-modal understanding) to handle complex, multi-faceted tasks.
+
+**Results:** The deployed system demonstrates significant performance improvements on the Meituan platform. Key results include a **-27.53%** reduction in User Satisfaction Metric 1 (USM 1, where lower is better) and a **+25.51%** increase in User Satisfaction Metric 2 (USM 2, where higher is better). The SRT framework was crucial, with models using both Good and Bad Cases outperforming those using only Good Cases. Furthermore, the operational DPO framework successfully addressed domain-specific issues, dramatically increasing the repair rate for problems like "Incorrect Solutions" by **+34.49%** and for "Hallucinations" to **97.5%**. The paper concludes that WOWService effectively enhances user experience and operational efficiency in large-scale industrial applications.
+
+## Critique
+
+Of course. Here is a critique of the technical report "Higher Satisfaction, Lower Cost: A Technical Report on How LLMs Revolutionize Meituan’s Intelligent Interaction Systems."
+
+### Strengths
+
+1.  **Industrial Scale and Practical Significance:** The paper's greatest strength is its comprehensive account of deploying a sophisticated LLM-based system (WOWService) at a massive scale within Meituan, a major e-commerce platform. The reported improvements in User Satisfaction Metrics (e.g., USM 1 -27.53%, USM 2 +25.51%) are significant and provide strong, real-world validation of the approach's effectiveness. This moves beyond academic benchmarks to demonstrate value in a live, complex business environment.
+
+2.  **Holistic System Design:** The paper presents a full-stack solution, not just an isolated model. It thoughtfully addresses the entire lifecycle of an industrial AI system:
+    *   **Multi-Stage Training Pipeline:** The progression from Continual Pre-Training (CPT) to SFT, DPO, and Reinforcement Learning is well-motivated and reflects modern best practices for building capable, aligned models.
+    *   **Data-Centric Innovations:** The focus on "Self-Refinement Training (SRT)" and the "Hybrid Data-Knowledge" approach is a key contribution. It tackles the critical industrial challenge of creating and maintaining high-quality training data efficiently, moving from million-scale to "lightweight SFT."
+    *   **Multi-Agent Architecture:** The transition from a single LLM to a multi-agent system (e.g., Outbound-Call Agent, Proactive Collaboration Agent) is a logical and powerful extension for handling complex, multi-step business processes.
+
+3.  **Actionable Methodological Details:** The report provides concrete, actionable insights that are valuable for other industrial practitioners. Examples include:
+    *   The "adaptive data mixture optimization" for CPT to balance general and domain-specific capabilities.
+    *   The "Operational DPO" framework, which outlines a sustainable process for iteratively identifying and fixing specific model failures (e.g., hallucinations, script repetition).
+    *   The design of rule-based and GRM-based reward functions for RL, which offer a blueprint for shaping model behavior in open-ended tasks.
+
+4.  **Comprehensive Evaluation Framework:** The creation of a dedicated evaluation platform and benchmark for Intelligent Interaction Systems is a notable contribution. It acknowledges the limitations of standard academic benchmarks for this domain and provides a more relevant way to compare model performance.
+
+### Weaknesses
+
+1.  **Limited Novelty in Core Algorithms:** While the system engineering is impressive, the core algorithmic components (CPT, SFT, DPO, RL, RAG, Multi-Agent systems) are themselves not novel. The paper's primary contribution lies in the **integration, scaling, and application** of these existing techniques to a specific, challenging domain, rather than in proposing new fundamental algorithms. The "Self-Refinement Training" paradigm is a compelling process but is conceptually related to other self-improvement and data distillation techniques in the field.
+
+2.  **Opaque and Incomplete Results:** As a technical report from a commercial entity, the paper suffers from a lack of transparency that limits its scientific value.
+    *   **Metrics:** Critical metrics like "User Satisfaction Metric 1" and "USM 2" are not defined. It is unclear what these measure, making it difficult to fully interpret the significance of the reported improvements.
+    *   **Baselines:** Comparisons are often made against an unnamed "Base" model or a previous internal version. There are no comparisons against strong, well-known open-source or commercial models (like GPT-4) in an end-to-end setting, which would better contextualize WOWService's performance.
+    *   **Data Scale:** The scale of data used for training (beyond "tens of billions of tokens") and the exact model sizes (e.g., parameter count of LongCat) are omitted, preventing others from understanding the computational scope.
+
+3.  **Presentation and Clarity Issues:**
+    *   **Structural Repetition:** The paper is repetitive in places. For instance, the "Hybrid Data-Knowledge Driven Approach" is explained in both Section 2.2.2 and again in Section 2.4.1, with overlapping content.
+    *   **Formatting Inconsistencies:** The markdown conversion has introduced numerous formatting artifacts (e.g., `\undefine@key`, `◆`, broken reference links like `[2](https://arxiv.org/html/2510.13291v1#S2.F2)`). This disrupts the reading flow and creates a perception of being an unpolished draft.
+    *   **Vague Descriptions:** Some descriptions, such as the "Agent of Multi-Modal Understanding," are high-level and lack technical depth, focusing on outcomes rather than the methodology.
+
+### Summary
+
+This technical report is a highly impressive and valuable case study of building and deploying a state-of-the-art LLM-driven intelligent interaction system at an industrial scale. Its strengths lie in its **comprehensive system design, practical data-centric methodologies, and demonstrated business impact.**
+
+However, its weaknesses are rooted in its nature as a corporate technical report. The **lack of algorithmic novelty, opaque evaluation metrics, and incomplete comparative baselines** limit its contribution as a scientific research paper. The presentation would also benefit from significant editing to improve clarity and remove formatting errors.
+
+In essence, this paper is an excellent blueprint for industry practitioners looking to build similar systems but falls short of the rigor and transparency expected for a seminal academic publication.
 
