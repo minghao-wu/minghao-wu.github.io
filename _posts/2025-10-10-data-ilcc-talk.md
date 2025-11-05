@@ -9,7 +9,7 @@ tags:
 mathjax: true
 ---
 
-This post is based on the [talk](https://informatics.ed.ac.uk/ilcc/friday-14-november-11am) I gave at the Institute for Language, Cognition and Computation (ILCC), University of Edinburgh, on November 14, 2025. The slides are available [here](/files/slides/2025-11-14-ILCC-talk.pdf).
+This post is based on the [talk](https://informatics.ed.ac.uk/ilcc/friday-14-november-11am) I give at the Institute for Language, Cognition and Computation (ILCC), University of Edinburgh, on November 14, 2025. The slides are available [here](/files/slides/2025-11-14-ILCC-talk.pdf).
 
 ## Abstract
 
