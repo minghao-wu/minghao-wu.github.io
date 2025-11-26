@@ -207,23 +207,23 @@ defaults:
       share: true
       related: true
   # _posts
-  - scope:
-      path: ""
-      type: thoughts
-    values:
-      layout: single
-      author_profile: true
-      read_time: true
-      comments: true
-      share: true
-      related: true
+  # - scope:
+  #     path: ""
+  #     type: thoughts
+  #   values:
+  #     layout: single
+  #     author_profile: true
+  #     read_time: true
+  #     comments: true
+  #     share: true
+  #     related: true
   # _digests
-  - scope:
-      path: ""
-      type: digests
-    values:
-      layout: single
-      author_profile: true
+  # - scope:
+  #     path: ""
+  #     type: digests
+  #   values:
+  #     layout: single
+  #     author_profile: true
   # _pages
   - scope:
       path: ""
