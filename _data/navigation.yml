@@ -24,8 +24,8 @@ main:
   - title: "Blog Posts"
     url: /posts/
 
-  - title: "Thoughts"
-    url: /thoughts/
+  # - title: "Thoughts"
+  #   url: /thoughts/
 
-  - title: "ArXiv Daily Digests"
-    url: /digests/
+  # - title: "ArXiv Daily Digests"
+  #   url: /digests/
