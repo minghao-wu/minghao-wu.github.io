@@ -9,7 +9,9 @@ redirect_from:
 ---
 
 
-I am currently on the job market. I obtained my Ph.D. degree in Computer Science from [Monash University](https://www.monash.edu/) in 2025, where I was advised by [Prof. Gholamreza (Reza) Haffari](https://rezahaffari.github.io/HomePage/HomePage.html). Before that, I received my M.Eng. degree in Information Technology from [The University of Melbourne](https://www.unimelb.edu.au/) in 2018, under the supervision of [Prof. Trevor Cohn](https://trevorcohn.github.io/), and my B.Sc. degree in Statistics and Information Systems from [The University of Sydney](https://www.sydney.edu.au/) in 2016. 
+I am currently on the job market. 
+
+I obtained my Ph.D. degree in Computer Science from [Monash University](https://www.monash.edu/) in 2025, where I was advised by [Prof. Gholamreza (Reza) Haffari](https://rezahaffari.github.io/HomePage/HomePage.html). Before that, I received my M.Eng. degree in Information Technology from [The University of Melbourne](https://www.unimelb.edu.au/) in 2018, under the supervision of [Prof. Trevor Cohn](https://trevorcohn.github.io/), and my B.Sc. degree in Statistics and Information Systems from [The University of Sydney](https://www.sydney.edu.au/) in 2016. 
 
 My research interests mainly lie in the following areas:
 
