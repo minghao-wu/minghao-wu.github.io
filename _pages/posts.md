@@ -5,7 +5,6 @@ permalink: /posts/
 author_profile: true
 ---
 
-These blog posts are less formal than research papers but more rigorous than my casual thoughts. I hope you find them informative and engaging.
 
 {% include base_path %}
 
