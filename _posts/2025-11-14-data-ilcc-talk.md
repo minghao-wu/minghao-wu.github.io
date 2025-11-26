@@ -132,7 +132,7 @@ This insight led us to our second study: how can we dynamically optimize data us
 
 ## Study 2: Mixture-of-Skills - Learning to Optimize Data Usage
 
-Our second study, "[Mixture-of-Skills: Learning to Optimize Data Usage for Fine-Tuning Large Language Models](https://aclanthology.org/2024.emnlp-main.123/)," published at EMNLP 2024, tackles the "Optimization Challenge."
+Our second study, "[Mixture-of-Skills: Learning to Optimize Data Usage for Fine-Tuning Large Language Models](https://arxiv.org/abs/2406.08811)," published at EMNLP 2024, tackles the "Optimization Challenge."
 
 While GraphFilter helps us decide *what* to put in our training bucket, it doesn't tell us *how* to spoon it out during training. Traditional fine-tuning uses static mixing—if you have 20% math data and 80% conversation data, that ratio stays fixed from step 1 to step 10,000.
 
