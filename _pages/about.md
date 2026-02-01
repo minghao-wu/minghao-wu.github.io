@@ -1,7 +1,7 @@
 ---
 permalink: /
-title: "Minghao Wu (吴明昊) - Monash University"
-excerpt: "Ph.D. student at Monash University, Australia."
+title: "Minghao Wu (吴明昊) - Alibaba Qwen"
+excerpt: "Research Scientist at Qwen Multilingual team, Tongyi Lab, Alibaba Group."
 author_profile: true
 redirect_from: 
   - /about/
@@ -9,7 +9,7 @@ redirect_from:
 ---
 
 
-I am currently a Research Scientist at Qwen Multilingual team, Alibaba Group, with [Baosong Yang](https://baosongyang.site/). I am looking for self-motivated research interns on multilinguality, large language models, and reinforcement learning. If you are interested, please feel free to contact me via minghaowu[AT]alibaba-inc.com.
+I am currently a Research Scientist at Qwen Multilingual team, Tongyi Lab, Alibaba Group, with [Baosong Yang](https://baosongyang.site/). I am looking for self-motivated research interns on multilinguality, large language models, and reinforcement learning. If you are interested, please feel free to contact me via minghaowu[AT]alibaba-inc.com.
 
 I obtained my Ph.D. degree in Computer Science from [Monash University](https://www.monash.edu/) in 2025, where I was advised by [Prof. Gholamreza (Reza) Haffari](https://rezahaffari.github.io/HomePage/HomePage.html). Before that, I received my M.Eng. degree in Information Technology from [The University of Melbourne](https://www.unimelb.edu.au/) in 2018, under the supervision of [Prof. Trevor Cohn](https://trevorcohn.github.io/), and my B.Sc. degree in Statistics and Information Systems from [The University of Sydney](https://www.sydney.edu.au/) in 2016. 
 
