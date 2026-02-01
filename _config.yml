@@ -7,7 +7,7 @@
 
 # Site Settings
 locale                   : "en-US"
-title                    : "Minghao Wu"
+title                    : "Research Scientist at Qwen"
 title_separator          : "-"
 name                     : &name "Minghao Wu"
 description              : &description "Research Scientist at Qwen Multilingual team, Tongyi Lab, Alibaba Group."
@@ -80,8 +80,8 @@ analytics:
 author:
   name             : "Minghao Wu"
   avatar           : "another_me.jpg" #"profile.png"
-  bio              : "Ph.D. student at Monash University, Australia."
-  location         : "Melbourne, Australia"
+  bio              : "Research Scientist at Qwen Multilingual team, Tongyi Lab, Alibaba Group."
+  location         : "Beijing, China"
   employer         :
   googlescholar    : "https://scholar.google.com/citations?user=EU63HvoAAAAJ&hl=en" #"https://scholar.google.com/citations?user=rzVW-fEAAAAJ&hl=en&citsig=AMstHGR6aN4QVq4TXUAFS-bznvOmplpzdA"
   email            : "minghaowu.self@qq.com"
