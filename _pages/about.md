@@ -33,6 +33,7 @@ My CV can be downloaded from <a href="https://minghao-wu.github.io/files/cv/Ming
 
 ### Work Experience
 
+* Jan. 2026 - Present: Research Scientist at Qwen Multilingual team, Tongyi Lab, Alibaba Group, supervised by [Baosong Yang](https://baosongyang.site/).
 * Jul. 2025 - Nov. 2025: Vsisting Researcher at The University of Edinburgh, supervised by [Prof. Alexandra Birch](https://sites.google.com/view/alexandra-birch/home).
 * Nov. 2024 - Apr. 2025: Research Intern at Alibaba Group, supervised by [Dr. Longyue Wang](http://www.longyuewang.com/).
 * Jul. 2023 - Oct. 2023: Research Intern at Tencent AI Lab, supervised by [Dr. Longyue Wang](http://www.longyuewang.com/).
