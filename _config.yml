@@ -7,7 +7,7 @@
 
 # Site Settings
 locale                   : "en-US"
-title                    : "Research Scientist at Qwen"
+title                    : "Research Scientist"
 title_separator          : "-"
 name                     : &name "Minghao Wu"
 description              : &description "Research Scientist at Qwen Multilingual team, Tongyi Lab, Alibaba Group."
